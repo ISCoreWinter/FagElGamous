@@ -12,10 +12,12 @@ namespace FagElGamous.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private IdentityContext _identity;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IdentityContext identity)
         {
             _logger = logger;
+            _identity = identity;
         }
 
         public IActionResult Index()

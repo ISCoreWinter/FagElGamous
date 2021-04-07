@@ -1,6 +1,9 @@
+using FagElGamous.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,7 +26,23 @@ namespace FagElGamous
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+
+            //adding the database for the login and admin features
+            services.AddDbContext<IdentityContext>(options => 
+            { 
+                options.UseSqlite(Configuration["ConnectionStrings:IdentityConnection"]);
+            });
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+            //these are settings for password requirements, change as needed according the security requirements
+            services.Configure<IdentityOptions>(options => {
+                options.Password.RequiredLength = 10;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +63,8 @@ namespace FagElGamous
 
             app.UseRouting();
 
+            //these required in this order for login services
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -51,6 +72,8 @@ namespace FagElGamous
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
             });
         }
     }
