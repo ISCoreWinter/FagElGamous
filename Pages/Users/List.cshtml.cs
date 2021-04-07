@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FagElGamous.Pages.Users
 {
-    public class ListModel : PageModel
+    public class ListModel : AdminPageModel
     {
         public UserManager<IdentityUser> UserManager;
         public ListModel(UserManager<IdentityUser> userManager)

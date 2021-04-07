@@ -75,6 +75,9 @@ namespace FagElGamous
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });
+
+            //seeddata to create the groups and a sinlge admin user for the app
+            IdentitySeedData.CreateAdminAccount(app.ApplicationServices, Configuration);
         }
     }
 }
