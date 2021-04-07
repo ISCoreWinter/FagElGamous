@@ -1,4 +1,5 @@
 ﻿using FagElGamous.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,6 +21,28 @@ namespace FagElGamous.Controllers
             _identity = identity;
         }
 
+        //return the view that allows for everyone to view the data
+        public IActionResult DataDisplay()
+        {
+            return View();
+        }
+
+        //return the view with a form to add data
+        [HttpGet]
+        [Authorize(Roles="Researchers")]
+        public IActionResult AddDataset()
+        {
+            return View();
+        }
+
+        //return the view to add in field notes
+        [Authorize(Roles = "Researchers")]
+        public IActionResult NotesEntry()
+        {
+            return View();
+        }
+
+        //return the home page
         public IActionResult Index()
         {
             return View();
