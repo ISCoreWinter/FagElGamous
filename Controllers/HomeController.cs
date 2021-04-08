@@ -38,13 +38,6 @@ namespace FagElGamous.Controllers
             return View();
         }
 
-        //return the view to add in field notes
-        [Authorize(Roles = "Researchers")]
-        public IActionResult NotesEntry()
-        {
-            return View();
-        }
-
         //return the home page
         public IActionResult Index()
         {
@@ -66,17 +59,18 @@ namespace FagElGamous.Controllers
                         {
                             await file.CopyToAsync(fileStream);
                         }
+
+                        ViewBag.FileStatus = "File Uploaded Successfully";
                     }
-                    ViewBag.FileStatus = "File Uploaded Successfully";
+                    if (file == null)
+                    {
+                        ViewBag.FileStatus = "Error: Please Select a File";
+                    }
                 }
                 catch
                 {
                     ViewBag.FileStatus = "Error While Uploading File";
                 }
-            }
-            else
-            {
-                ViewBag.FileStatus = "Please choose a file with the correct format";
             }
 
             return View("AddDataset");
