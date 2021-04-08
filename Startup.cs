@@ -43,6 +43,7 @@ namespace FagElGamous
                 options.Password.RequireUppercase = false;
                 options.Password.RequireDigit = true;
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

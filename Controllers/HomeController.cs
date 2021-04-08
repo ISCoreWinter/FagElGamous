@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using System.Web;
 
 namespace FagElGamous.Controllers
 {
@@ -46,6 +49,37 @@ namespace FagElGamous.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        //controller for the photo upload
+        [HttpPost]
+        public async Task<IActionResult> UploadFiles(IFormFile file)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (file != null)
+                    {
+                        string path = Path.Combine("./Uploads", Path.GetFileName(file.FileName));
+                        using (Stream fileStream = new FileStream(path, FileMode.Create))
+                        {
+                            await file.CopyToAsync(fileStream);
+                        }
+                    }
+                    ViewBag.FileStatus = "File Uploaded Successfully";
+                }
+                catch
+                {
+                    ViewBag.FileStatus = "Error While Uploading File";
+                }
+            }
+            else
+            {
+                ViewBag.FileStatus = "Please choose a file with the correct format";
+            }
+
+            return View("AddDataset");
         }
 
         public IActionResult Privacy()
