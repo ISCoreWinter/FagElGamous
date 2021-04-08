@@ -2,18 +2,88 @@
 @model FagElGamous.Pages.Account.LoginModel
 @{
 }
+<div class="container">
+    <nav id="plswork" class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" role="navigation" style="background-color: #889bae">
+        <div class="container">
+            <a asp-area="" asp-controller="Home" asp-action="Index">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="~/img/pyramid-icon-2.png">
+                    </div>
+                    <div class="brand" style="font-weight:bold;">
+                        BYU Excavations
+                    </div>
+                </div>
+            </a>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
 
-<div class="bg-primary text-center text-white p-2"><h4>Log In</h4></div>
-<div class="m-1 text-danger" asp-validation-summary="All"></div>
-<form method="post">
-    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
-    <div class="form-group">
-        <label>UserName</label>
-        <input class="form-control" asp-for="UserName" />
+                    <li><a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-controller="Home" asp-action="DataDisplay">View Available Data</a></li>
+                    <li>
+                        <a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-page="/Account/Login">Login</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-page="/Account/Logout">Logout</a>
+                    </li>
+                    @if (User.IsInRole("Researchers"))
+                    {
+                        <li style="font-weight:bold;">
+                            <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
+                        </li>
+                        <li style="font-weight:bold;">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="NotesEntry">Enter Your Field Notes</a>
+                        </li>
+                    }
+                    @if (User.IsInRole("Admins"))
+                    {
+                        <li style="font-weight:bold;">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Roles/List">View Roles</a>
+                        </li>
+                        <li style="font-weight:bold;">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Users/List">View Users</a>
+                        </li>
+                        <li style="font-weight:bold;">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Users/Create">Create Users</a>
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</div>
+    <div class="main">
+        <div class="container tim-container">
+            <br /><br /><br /><br /><br /><br /><br />
+            <div class="bg-primary text-center text-white p-2"><h4>Log In</h4></div>
+            <div class="m-1 text-danger" asp-validation-summary="All"></div>
+            <form method="post">
+                <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                <div class="form-group">
+                    <label>Username</label>
+                    <input class="form-control" asp-for="UserName" />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                </div>
+                <button class="btn btn-primary" type="submit">Log In</button>
+            </form>
+            <br /><br /><br />
+        </div>
     </div>
-    <div class="form-group">
-        <label>Password</label>
-        <input asp-for="Password" type="password" class="form-control" />
+    <div class="parallax-pro">
+        <div class="img-src" style="background-image: url('/img/tomb.jpeg');"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="credits">
+                        &copy;
+                        <script>document.write(new Date().getFullYear())</script>  BYU Excavations<i class="fa fa-heart heart" alt="love"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <button class="btn btn-primary" type="submit">Log In</button>
-</form>
