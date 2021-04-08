@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FagElGamous.Pages.Roles
 {
-    public class CreateModel : PageModel
+    public class CreateModel : AdminPageModel
     {
         public RoleManager<IdentityRole> RoleManager;
         public CreateModel(UserManager<IdentityUser> userManager,

@@ -20,6 +20,7 @@
     <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<<<<<<< HEAD
     <div id="navbar-full">
         <div class="container">
             <nav id="plswork" class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" role="navigation">
@@ -62,6 +63,55 @@
                 <div>BYU</div>
                 <!--<div class="border no-right-border">Eg</div>--><div class="border">Egypt</div>
                 <div class="text-center">Excavation</div>
+=======
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FagElGamous</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="DataDisplay">View Available Data</a>
+                        </li>
+                        @if (User.IsInRole("Researchers"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="NotesEntry">Enter Your Field Notes</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admins"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Roles/List">View Roles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Users/List">View Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Users/Create">Create Users</a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="navbar-nav flex-grow-1 float-right">
+                        <li class="nav-item">
+                            <a class="btn btn-sm btn-info" asp-area="" asp-page="/Account/Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-danger btn-sm" asp-area="" asp-page="/Account/Logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+>>>>>>> master
             </div>
             <div class="img-src" style="background-image: url(/img/excavation2.jpeg)"></div>
             <div class='img-src blur' style="background-image: url('/img/cover_4_blur.jpg')"></div>

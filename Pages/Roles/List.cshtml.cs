@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FagElGamous.Pages.Roles
 {
-    public class ListModel : PageModel
+    public class ListModel : AdminPageModel
     {
         public UserManager<IdentityUser> UserManager;
         public RoleManager<IdentityRole> RoleManager;
