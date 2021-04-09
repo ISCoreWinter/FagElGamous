@@ -1,6 +1,56 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    /* Style The Dropdown Button */
+    .dropbtn {
+        background-color: black;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                background-color: #f1f1f1
+            }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+        background-color: #D2B48C;
+    }
+</style>
 <div id="navbar-full">
     <div class="container">
         <nav id="plswork" class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" role="navigation">
@@ -17,40 +67,54 @@
                 </a>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar navbar-nav navbar-right">
-                        <li><a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
 
-                        <li><a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-controller="Home" asp-action="DataDisplay">View Available Data</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="DataDisplay">View Available Data</a></li>
                         <li>
-                            <a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-page="/Account/Login">Login</a>
-                        </li>
-                        <li>
-                            <a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-page="/Account/Logout">Logout</a>
-                        </li>
-                
-                    @if (User.IsInRole("Researchers"))
-                    {
-                        <li>
-                            <a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
+                            <a asp-area="" asp-page="/Account/Login">Login</a>
                         </li>
                         <li>
-                            <a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-controller="Home" asp-action="NotesEntry">Enter Your Field Notes</a>
+                            <a asp-area="" asp-page="/Account/Logout">Logout</a>
                         </li>
-                    }
-                   
-                    @if (User.IsInRole("Admins"))
-                    {
-                       <li>
-                            <a class="btn btn-round btn-default" asp-area="" asp-page="/Roles/List">View Roles</a>
-                        </li>
-                        <li>
-                            <a class="btn btn-round btn-default" asp-area="" asp-page="/Users/List">View Users</a>
-                        </li>
-                        <li>
-                            <a class="btn btn-round btn-default" asp-area="" asp-page="/Users/Create">Create Users</a>
-                        </li>
-                    }
-                   </ul>
 
+                        @if (User.IsInRole("Researchers"))
+                        {
+                            @*<li>
+                                <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="NotesEntry">Enter Your Field Notes</a>
+                            </li>*@
+                            <div class="dropdown">
+                                <button class="dropbtn">Researcher</button>
+                                <div class="dropdown-content">
+                                    <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
+                                    <a asp-area="" asp-controller="Home" asp-action="NotesEntry">Enter Your Field Notes</a>
+                                </div>
+                            </div>
+                        }
+
+                        @if (User.IsInRole("Admins"))
+                        {
+                            @*<li>
+                <a asp-area="" asp-page="/Roles/List">View Roles</a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/Users/List">View Users</a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/Users/Create">Create Users</a>
+            </li>*@
+                            <div class="dropdown">
+                                <button class="dropbtn">Admin</button>
+                                <div class="dropdown-content">
+                                    <a asp-area="" asp-page="/Roles/List">View Roles</a>
+                                    <a asp-area="" asp-page="/Users/List">View Users</a>
+                                    <a asp-area="" asp-page="/Users/Create">Create Users</a>
+                                </div>
+                            </div>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -60,8 +124,8 @@
     <div class='blurred-container text-center'>
         <div class="motto text-center">
             <div>BYU</div>
-            <!--<div class="border no-right-border">Eg</div>--><div class="border">Egypt</div>
-            <div class="text-center">Excavation</div>
+            <!--<div class="border no-right-border">Eg</div>--><div class="border">Fag el-</div>
+            <div class="text-center">Gamous</div><br /><br />
         </div>
         <div class="img-src" style="background-image: url(/img/excavation2.jpeg)"></div>
         <div class='img-src blur' style="background-image: url('/img/cover_4_blur.jpg')"></div>
@@ -110,18 +174,18 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3 col-md-12 text-center">
                 <h1 class="hello text-center">
-                    <a>BYU Egypt Excavation</a>
+                    <a style="font-weight: bold;">BYU Egypt Excavation</a><br />
                     <small>
                         <ul class="list-unstyled">
-                            <li>50+ records</li>
-                            <li>Years of Data</li>
-                            <li>Easily Searchable</li>
-                            <li>User Friendly </li>
+                            <li style="font-weight: bold;">50+ records</li>
+                            <li style="font-weight: bold;">Years of Data</li>
+                            <li style="font-weight: bold;">Easily Searchable</li>
+                            <li style="font-weight: bold;">User Friendly </li>
                         </ul>
                     </small>
                 </h1>
                 <div class="actions">
-                    <a class="btn btn-lg btn-warning btn-fill" asp-area="" asp-page="/Account/Login">Login</a>
+                    <a style="background-color: black;" class="btn btn-lg btn-fill" asp-area="" asp-page="/Account/Login">Login</a>
                 </div>
             </div>
         </div>
@@ -130,7 +194,7 @@
             <div class="col-md-12 text-center">
                 <div class="credits">
                     &copy;
-                    <script>document.write(new Date().getFullYear())</script>  BYU Excavations<i class="fa fa-heart heart" alt="love"></i>
+                    <script>document.write(new Date().getFullYear())</script>  BYU Excavations
                 </div>
             </div>
         </div>
