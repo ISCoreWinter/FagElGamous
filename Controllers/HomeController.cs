@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Web;
+using Amazon.S3.Model;
+using System.Threading;
 
 namespace FagElGamous.Controllers
 {
@@ -17,17 +19,12 @@ namespace FagElGamous.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IdentityContext _identity;
+        private CancellationToken cancellationToken;
 
         public HomeController(ILogger<HomeController> logger, IdentityContext identity)
         {
             _logger = logger;
             _identity = identity;
-        }
-
-        //return the view that allows for everyone to view the data
-        public IActionResult DataDisplay()
-        {
-            return View();
         }
 
         //return the view with a form to add data
@@ -44,36 +41,38 @@ namespace FagElGamous.Controllers
             return View();
         }
 
+        //return the view that allows for everyone to view the data
+        public async Task<IActionResult> DataDisplay()
+        {
+            string bucket = "intexphotos";
+            string key = "Photos/150-160N 0-10E SW Burial 5 - Skull B.JPG";
+
+            GetObjectResponse response = await s3upload.ReadObjectData(bucket, key);
+
+            await response.WriteResponseStreamToFileAsync("./display.jpg", true, cancellationToken);
+
+            return View();
+        }
+
         //controller for the photo upload
         [HttpPost]
-        public async Task<IActionResult> UploadFiles(IFormFile file)
+        public async Task<IActionResult> AddDataset(FileUpload FileUpload)
         {
-            if (ModelState.IsValid)
+            using (var memoryStream = new MemoryStream())
             {
-                try
-                {
-                    if (file != null)
-                    {
-                        string path = Path.Combine("./Uploads", Path.GetFileName(file.FileName));
-                        using (Stream fileStream = new FileStream(path, FileMode.Create))
-                        {
-                            await file.CopyToAsync(fileStream);
-                        }
+                await FileUpload.FormFile.CopyToAsync(memoryStream);
 
-                        ViewBag.FileStatus = "File Uploaded Successfully";
-                    }
-                    if (file == null)
-                    {
-                        ViewBag.FileStatus = "Error: Please Select a File";
-                    }
-                }
-                catch
+                if (memoryStream != null)
                 {
-                    ViewBag.FileStatus = "Error While Uploading File";
+                    await s3upload.UploadFileAsync(memoryStream, "intexphotos", "Photos/" + FileUpload.FormFile.FileName);
+                }
+                else
+                {
+                    ModelState.AddModelError("File", "Please Select a File");
                 }
             }
 
-            return View("AddDataset");
+            return View();
         }
 
         public IActionResult Privacy()

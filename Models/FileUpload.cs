@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,6 @@ namespace FagElGamous.Models
         [DataType(DataType.Upload)]
         [Display(Name = "Upload File")]
         [Required(ErrorMessage = "Please choose file to upload")]
-        public string file { get; set; }
+        public IFormFile FormFile { get; set; }
     }
 }
