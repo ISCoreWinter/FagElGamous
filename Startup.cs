@@ -32,7 +32,7 @@ namespace FagElGamous
             //adding the database for the login and admin features
             services.AddDbContext<IdentityContext>(options => 
             { 
-                options.UseSqlite(Configuration["ConnectionStrings:IdentityConnection"]);
+                options.UseSqlServer(Configuration["ConnectionStrings:IdentityConnection"]);
             });
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
             //these are settings for password requirements, change as needed according the security requirements
