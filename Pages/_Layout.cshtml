@@ -1,144 +1,85 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-<div id="navbar-full">
-    <div class="container">
-        <nav id="plswork" class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" role="navigation">
-            <div class="container">
-                <a asp-area="" asp-controller="Home" asp-action="Index">
-                    <div class="logo-container">
-                        <div class="logo">
-                            <img src="~/img/pyramid-icon-2.png">
-                        </div>
-                        <div class="brand" style="font-weight:bold;">
-                            BYU Excavations
-                        </div>
-                    </div>
-                </a>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar navbar-nav navbar-right">
-                        <li><a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/img/pyramid-icon-2.png">
 
-                        <li><a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-controller="Home" asp-action="DataDisplay">View Available Data</a></li>
-                        <li>
-                            <a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-page="/Account/Login">Login</a>
-                        </li>
-                        <li>
-                            <a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-page="/Account/Logout">Logout</a>
-                        </li>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>@ViewData["Title"] - Fag el-Gamous</title>
 
-                        @if (User.IsInRole("Researchers"))
-                        {
-                            <li>
-                                <a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
-                            </li>
-                            <li>
-                                <a class="btn btn-round btn-default" style="font-weight:bold;" asp-area="" asp-controller="Home" asp-action="NotesEntry">Enter Your Field Notes</a>
-                            </li>
-                        }
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
 
-                        @if (User.IsInRole("Admins"))
-                        {
-                            <li>
-                                <a class="btn btn-round btn-default" asp-area="" asp-page="/Roles/List">View Roles</a>
-                            </li>
-                            <li>
-                                <a class="btn btn-round btn-default" asp-area="" asp-page="/Users/List">View Users</a>
-                            </li>
-                            <li>
-                                <a class="btn btn-round btn-default" asp-area="" asp-page="/Users/Create">Create Users</a>
-                            </li>
-                        }
-                    </ul>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/gsdk.css" rel="stylesheet" />
+    <link href="~/css/demo.css" rel="stylesheet" />
 
-                </div>
-            </div>
-        </nav>
+    <!--     Font Awesome     -->
+    <link href="~/lib/bootstrap/dist/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
+</head>
+<body>
 
-    </div><!--  end container-->
 
-    <div class='blurred-container text-center'>
-        <div class="motto text-center">
-            <div>BYU</div>
-            <!--<div class="border no-right-border">Eg</div>--><div class="border">Egypt</div>
-            <div class="text-center">Excavation</div>
-        </div>
-        <div class="img-src" style="background-image: url(/img/excavation2.jpeg)"></div>
-        <div class='img-src blur' style="background-image: url('/img/cover_4_blur.jpg')"></div>
+    <div>
+        @RenderBody()
     </div>
 
-</div>
-<div class="main">
-    <div class="container tim-container">
-        <div id="extras">
-            <div class="space"></div>
-            <div class="row">
-                <div class="col-md-7 col-md-offset-0 col-sm-10 col-sm-offset-1">
-                    <div class="text-center">
-                        <img src="~/img/dulau.jpg" alt="Rounded Image" class="img-rounded img-responsive img-dog">
-                    </div>
-                </div>
-                <div class="col-md-5 col-sm-12">
-                    <h1 class="text-center">
-                        About Creative Tim
-
-                        <small class="subtitle">Get to know us</small>
-                    </h1>
-                    <hr>
-                    <p>
-                        Creative Tim offers Bootstrap based design elements that speed up your development work. From plugins to complex kits, we have everything you need.
-                    </p>
-                    <p>
-                        We love the web and care deeply for how users interact with a digital product. The idea behind Creative Tim was creating a standard of things we actually need and would personally use inside our web projects. We power businesses and individuals to create better looking web projects around the world.
-                    </p>
-                    <p>
-                        We take great interest in how our customers use our resources and offer strong support and unlimited updates. We are constantly thinking about how to make our products intuitive, beautiful and extremely easy to understand, so feel free to tell us your thoughts!
-                    </p>
-
-                </div>
-            </div>
-        </div>
-        <!--     end extras -->
-    </div>
-    <!-- end container -->
-    <div class="space-30"></div>
-</div>
-<div>
-    @RenderBody()
-</div>
-<div class="parallax-pro">
-    <div class="img-src" style="background-image: url('/img/tomb.jpeg');"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 col-md-12 text-center">
-                <h1 class="hello text-center">
-                    <a>BYU Egypt Excavation</a>
-                    <small>
-                        <ul class="list-unstyled">
-                            <li>50+ records</li>
-                            <li>Years of Data</li>
-                            <li>Easily Searchable</li>
-                            <li>User Friendly </li>
-                        </ul>
-                    </small>
-                </h1>
-                <div class="actions">
-                    <a class="btn btn-lg btn-warning btn-fill" asp-area="" asp-page="/Account/Login">Login</a>
-                </div>
-            </div>
-        </div>
-        <div class="space-30"></div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <div class="credits">
-                    &copy;
-                    <script>document.write(new Date().getFullYear())</script>  BYU Excavations<i class="fa fa-heart heart" alt="love"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
 
 
-<!-- end main -->
+    <script src="~/jquery/jquery/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="~/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
+    <script src="~/js/gsdk-checkbox.js"></script>
+    <script src="~/js/gsdk-radio.js"></script>
+    <script src="~/js/gsdk-bootstrapswitch.js"></script>
+    <script src="~/js/get-shit-done.js"></script>
+    <script src="~/js/custom.js"></script>
+
+    <script type="text/javascript">$('.btn-tooltip').tooltip();
+        $('.label-tooltip').tooltip();
+        $('.pick-class-label').click(function () {
+            var new_class = $(this).attr('new-class');
+            var old_class = $('#display-buttons').attr('data-class');
+            var display_div = $('#display-buttons');
+            if (display_div.length) {
+                var display_buttons = display_div.find('.btn');
+                display_buttons.removeClass(old_class);
+                display_buttons.addClass(new_class);
+                display_div.attr('data-class', new_class);
+            }
+        });
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [75, 300],
+        });
+        $("#slider-default").slider({
+            value: 70,
+            orientation: "horizontal",
+            range: "min",
+            animate: true
+        });
+        $('.carousel').carousel({
+            interval: 4000
+        });</script>
+    <script>var nav = document.getElementById('plswork'); // Identify target
+
+        window.addEventListener('scroll', function (event) { // To listen for event
+            event.preventDefault();
+
+            if (window.scrollX <= 150) { // Just an example
+
+                nav.style.backgroundColor = '#889bae'; // or default color
+
+            } else {
+                nav.style.backgroundColor = 'transparent';
+            }
+        });</script>
+
+</body>
+</html>
+
