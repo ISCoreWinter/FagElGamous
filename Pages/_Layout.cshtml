@@ -22,11 +22,74 @@
 <body>
 
 
-    <div>
-        @RenderBody()
+
+    <div id="navbar-full">
+        <div class="container">
+            <nav id="plswork" class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" role="navigation">
+                <div class="container row">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">
+                        <div class="logo-container">
+                            <div class="logo">
+                                <img src="~/img/pyramid-icon-2.png">
+                            </div>
+                            <div class="brand" style="font-weight:bold;">
+                                BYU Excavations
+                            </div>
+                        </div>
+                    </a>
+                    <div class="p-6">
+                        <a class="btn btn-default btn-fill" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="btn btn-default btn-fill" asp-controller="Home" asp-action="DataDisplay">View Available Data</a>
+                        <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Login">Login</a>
+                        <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Logout">Logout</a>
+
+                        @if (User.IsInRole("Researchers"))
+                        {
+                            @*<li>
+                                    <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-controller="Home" asp-action="NotesEntry">Enter Your Field Notes</a>
+                                </li>*@
+                            <div class="dropdown">
+                                <button class="dropbtn">Researcher</button>
+                                <div class="dropdown-content">
+                                    <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
+                                </div>
+                            </div>
+                        }
+
+                        @if (User.IsInRole("Admins"))
+                        {
+                            @*<li>
+                                    <a asp-area="" asp-page="/Roles/List">View Roles</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/Users/List">View Users</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/Users/Create">Create Users</a>
+                                </li>*@
+                            <div class="dropdown">
+                                <button class="dropbtn">Admin</button>
+                                <div class="dropdown-content">
+                                    <a asp-area="" asp-page="/Roles/List">View Roles</a>
+                                    <a asp-area="" asp-page="/Users/List">View Users</a>
+                                    <a asp-area="" asp-page="/Users/Create">Create Users</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </nav>
+
+        </div><!--  end container-->
+
     </div>
 
-
+    <div class="container">
+        @RenderBody()
+    </div>
 
     <script src="~/jquery/jquery/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="~/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
@@ -38,7 +101,8 @@
     <script src="~/js/get-shit-done.js"></script>
     <script src="~/js/custom.js"></script>
 
-    <script type="text/javascript">$('.btn-tooltip').tooltip();
+    <script type="text/javascript">
+        $('.btn-tooltip').tooltip();
         $('.label-tooltip').tooltip();
         $('.pick-class-label').click(function () {
             var new_class = $(this).attr('new-class');
@@ -66,19 +130,56 @@
         $('.carousel').carousel({
             interval: 4000
         });</script>
-    <script>var nav = document.getElementById('plswork'); // Identify target
+    <script>
 
-        window.addEventListener('scroll', function (event) { // To listen for event
-            event.preventDefault();
+        var nav = document.getElementById('plswork'); // Identify target
 
-            if (window.scrollX <= 150) { // Just an example
+        nav.style.backgroundColor = '#889bae'; // or default color
 
-                nav.style.backgroundColor = '#889bae'; // or default color
-
-            } else {
-                nav.style.backgroundColor = 'transparent';
+    </script>
+    <style>
+        /* Style The Dropdown Button */
+        .dropbtn {
+            background-color: black;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+            /* Links inside the dropdown */
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
             }
-        });</script>
-
+                /* Change color of dropdown links on hover */
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1
+                }
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #D2B48C;
+        }
+    </style>
 </body>
 </html>
