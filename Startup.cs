@@ -22,6 +22,7 @@ namespace FagElGamous
         }
 
         public IConfiguration Configuration { get; }
+        public bool Production { get; set; } = false;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -32,7 +33,15 @@ namespace FagElGamous
             //adding the database for the login and admin features
             services.AddDbContext<IdentityContext>(options => 
             { 
+                if (Production)
+                {
                 options.UseSqlServer(Configuration["ConnectionStrings:IdentityConnection"]);
+                }
+                else
+                {
+                    options.UseSqlite(Configuration["ConnectionStrings:LocalConnection"]);
+                }
+
             });
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
             //these are settings for password requirements, change as needed according the security requirements
