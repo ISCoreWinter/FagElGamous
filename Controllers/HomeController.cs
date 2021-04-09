@@ -49,7 +49,7 @@ namespace FagElGamous.Controllers
 
             GetObjectResponse response = await s3upload.ReadObjectData(bucket, key);
 
-            await response.WriteResponseStreamToFileAsync("./display.jpg", true, cancellationToken);
+            await response.WriteResponseStreamToFileAsync("./wwwroot/pics/display.jpg", true, cancellationToken);
 
             return View();
         }

@@ -45,12 +45,6 @@
 
                         @if (User.IsInRole("Researchers"))
                         {
-                            @*<li>
-                                    <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
-                                </li>
-                                <li>
-                                    <a asp-area="" asp-controller="Home" asp-action="NotesEntry">Enter Your Field Notes</a>
-                                </li>*@
                             <div class="dropdown">
                                 <button class="dropbtn">Researcher</button>
                                 <div class="dropdown-content">
@@ -61,15 +55,6 @@
 
                         @if (User.IsInRole("Admins"))
                         {
-                            @*<li>
-                                    <a asp-area="" asp-page="/Roles/List">View Roles</a>
-                                </li>
-                                <li>
-                                    <a asp-area="" asp-page="/Users/List">View Users</a>
-                                </li>
-                                <li>
-                                    <a asp-area="" asp-page="/Users/Create">Create Users</a>
-                                </li>*@
                             <div class="dropdown">
                                 <button class="dropbtn">Admin</button>
                                 <div class="dropdown-content">
@@ -97,10 +82,11 @@
 
     </div>
 
-    <div>
-        @RenderBody()
+    <div class="main p-3">
+        <div class="container tim-container">
+            @RenderBody()
+        </div>
     </div>
-
                       <div class="parallax-pro">
                           <div class="img-src" style="background-image: url('/img/tomb.jpeg');"></div>
                           <div class="container">

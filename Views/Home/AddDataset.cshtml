@@ -4,4 +4,18 @@
 @{
 }
 
+@model FileUpload
+
     <h1>This is where you add data</h1>
+
+<form enctype="multipart/form-data" method="post">
+    <dl>
+        <dt>
+            <label asp-for="@Model.FormFile"></label>
+        </dt>
+        <dd>
+            <input asp-for="@Model.FormFile" />
+        </dd>
+    </dl>
+    <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
+</form>
