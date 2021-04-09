@@ -4,4 +4,146 @@
 @{
 }
 
-<h3>Here the data will be displayed</h3>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<style>
+    /* Style The Dropdown Button */
+    .dropbtn {
+        background-color: black;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                background-color: #f1f1f1
+            }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+        background-color: #D2B48C;
+    }
+</style>
+<div id="navbar-full">
+    <div class="container">
+        <nav id="plswork" class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" style="background-color: #889bae" role="navigation">
+            <div class="container">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <div class="logo-container">
+                        <div class="logo">
+                            <img src="~/img/pyramid-icon-2.png">
+                        </div>
+                        <div class="brand" style="font-weight:bold;">
+                            BYU Excavations
+                        </div>
+                    </div>
+                </a>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar navbar-nav navbar-right">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+
+                        <li><a asp-area="" asp-controller="Home" asp-action="DataDisplay">View Available Data</a></li>
+                        <li>
+                            <a asp-area="" asp-page="/Account/Login">Login</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/Account/Logout">Logout</a>
+                        </li>
+
+                        @if (User.IsInRole("Researchers"))
+                        {
+                            @*<li>
+                                    <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-controller="Home" asp-action="NotesEntry">Enter Your Field Notes</a>
+                                </li>*@
+                            <div class="dropdown">
+                                <button class="dropbtn">Researcher</button>
+                                <div class="dropdown-content">
+                                    <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
+                                    <a asp-area="" asp-controller="Home" asp-action="NotesEntry">Enter Your Field Notes</a>
+                                </div>
+                            </div>
+                        }
+
+                        @if (User.IsInRole("Admins"))
+                        {
+                            @*<li>
+                                    <a asp-area="" asp-page="/Roles/List">View Roles</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/Users/List">View Users</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-page="/Users/Create">Create Users</a>
+                                </li>*@
+                            <div class="dropdown">
+                                <button class="dropbtn">Admin</button>
+                                <div class="dropdown-content">
+                                    <a asp-area="" asp-page="/Roles/List">View Roles</a>
+                                    <a asp-area="" asp-page="/Users/List">View Users</a>
+                                    <a asp-area="" asp-page="/Users/Create">Create Users</a>
+                                </div>
+                            </div>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </div><!--  end container-->
+    <br /><br /><br /><br /><br />
+
+    <h1>This is where you display data</h1>
+
+    <br /><br /><br /><br />
+    <div class="parallax-pro">
+        <div class="img-src" style="background-image: url('/img/tomb.jpeg');"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="credits">
+                        &copy;
+                        <script>document.write(new Date().getFullYear())</script>  BYU Excavations
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
