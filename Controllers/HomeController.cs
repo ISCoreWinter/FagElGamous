@@ -58,21 +58,56 @@ namespace FagElGamous.Controllers
         //    return View();
         //}
 
-        public IActionResult DataDisplay(int pageNum = 1)
+        [HttpGet]
+        public IActionResult DataDisplay(int pageNum = 1, string? category = null)
         {
             IEnumerable<BurialRecords> records = _context.BurialRecords;
+
+            int pageSize = 18;
 
             return View(new DataListViewModel
             {
                 pagingInfo = new PagingInfo
                 {
                     CurrentPage = pageNum,
-                    ItemsPerPage = 20,
+                    ItemsPerPage = pageSize,
                     TotalNumItems = records.Count()
                 },
 
-                records = records.OrderBy(r => r.Area).Skip((pageNum - 1) * 20).Take(20)
+                records = records.OrderBy(r => r.Area).Skip((pageNum - 1) * pageSize).Take(pageSize)
             });
+        }
+
+        //to view more data on that item
+        [HttpPost]
+        public IActionResult DataDisplay(int BurialId)
+        {
+                ViewAllDataViewModel BurialDataAll = new ViewAllDataViewModel
+                {
+                    BurialRecord = _context.BurialRecords.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                    BioSamples = _context.BiologicalSamples.Where(x => x.BurialId == BurialId),
+                    Photos = _context.Photos.Where(x => x.BurialId == BurialId),
+                    BodyMeasurements = _context.BodyMeasurements.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                    CarbonDating = _context.CarbonDating.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                    Cranial = _context.Cranial.Where(x => x.BurialId == BurialId).FirstOrDefault()
+                };
+
+                return View("ViewAllData", BurialDataAll);
+        }
+
+        public IActionResult ViewAllData(int burialId)
+        {
+            ViewAllDataViewModel BurialDataAll = new ViewAllDataViewModel
+            {
+                BurialRecord = _context.BurialRecords.Where(x => x.BurialId == burialId).FirstOrDefault(),
+                BioSamples = _context.BiologicalSamples.Where(x => x.BurialId == burialId),
+                Photos = _context.Photos.Where(x => x.BurialId == burialId),
+                BodyMeasurements = _context.BodyMeasurements.Where(x => x.BurialId == burialId).FirstOrDefault(),
+                CarbonDating = _context.CarbonDating.Where(x => x.BurialId == burialId).FirstOrDefault(),
+                Cranial = _context.Cranial.Where(x => x.BurialId == burialId).FirstOrDefault()
+            };
+
+            return View(BurialDataAll);
         }
 
         //controller for the photo upload

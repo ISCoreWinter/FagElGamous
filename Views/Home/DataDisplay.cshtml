@@ -21,18 +21,24 @@
 
     @foreach (var x in Model.records)
     {
-        <div class="col-3 p-2">
-            <p>
-                Coordinates: @x.LowPairNs @x.BurialLocationNs by @x.LowPairEw @x.BurialLocationEw at burial number
-                @x.BurialNumber, @x.BurialSubplot.
-            </p>
+        <div class="col-4 p-3">
+            <form id="@x.BurialId" asp-action="DataDisplay" method="post">
+                <p>
+                    Coordinates: @x.LowPairNs @x.BurialLocationNs by @x.LowPairEw @x.BurialLocationEw at burial number
+                    @x.BurialNumber, @x.BurialSubplot
+                </p>
+                <input type="hidden" asp-for="@x.BurialId" value="@x.BurialId"/>
+                <button type="submit" class="btn btn-success">
+                    See More About This Find
+                </button>
+            </form>
         </div>
     }
 </div>
 
     <div page-model="@Model.pagingInfo"
          page-action="DataDisplay" page-classes-enabled="true"
-         page-class="btn" page-class-normal="btn-outline-dark"
-         page-class-selected="btn-info"
-         class="btn-group m-1 p-4">
+         page-class="btn btn-default" page-class-normal="btn-outline-primary"
+         page-class-selected="btn-warning btn-fill"
+         class="btn-group m-1 p-4 pagination">
     </div>
