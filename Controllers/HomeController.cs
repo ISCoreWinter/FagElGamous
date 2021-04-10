@@ -44,8 +44,8 @@ namespace FagElGamous.Controllers
         //return the view that allows for everyone to view the data
         public async Task<IActionResult> DataDisplay()
         {
-            string bucket = "intexphotos";
-            string key = "Photos/150-160N 0-10E SW Burial 5 - Skull B.JPG";
+            string bucket = "fagelgamousuploads";
+            string key = "Photos/65-top.JPG";
 
             GetObjectResponse response = await s3upload.ReadObjectData(bucket, key);
 
@@ -64,7 +64,7 @@ namespace FagElGamous.Controllers
 
                 if (memoryStream != null)
                 {
-                    await s3upload.UploadFileAsync(memoryStream, "intexphotos", "Photos/" + FileUpload.FormFile.FileName);
+                    await s3upload.UploadFileAsync(memoryStream, "fagelgamousuploads", "Photos/" + FileUpload.FormFile.FileName);
                 }
                 else
                 {
