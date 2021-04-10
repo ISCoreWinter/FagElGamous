@@ -20,13 +20,10 @@
     <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
-
-
     <div id="navbar-full">
-        <div class="container">
+        <div class="">
             <nav id="plswork" class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" role="navigation">
-                <div class="container row">
+                <div class="container">
                     <a asp-area="" asp-controller="Home" asp-action="Index">
                         <div class="logo-container">
                             <div class="logo">
@@ -37,33 +34,35 @@
                             </div>
                         </div>
                     </a>
-                    <div class="p-6">
-                        <a class="btn btn-default btn-fill" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        <a class="btn btn-default btn-fill" asp-controller="Home" asp-action="DataDisplay">View Available Data</a>
-                        <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Login">Login</a>
-                        <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Logout">Logout</a>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar navbar-nav navbar-right">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="DataDisplay">View Available Data</a></li>
+                            <li><a asp-area="" asp-page="/Account/Login">Login</a></li>
+                            <li><a asp-area="" asp-page="/Account/Logout">Logout</a></li>
 
-                        @if (User.IsInRole("Researchers"))
-                        {
-                            <div class="dropdown">
-                                <button class="dropbtn">Researcher</button>
-                                <div class="dropdown-content">
-                                    <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
+                            @if (User.IsInRole("Researchers"))
+                            {
+                                <div class="dropdown">
+                                    <button class="dropbtn">Researcher</button>
+                                    <div class="dropdown-content">
+                                        <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
+                                    </div>
                                 </div>
-                            </div>
-                        }
+                            }
 
-                        @if (User.IsInRole("Admins"))
-                        {
-                            <div class="dropdown">
-                                <button class="dropbtn">Admin</button>
-                                <div class="dropdown-content">
-                                    <a asp-area="" asp-page="/Roles/List">View Roles</a>
-                                    <a asp-area="" asp-page="/Users/List">View Users</a>
-                                    <a asp-area="" asp-page="/Users/Create">Create Users</a>
+                            @if (User.IsInRole("Admins"))
+                            {
+                                <div class="dropdown">
+                                    <button class="dropbtn">Admin</button>
+                                    <div class="dropdown-content">
+                                        <a asp-area="" asp-page="/Roles/List">View Roles</a>
+                                        <a asp-area="" asp-page="/Users/List">View Users</a>
+                                        <a asp-area="" asp-page="/Users/Create">Create Users</a>
+                                    </div>
                                 </div>
-                            </div>
-                        }
+                            }
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -73,9 +72,12 @@
     </div>
     <div class="main p-3">
         <div class="container tim-container">
+            <br /><br /><br /><br /><br />
             @RenderBody()
         </div>
     </div>
+
+
 
     <script src="~/jquery/jquery/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="~/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
