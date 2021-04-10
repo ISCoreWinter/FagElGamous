@@ -23,13 +23,8 @@
 </head>
 <body>
     <div id="navbar-full">
-<<<<<<< HEAD
-        <div class="navbar-fixed-top">
-            <nav id="plswork" class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" role="navigation" style="background-color:gray">
-=======
         <div class="">
             <nav id="plswork" class="navbar fixed-nav-bar" role="navigation" style="background-color: #889bae; top: 0; width: 100%; ">
->>>>>>> dfc8a0c7f7f25d91511f7fe59312c6f3169a6a8a
                 <div class="container row">
                     <a asp-area="" asp-controller="Home" asp-action="Index">
                         <div class="logo-container">
@@ -41,25 +36,12 @@
                             </div>
                         </div>
                     </a>
-<<<<<<< HEAD
-                    <div class="p-6">
-                        <a class="btn btn-default btn-fill" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        <a class="btn btn-default btn-fill" asp-controller="Home" asp-action="DataDisplay">View Available Data</a>
-                        <div class="dropdown">
-                            <button class="dropbtn">Account</button>
-                            <div class="dropdown-content">
-                                <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Login">Login</a>
-                                <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Logout">Logout</a>
-                            </div>
-                        </div>
-=======
                     <div class="">
                         <a class="btn btn-dark btn-fill" style="background-color:#D2B48C" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         <a class="btn btn-default btn-fill" style="background-color:#D2B48C" asp-controller="Home" asp-action="DataDisplay">View Available Data</a>
                         <a class="btn btn-default btn-fill" style="background-color:#D2B48C" asp-area="" asp-page="/Account/Login">Login</a>
                         <a class="btn btn-default btn-fill" style="background-color:#D2B48C" asp-area="" asp-page="/Account/Logout">Logout</a>
 
->>>>>>> dfc8a0c7f7f25d91511f7fe59312c6f3169a6a8a
                         @if (User.IsInRole("Researchers"))
                         {
                             <div class="dropdown">
@@ -89,13 +71,13 @@
 
         <div class='blurred-container text-center'>
             @*<div class="motto text-center">
-                <div>BYU</div>
-                <div class="border">Fag el-</div>
-                <div class="text-center">Gamous</div><br /><br />
-            </div>*@
+                    <div>BYU</div>
+                    <div class="border">Fag el-</div>
+                    <div class="text-center">Gamous</div><br /><br />
+                </div>*@
             <div class="motto">
                 <h1 style="font-size: 65px; font-weight:bold;">
-                    
+
                     <span class="txt-rotate"
                           data-period="2000"
                           data-rotate='[ "BYU Egypt Excavation Project Database"]'></span>
@@ -254,24 +236,19 @@
         .dropbtn {
             background-color: black;
             color: white;
-
-
             font-size: 16px;
             border: none;
             cursor: pointer;
             display: inline-block;
             font-weight: 400;
-
             text-align: center;
             vertical-align: middle;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-
             border: 1px solid transparent;
             padding: 0.375rem 0.75rem;
-
             line-height: 1.5;
             border-radius: 0.25rem;
         }
@@ -308,16 +285,18 @@
         .dropdown:hover .dropbtn {
             background-color: #D2B48C;
         }
+
         .sticky {
             position: fixed;
             top: 0;
             width: 100%;
         }
-        /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+            /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
             .sticky + .content {
                 padding-top: 60px;
             }
-         .fixed-nav-bar {
+
+        .fixed-nav-bar {
             position: fixed;
             top: 0;
             left: 0;
@@ -326,9 +305,8 @@
             height: 100px;
             background-color: #00a087;
         }
-        .output {
- 
 
+        .output {
     </style>
 </body>
 </html>
