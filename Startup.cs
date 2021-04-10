@@ -1,4 +1,5 @@
 using FagElGamous.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -43,7 +44,12 @@ namespace FagElGamous
                 }
 
             });
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>(
+                options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<IdentityContext>();
+
+
             //these are settings for password requirements, change as needed according the security requirements
             services.Configure<IdentityOptions>(options => {
                 options.Password.RequiredLength = 10;
