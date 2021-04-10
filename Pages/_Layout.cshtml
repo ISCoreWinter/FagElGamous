@@ -22,7 +22,7 @@
 <body>
 
     <div id="navbar-full" class="alert-dark">
-        <div class="container">
+        <div class="navbar-fixed-top">
             <nav id="plswork" class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" role="navigation" style="background-color:gray">
                 <div class="container row">
                     <a asp-area="" asp-controller="Home" asp-action="Index">
@@ -38,8 +38,13 @@
                     <div class="p-6">
                         <a class="btn btn-default btn-fill" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         <a class="btn btn-default btn-fill" asp-controller="Home" asp-action="DataDisplay">View Available Data</a>
-                        <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Login">Login</a>
-                        <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Logout">Logout</a>
+                        <div class="dropdown">
+                            <button class="dropbtn">Account</button>
+                            <div class="dropdown-content">
+                                <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Login">Login</a>
+                                <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Logout">Logout</a>
+                            </div>
+                        </div>
 
                         @if (User.IsInRole("Researchers"))
                         {

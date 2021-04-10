@@ -23,7 +23,7 @@ namespace FagElGamous
         }
 
         public IConfiguration Configuration { get; }
-        public bool Production { get; set; } = false;
+        public bool Production { get; set; } = true;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
