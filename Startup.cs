@@ -45,8 +45,7 @@ namespace FagElGamous
 
             });
 
-            services.AddIdentity<IdentityUser, IdentityRole>(
-                options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>();
 
 
