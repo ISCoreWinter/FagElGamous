@@ -21,18 +21,7 @@
 
     @foreach (var x in Model.records)
     {
-        <div class="col-4 p-3">
-            <form id="@x.BurialId" asp-action="DataDisplay" method="post">
-                <p>
-                    Coordinates: @x.LowPairNs @x.BurialLocationNs by @x.LowPairEw @x.BurialLocationEw at burial number
-                    @x.BurialNumber, @x.BurialSubplot
-                </p>
-                <input type="hidden" asp-for="@x.BurialId" value="@x.BurialId"/>
-                <button type="submit" class="btn btn-success">
-                    See More About This Find
-                </button>
-            </form>
-        </div>
+        <partial name="DataSummary" model="x" />
     }
 </div>
 
