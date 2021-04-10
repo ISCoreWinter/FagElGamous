@@ -12,6 +12,7 @@ using System.IO;
 using System.Web;
 using Amazon.S3.Model;
 using System.Threading;
+using FagElGamous.Models.ViewModels;
 
 namespace FagElGamous.Controllers
 {
@@ -57,11 +58,21 @@ namespace FagElGamous.Controllers
         //    return View();
         //}
 
-        public IActionResult DataDisplay()
+        public IActionResult DataDisplay(int page = 1)
         {
-            IEnumerable<BurialRecords> records = _context.BurialRecords.Take(10);
+            IEnumerable<BurialRecords> records = _context.BurialRecords;
 
-            return View(records);
+            return View(new DataListViewModel
+            {
+                pagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = 20,
+                    TotalNumItems = records.Count()
+                },
+
+                records = records.OrderBy(r => r.Area).Skip((page - 1) * 20).Take(20)
+            });
         }
 
         //controller for the photo upload

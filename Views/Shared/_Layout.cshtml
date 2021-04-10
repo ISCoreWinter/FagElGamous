@@ -69,23 +69,25 @@
 
         </div><!--  end container-->
 
-        <div class='blurred-container text-center'>
-            <div class="motto">
-                <h1 style="font-size: 65px; font-weight:bold;">
+        @if ((string)ViewContext.RouteData.Values["Action"] == "Index") {
+            <div class='blurred-container text-center'>
+                <div class="motto">
+                    <h1 style="font-size: 65px; font-weight:bold;">
 
-                    <span class="txt-rotate"
-                          data-period="2000"
-                          data-rotate='[ "BYU Egypt Excavation Project Database"]'></span>
-                </h1>
+                        <span class="txt-rotate"
+                              data-period="2000"
+                              data-rotate='[ "BYU Egypt Excavation Project Database"]'></span>
+                    </h1>
+                </div>
+                <div class="img-src" style="background-image: url(/img/excavation2.jpeg)"></div>
+                <div class='img-src blur' style="background-image: url('/img/cover_4_blur.jpg')"></div>
             </div>
-            <div class="img-src" style="background-image: url(/img/excavation2.jpeg)"></div>
-            <div class='img-src blur' style="background-image: url('/img/cover_4_blur.jpg')"></div>
-        </div>
-
+        }
     </div>
 
     <div class="main p-3">
         <div class="container tim-container">
+            
             @RenderBody()
         </div>
     </div>
