@@ -10,6 +10,71 @@
 
 <div class="container">
 
-    <p>@Model.BurialRecord.BurialId</p>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#carbon">Carbon Dating</button>
+    <div id="carbon" class="collapse">
+        @if (Model.BurialRecord.CarbonDating.Count() != 0)
+            {
+                <div class="row">
+                    <div class="col-3">
+                        <p>Description: @(Model.CarbonDating.Description == null ? "Not Recorded" : Model.CarbonDating.Description)</p>
+                        <p>Foci: @(Model.CarbonDating.Foci == null ? "Not Recorded" : Model.CarbonDating.Foci.ToString())</p>
+                        <p>Sample: @(Model.CarbonDating.C14Sample2017 == null ? "Not Recorded" : Model.CarbonDating.C14Sample2017.ToString())</p>
+                    </div>
+                    <div class="col-3">
+                        <p>Location Description: @(Model.CarbonDating.Description == null ? "Not Recorded" : Model.CarbonDating.Description)</p>
+                        <p>Research Question: @(Model.CarbonDating.ResearchQuestions == null ? "Not Recorded" : Model.CarbonDating.ResearchQuestions)</p>
+                        <p>Conventional Age: @(Model.CarbonDating.Conventional14cAgeBp == null ? "Not Recorded" : Model.CarbonDating.Conventional14cAgeBp.ToString())</p>
+                    </div>
+                </div>
+            }
+            else { <p>No Data Recorded</p>}
+    </div>
 
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#cranial">Cranial Data</button>
+        <div id="cranial" class="collapse">
+            @if (Model.BurialRecord.Cranial.Count() != 0)
+            {
+                <div class="row">
+                    <div class="col-4">
+                        <p>Basilar Suture: @(Model.Cranial.BasilarSuture == null ? "Not Recorded" : Model.Cranial.BasilarSuture)</p>
+                        <p>Basion Height: @(Model.Cranial.BasionBregmaHeight == null ? "Not Recorded" : Model.Cranial.BasionBregmaHeight.ToString())</p>
+                        <p>Basion Nasion: @(Model.Cranial.BasionNasion == null ? "Not Recorded" : Model.Cranial.BasionNasion.ToString())</p>
+                        <p>Bizygomatic Diameter: @(Model.Cranial.BizygomaticDiameter == null ? "Not Recorded" : Model.Cranial.BizygomaticDiameter.ToString())</p>
+                        <p>Button Osteoma: @(Model.Cranial.ButtonOsteoma == null ? "Not Recorded" : Model.Cranial.ButtonOsteoma)</p>
+                        <p>Cranial Suture: @(Model.Cranial.CranialSuture == null ? "Not Recorded" : Model.Cranial.CranialSuture)</p>
+                        <p>Cribra Orbitala: @(Model.Cranial.CribraOrbitala == null ? "Not Recorded" : Model.Cranial.CribraOrbitala)</p>
+                        <p>Gonian: @(Model.Cranial.Gonian == null ? "Not Recorded" : Model.Cranial.Gonian.ToString())</p>
+                        <p>Postcrania Trauma: @(Model.Cranial.PostcraniaTrauma == null ? "Not Recorded" : Model.Cranial.PostcraniaTrauma)</p>
+                        <p>Skull Trauma: @(Model.Cranial.SkullTrauma == null ? "Not Recorded" : Model.Cranial.SkullTrauma)</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Interorbital Breadth: @(Model.Cranial.InterorbitalBreadth == null ? "Not Recorded" : Model.Cranial.InterorbitalBreadth.ToString())</p>
+                        <p>Linear Hypoplasia Enamel: @(Model.Cranial.LinearHypoplasiaEnamel == null ? "Not Recorded" : Model.Cranial.LinearHypoplasiaEnamel)</p>
+                        <p>Maximum Cranial Breadth: @(Model.Cranial.MaximumCranialBreadth == null ? "Not Recorded" : Model.Cranial.MaximumCranialBreadth.ToString())</p>
+                        <p>Maximum Cranial Length: @(Model.Cranial.MaximumCranialLength == null ? "Not Recorded" : Model.Cranial.MaximumCranialLength.ToString())</p>
+                        <p>Maximum Nasal Breadth: @(Model.Cranial.MaximumNasalBreadth == null ? "Not Recorded" : Model.Cranial.MaximumNasalBreadth.ToString())</p>
+                        <p>Metopic Suture: @(Model.Cranial.MetopicSuture == null ? "Not Recorded" : Model.Cranial.MetopicSuture)</p>
+                        <p>Nasion Prosthion: @(Model.Cranial.NasionProsthion == null ? "Not Recorded" : Model.Cranial.NasionProsthion.ToString())</p>
+                        <p>Nuchal Crest: @(Model.Cranial.NuchalCrest == null ? "Not Recorded" : Model.Cranial.NuchalCrest.ToString())</p>
+                        <p>Orbit Edge: @(Model.Cranial.OrbitEdge == null ? "Not Recorded" : Model.Cranial.OrbitEdge.ToString())</p>
+                        <p>Pariental Bossing: @(Model.Cranial.ParietalBossing == null ? "Not Recorded" : Model.Cranial.ParietalBossing.ToString())</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Porotic Hyperostosis: @(Model.Cranial.PoroticHyperostosis == null ? "Not Recorded" : Model.Cranial.PoroticHyperostosis)</p>
+                        <p>Porotic Hyperostosis Locations: @(Model.Cranial.PoroticHyperostosisLocations == null ? "Not Recorded" : Model.Cranial.PoroticHyperostosisLocations)</p>
+                        <p>Superorbital Ridges: @(Model.Cranial.SupraorbitalRidges == null ? "Not Recorded" : Model.Cranial.SupraorbitalRidges.ToString())</p>
+                        <p>Tooth Attrition: @(Model.Cranial.ToothAttrition == null ? "Not Recorded" : Model.Cranial.ToothAttrition)</p>
+                        <p>Tooth Eruption: @(Model.Cranial.ToothEruption == null ? "Not Recorded" : Model.Cranial.ToothEruption)</p>
+                        <p>Zygomatic Crest: @(Model.Cranial.ZygomaticCrest == null ? "Not Recorded" : Model.Cranial.ZygomaticCrest.ToString())</p>
+                        <p>Date on Skull (dd/mm/yyy): @(Model.Cranial.SkullYear == null ? "Not Recorded" : $"{ Model.Cranial.SkullDate.ToString()}/{Model.Cranial.SkullMonth.ToString()}/{Model.Cranial.SkullYear.ToString()}")</p>
+                    </div>
+                </div>
+            }
+            else
+            { <p>No Data Recorded</p>}
+        </div>
 </div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
