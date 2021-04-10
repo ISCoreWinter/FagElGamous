@@ -58,7 +58,7 @@ namespace FagElGamous.Controllers
         //    return View();
         //}
 
-        public IActionResult DataDisplay(int page = 1)
+        public IActionResult DataDisplay(int pageNum = 1)
         {
             IEnumerable<BurialRecords> records = _context.BurialRecords;
 
@@ -66,12 +66,12 @@ namespace FagElGamous.Controllers
             {
                 pagingInfo = new PagingInfo
                 {
-                    CurrentPage = page,
+                    CurrentPage = pageNum,
                     ItemsPerPage = 20,
                     TotalNumItems = records.Count()
                 },
 
-                records = records.OrderBy(r => r.Area).Skip((page - 1) * 20).Take(20)
+                records = records.OrderBy(r => r.Area).Skip((pageNum - 1) * 20).Take(20)
             });
         }
 

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FagElGamous.Infrastructure
 {
-    [HtmlTargetElement("div", Attributes = "page-info")]
+    [HtmlTargetElement("div", Attributes = "page-model")]
     public class PaginationTagHelper : TagHelper
     {
         private IUrlHelperFactory urlInfo;
@@ -19,10 +19,11 @@ namespace FagElGamous.Infrastructure
         {
             urlInfo = helperFactory;
         }
-        public PagingInfo pageInfo { get; set; }
+        public PagingInfo PageModel { get; set; }
 
         //attributes to allow for button styling and such
         public bool PageClassesEnabled { get; set; } = false;
+        public string PageAction { get; set; }
         public string PageClass { get; set; }
         public string PageClassNormal { get; set; }
         public string PageClassSelected { get; set; }
@@ -42,20 +43,20 @@ namespace FagElGamous.Infrastructure
             TagBuilder tagDiv = new TagBuilder("div");
 
             //used with or related to the page numbering
-            for (int i = 1; i <= pageInfo.TotalPages; i++)
+            for (int i = 1; i <= PageModel.TotalPages; i++)
             {
                 //new link tag for each page number
                 TagBuilder tagA = new TagBuilder("a");
 
                 KeyValuePairs["pageNum"] = i;
-                tagA.Attributes["href"] = urlHelper.Action("Index", KeyValuePairs);
+                tagA.Attributes["href"] = urlHelper.Action(PageAction, KeyValuePairs);
                 tagA.InnerHtml.Append(i.ToString());
 
                 //if the classes are enabled in the cshtml file, styling options are available
                 if (PageClassesEnabled)
                 {
                     tagA.AddCssClass(PageClass);
-                    tagA.AddCssClass(i == pageInfo.CurrentPage ? PageClassSelected : PageClassNormal);
+                    tagA.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
                 }
 
                 tagDiv.InnerHtml.AppendHtml(tagA);

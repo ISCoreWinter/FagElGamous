@@ -91,6 +91,10 @@ namespace FagElGamous
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("dataPage",
+                    "{controller}/{action}/{pageNum}",
+                    new { Controller = "Home", action = "DataDisplay" });
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
