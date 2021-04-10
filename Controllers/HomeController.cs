@@ -12,6 +12,7 @@ using System.IO;
 using System.Web;
 using Amazon.S3.Model;
 using System.Threading;
+using FagElGamous.Models.ViewModels;
 
 namespace FagElGamous.Controllers
 {
@@ -20,11 +21,13 @@ namespace FagElGamous.Controllers
         private readonly ILogger<HomeController> _logger;
         private IdentityContext _identity;
         private CancellationToken cancellationToken;
+        private fagelgamousContext _context;
 
-        public HomeController(ILogger<HomeController> logger, IdentityContext identity)
+        public HomeController(ILogger<HomeController> logger, IdentityContext identity, fagelgamousContext context)
         {
             _logger = logger;
             _identity = identity;
+            _context = context;
         }
 
         //return the view with a form to add data
@@ -42,16 +45,34 @@ namespace FagElGamous.Controllers
         }
 
         //return the view that allows for everyone to view the data
-        public async Task<IActionResult> DataDisplay()
+        //public async Task<IActionResult> DataDisplay()
+        //{
+        //    string bucket = "fagelgamousuploads";
+        //    string key = "Photos/65-top.JPG";
+
+        //    GetObjectResponse response = await s3upload.ReadObjectData(bucket, key);
+
+        //    await response.WriteResponseStreamToFileAsync("./wwwroot/pics/display.jpg", true, cancellationToken);
+
+
+        //    return View();
+        //}
+
+        public IActionResult DataDisplay(int pageNum = 1)
         {
-            string bucket = "intexphotos";
-            string key = "Photos/150-160N 0-10E SW Burial 5 - Skull B.JPG";
+            IEnumerable<BurialRecords> records = _context.BurialRecords;
 
-            GetObjectResponse response = await s3upload.ReadObjectData(bucket, key);
+            return View(new DataListViewModel
+            {
+                pagingInfo = new PagingInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = 20,
+                    TotalNumItems = records.Count()
+                },
 
-            await response.WriteResponseStreamToFileAsync("./wwwroot/pics/display.jpg", true, cancellationToken);
-
-            return View();
+                records = records.OrderBy(r => r.Area).Skip((pageNum - 1) * 20).Take(20)
+            });
         }
 
         //controller for the photo upload
@@ -64,7 +85,7 @@ namespace FagElGamous.Controllers
 
                 if (memoryStream != null)
                 {
-                    await s3upload.UploadFileAsync(memoryStream, "intexphotos", "Photos/" + FileUpload.FormFile.FileName);
+                    await s3upload.UploadFileAsync(memoryStream, "fagelgamousuploads", "Photos/" + FileUpload.FormFile.FileName);
                 }
                 else
                 {

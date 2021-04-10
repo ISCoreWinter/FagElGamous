@@ -23,7 +23,7 @@ namespace FagElGamous
         }
 
         public IConfiguration Configuration { get; }
-        public bool Production { get; set; } = false;
+        public bool Production { get; set; } = true;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -44,9 +44,15 @@ namespace FagElGamous
                 }
 
             });
+            if (Production)
+            {
+                services.AddDbContext<fagelgamousContext>(options =>
+                {
+                    options.UseSqlServer(Configuration["ConnectionStrings:FagelgamousConnection"]);
+                });
+            }
 
-            services.AddIdentity<IdentityUser, IdentityRole>(
-                options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>();
 
 
@@ -85,6 +91,10 @@ namespace FagElGamous
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("dataPage",
+                    "{controller}/{action}/{pageNum}",
+                    new { Controller = "Home", action = "DataDisplay" });
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
