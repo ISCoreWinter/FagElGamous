@@ -14,6 +14,9 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/css/gsdk.css" rel="stylesheet" />
     <link href="~/css/demo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+
 
     <!--     Font Awesome     -->
     <link href="~/lib/bootstrap/dist/css/font-awesome.css" rel="stylesheet">
@@ -40,27 +43,27 @@
                         <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Login">Login</a>
                         <a class="btn btn-default btn-fill" asp-area="" asp-page="/Account/Logout">Logout</a>
 
-                            @if (User.IsInRole("Researchers"))
-                            {
-                                <div class="dropdown">
-                                    <button class="dropbtn">Researcher</button>
-                                    <div class="dropdown-content">
-                                        <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
-                                    </div>
+                        @if (User.IsInRole("Researchers"))
+                        {
+                            <div class="dropdown">
+                                <button class="dropbtn">Researcher</button>
+                                <div class="dropdown-content">
+                                    <a asp-area="" asp-controller="Home" asp-action="AddDataset">Enter Data</a>
                                 </div>
-                            }
+                            </div>
+                        }
 
-                            @if (User.IsInRole("Admins"))
-                            {
-                                <div class="dropdown">
-                                    <button class="dropbtn">Admin</button>
-                                    <div class="dropdown-content">
-                                        <a asp-area="" asp-page="/Roles/List">View Roles</a>
-                                        <a asp-area="" asp-page="/Users/List">View Users</a>
-                                        <a asp-area="" asp-page="/Users/Create">Create Users</a>
-                                    </div>
+                        @if (User.IsInRole("Admins"))
+                        {
+                            <div class="dropdown">
+                                <button class="dropbtn">Admin</button>
+                                <div class="dropdown-content">
+                                    <a asp-area="" asp-page="/Roles/List">View Roles</a>
+                                    <a asp-area="" asp-page="/Users/List">View Users</a>
+                                    <a asp-area="" asp-page="/Users/Create">Create Users</a>
                                 </div>
-                            }
+                            </div>
+                        }
                         </ul>
                     </div>
                 </div>
