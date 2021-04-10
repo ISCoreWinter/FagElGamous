@@ -3,6 +3,11 @@
 *@
 @{
 }
+@model IEnumerable<BurialRecords>
+
     <h1>This is where you display data</h1>
 
-    <img src="~/pics/display.jpg" />
+@foreach(var x in Model)
+            {
+                <p>Coordinates: @x.LowPairNs @x.BurialLocationNs by @x.LowPairEw @x.BurialLocationEw at burial number @x.BurialNumber</p>
+            }
