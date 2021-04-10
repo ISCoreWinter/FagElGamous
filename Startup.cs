@@ -45,8 +45,15 @@ namespace FagElGamous
 
             });
 
-            services.AddIdentity<IdentityUser, IdentityRole>(
-                options => options.SignIn.RequireConfirmedAccount = true)
+            if (Production)
+            {
+                services.AddDbContext<fagelgamousContext>(options =>
+                {
+                    options.UseSqlServer(Configuration["ConnectionStrings:FagelgamousConnection"]);
+                });
+            }
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>();
 
 
