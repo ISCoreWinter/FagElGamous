@@ -44,7 +44,6 @@ namespace FagElGamous
                 }
 
             });
-
             if (Production)
             {
                 services.AddDbContext<fagelgamousContext>(options =>
