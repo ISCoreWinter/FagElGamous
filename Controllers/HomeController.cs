@@ -44,8 +44,8 @@ namespace FagElGamous.Controllers
             return View();
         }
 
-        //return the view that allows for everyone to view the data
-        //public async Task<IActionResult> DataDisplay()
+        ////return the view that allows for everyone to view the data
+        //public async Task<IActionResult> PhotoUpload()
         //{
         //    string bucket = "fagelgamousuploads";
         //    string key = "Photos/65-top.JPG";
@@ -80,20 +80,30 @@ namespace FagElGamous.Controllers
 
         //to view more data on that item
         [HttpPost]
-        public IActionResult DataDisplay(int BurialId)
+        public async Task<IActionResult> DataDisplay(int BurialId)
         {
-                ViewAllDataViewModel BurialDataAll = new ViewAllDataViewModel
-                {
-                    BurialRecord = _context.BurialRecords.Where(x => x.BurialId == BurialId).FirstOrDefault(),
-                    BioSamples = _context.BiologicalSamples.Where(x => x.BurialId == BurialId),
-                    Photos = _context.Photos.Where(x => x.BurialId == BurialId),
-                    BodyMeasurements = _context.BodyMeasurements.Where(x => x.BurialId == BurialId).FirstOrDefault(),
-                    CarbonDating = _context.CarbonDating.Where(x => x.BurialId == BurialId).FirstOrDefault(),
-                    Cranial = _context.Cranial.Where(x => x.BurialId == BurialId).FirstOrDefault(),
-                    MainEntries = _context.MainEntries.Where(x => x.BurialId == BurialId).FirstOrDefault()
-                };
+            ViewAllDataViewModel BurialDataAll = new ViewAllDataViewModel
+            {
+                BurialRecord = _context.BurialRecords.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                BioSamples = _context.BiologicalSamples.Where(x => x.BurialId == BurialId),
+                Photos = _context.Photos.Where(x => x.BurialId == BurialId),
+                BodyMeasurements = _context.BodyMeasurements.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                CarbonDating = _context.CarbonDating.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                Cranial = _context.Cranial.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                MainEntries = _context.MainEntries.Where(x => x.BurialId == BurialId).FirstOrDefault()
+            };
 
-                return View("ViewAllData", BurialDataAll);
+            string bucket = "fagelgamousuploads";
+
+            foreach(var x in BurialDataAll.Photos)
+            {
+                string key = x.Filestring;
+
+                GetObjectResponse response = await s3upload.ReadObjectData(bucket, key);
+                await response.WriteResponseStreamToFileAsync($"./wwwroot/{x.Filestring}", true, cancellationToken);
+            }
+
+            return View("ViewAllData", BurialDataAll);
         }
 
         public IActionResult ViewAllData()
@@ -104,7 +114,7 @@ namespace FagElGamous.Controllers
 
         //controller for the photo upload
         [HttpPost]
-        public async Task<IActionResult> AddDataset(FileUpload FileUpload)
+        public async Task<IActionResult> AddDataset(PhotoUpload FileUpload)
         {
             using (var memoryStream = new MemoryStream())
             {
@@ -119,6 +129,46 @@ namespace FagElGamous.Controllers
                     ModelState.AddModelError("File", "Please Select a File");
                 }
             }
+
+            return View();
+        }
+
+        //view to upload photos
+        [HttpGet]
+        public IActionResult PhotoUpload()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PhotoUpload(PhotoUpload FileUpload)
+        {
+            string filepath;
+            using (var memoryStream = new MemoryStream())
+            {
+                await FileUpload.FormFile.CopyToAsync(memoryStream);
+
+                filepath = "Photos/" + FileUpload.FormFile.FileName;
+
+                if (memoryStream != null)
+                {
+                    await s3upload.UploadFileAsync(memoryStream, "fagelgamousuploads", filepath);
+                }
+                else
+                {
+                    ModelState.AddModelError("File", "Please Select a File");
+                }
+            }
+
+            Photos photo = new Photos
+            {
+                Filestring = filepath,
+                Description = FileUpload.Description,
+                BurialId = FileUpload.BurialId
+            };
+
+            _context.Photos.Add(photo);
+            _context.SaveChanges();
 
             return View();
         }

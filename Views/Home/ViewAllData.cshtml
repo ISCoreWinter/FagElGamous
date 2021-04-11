@@ -121,7 +121,7 @@
             else { <p>No Data Recorded</p>}
     </div>
 
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#cranial">Cranial Data</button>
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#cranial">Cranial Data</button><br /><br />
         <div id="cranial" class="collapse">
             @if (Model.BurialRecord?.Cranial != null)
             {
@@ -163,6 +163,22 @@
             }
             else
             { <p>No Data Recorded</p>}
+        </div>
+
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#photos">Photos</button>
+        <div id="photos" class="collapse">
+             @if (Model.Photos.Any())
+            {
+                    <div class="row">
+                        @foreach(var x in Model.Photos)
+                    {
+                            <div class="col-4">
+                                <img src="@($"/{x.Filestring}")" width="100%"/><br />
+                                <p>@x.Description</p>
+                            </div>
+                    }
+                    </div>
+            }
         </div>
 </div>
 
