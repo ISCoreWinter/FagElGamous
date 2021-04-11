@@ -10,20 +10,52 @@
 
 <div class="container">
 
-    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#carbon">Carbon Dating</button>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bodymeasure">Body Measurements</button><br /><br />
+    <div id="bodymeasure" class="collapse">
+        @if (Model.BurialRecord.BodyMeasurements.Count() != 0)
+            {
+                @foreach(var x in Model.BurialRecord.BodyMeasurements) { 
+                    <div class="col-3">
+                        <p>Bone Length: @(x.BoneLength == null ? "Not Recorded" : x.BoneLength)</p>
+                        <p>Dorsal Pitting: @(x.DorsalPitting == null ? "Not Recorded" : x.DorsalPitting.ToString())</p>
+                        <p>Epiphyseal Union: @(x.EpiphysealUnion == null ? "Not Recorded" : x.EpiphysealUnion)</p>
+                        <p>Estimate Living Stature: @(x.EstimateLivingStature == null ? "Not Recorded" : x.EstimateLivingStature.ToString())</p>
+                        <p>Femur Diameter: @(x.FemurDiameter == null ? "Not Recorded" : x.FemurDiameter)</p>
+                    </div>
+                }
+            }
+            else { <p>No Data Recorded</p> }
+    </div>
+
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#biodata">Biological Samples</button><br /><br />
+    <div id="biodata" class="collapse">
+        @if (Model.BurialRecord.BiologicalSamples.Count() != 0)
+            {
+                foreach(var x in Model.BioSamples)
+                {
+                    <p>Notes: @(x.Notes == null ? "Not Recorded" : x.Notes)</p>
+                }
+            }
+            else { <p>No Data Recorded</p>}
+    </div>
+
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#carbon">Carbon Dating</button><br /><br />
     <div id="carbon" class="collapse">
         @if (Model.BurialRecord.CarbonDating.Count() != 0)
             {
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                         <p>Description: @(Model.CarbonDating.Description == null ? "Not Recorded" : Model.CarbonDating.Description)</p>
                         <p>Foci: @(Model.CarbonDating.Foci == null ? "Not Recorded" : Model.CarbonDating.Foci.ToString())</p>
                         <p>Sample: @(Model.CarbonDating.C14Sample2017 == null ? "Not Recorded" : Model.CarbonDating.C14Sample2017.ToString())</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-4">
                         <p>Location Description: @(Model.CarbonDating.Description == null ? "Not Recorded" : Model.CarbonDating.Description)</p>
                         <p>Research Question: @(Model.CarbonDating.ResearchQuestions == null ? "Not Recorded" : Model.CarbonDating.ResearchQuestions)</p>
                         <p>Conventional Age: @(Model.CarbonDating.Conventional14cAgeBp == null ? "Not Recorded" : Model.CarbonDating.Conventional14cAgeBp.ToString())</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Notes: @(Model.CarbonDating.Notes == null ? "Not Recorded" : Model.CarbonDating.Notes)</p>
                     </div>
                 </div>
             }
