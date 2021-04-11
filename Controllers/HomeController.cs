@@ -89,25 +89,17 @@ namespace FagElGamous.Controllers
                     Photos = _context.Photos.Where(x => x.BurialId == BurialId),
                     BodyMeasurements = _context.BodyMeasurements.Where(x => x.BurialId == BurialId).FirstOrDefault(),
                     CarbonDating = _context.CarbonDating.Where(x => x.BurialId == BurialId).FirstOrDefault(),
-                    Cranial = _context.Cranial.Where(x => x.BurialId == BurialId).FirstOrDefault()
+                    Cranial = _context.Cranial.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                    MainEntries = _context.MainEntries.Where(x => x.BurialId == BurialId).FirstOrDefault()
                 };
 
                 return View("ViewAllData", BurialDataAll);
         }
 
-        public IActionResult ViewAllData(int burialId)
+        public IActionResult ViewAllData()
         {
-            ViewAllDataViewModel BurialDataAll = new ViewAllDataViewModel
-            {
-                BurialRecord = _context.BurialRecords.Where(x => x.BurialId == burialId).FirstOrDefault(),
-                BioSamples = _context.BiologicalSamples.Where(x => x.BurialId == burialId),
-                Photos = _context.Photos.Where(x => x.BurialId == burialId),
-                BodyMeasurements = _context.BodyMeasurements.Where(x => x.BurialId == burialId).FirstOrDefault(),
-                CarbonDating = _context.CarbonDating.Where(x => x.BurialId == burialId).FirstOrDefault(),
-                Cranial = _context.Cranial.Where(x => x.BurialId == burialId).FirstOrDefault()
-            };
 
-            return View(BurialDataAll);
+            return View();
         }
 
         //controller for the photo upload

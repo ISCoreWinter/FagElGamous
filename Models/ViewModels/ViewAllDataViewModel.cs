@@ -14,5 +14,6 @@ namespace FagElGamous.Models.ViewModels
         public BodyMeasurements BodyMeasurements { get; set; }
         public CarbonDating CarbonDating { get; set; }
         public Cranial Cranial { get; set; }
+        public MainEntries MainEntries { get; set; }
     }
 }
