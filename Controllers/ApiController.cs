@@ -55,5 +55,13 @@ namespace FagElGamous.Controllers
 
             return obj;
         }
+
+        //gives the body measurements associated with the given id
+        [HttpGet("body/{id:int}")]
+        public ActionResult<BodyMeasurements> GetBody(int id)
+        {
+            BodyMeasurements obj = _context.BodyMeasurements.Where(e => e.BurialId == id).First();
+            return obj;
+        }
     }
 }
