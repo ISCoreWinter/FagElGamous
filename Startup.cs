@@ -51,6 +51,8 @@ namespace FagElGamous
                     options.UseSqlServer(Configuration["ConnectionStrings:FagelgamousConnection"]);
                 });
             }
+            services.AddScoped<IGamousRepository, EFGamousRepository>();
+
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>();
