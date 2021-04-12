@@ -22,17 +22,18 @@ namespace FagElGamous.Controllers
         private IdentityContext _identity;
         private CancellationToken cancellationToken;
         private fagelgamousContext _context;
-
-        public HomeController(ILogger<HomeController> logger, IdentityContext identity, fagelgamousContext context)
+        private IGamousRepository _repository;
+        public HomeController(ILogger<HomeController> logger, IdentityContext identity, fagelgamousContext context, IGamousRepository repository)
         {
             _logger = logger;
             _identity = identity;
             _context = context;
+            _repository = repository;
         }
 
         //return the view with a form to add data
         [HttpGet]
-        [Authorize(Roles="Researchers")]
+        [Authorize(Roles = "Researchers")]
         public IActionResult AddDataset()
         {
             return View();
@@ -95,7 +96,60 @@ namespace FagElGamous.Controllers
 
             return View();
         }
+        [HttpGet]
+        public IActionResult InputForm()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult InputForm(InputViewModel input)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.MainEntries.Add(input.mainEntry);
+                _context.BurialRecords.Add(input.burialRecords);
+            }
+/*            _context.SaveChanges();
+*/
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult DeleteRecord(long burialId)
+        {
+            _context.MainEntries.Remove(_context.MainEntries.First(m => m.BurialId == burialId));
+            _context.BodyMeasurements.Remove(_context.BodyMeasurements.First(m => m.BurialId == burialId));
+            _context.BurialRecords.Remove(_context.BurialRecords.First(m => m.BurialId == burialId));
+
+            _context.SaveChanges();
+            return View();
+        }
+
+        //edit a movie entry
+        [HttpPost]
+        public IActionResult EditView(long burialId)
+        {
+            MainEntries mainEntryEdit = _context.MainEntries.Where(m => m.BurialId == burialId).First();
+            BurialRecords burialRecordEdit = _context.BurialRecords.Where(m => m.BurialId == burialId).First();
+            BodyMeasurements bodyMeasurementEdit = _context.BodyMeasurements.Where(m => m.BurialId == burialId).First();
+            /*          InputViewModel record = _context.MainEntries.Where(m => m.BurialId == burialId).First();
+            */
+            /*            return View("EditRecord", mainEntryEdit, burialRecordEdit, bodyMeasurementEdit);
+            */
+            return View();  
+        }
+        [HttpPost]
+/*        public IActionResult EditRecord(MainEntries mainEntryEdit, BurialRecords burialRecordEdit, BodyMeasurements bodyMeasurementEdit)
+        {
+            _context.Update(record);
+            if (ModelState.IsValid)
+            {
+                _context.SaveChanges();
+                return View("Confirmation", _context.MainEntries);
+
+            }
+            return View("EditRecord", record);
+        }*/
         public IActionResult Privacy()
         {
             return View();

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -18,7 +20,8 @@ namespace FagElGamous.Models
             MainEntries = new HashSet<MainEntries>();
             Photos = new HashSet<Photos>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BurialId { get; set; }
         public string LowPairNs { get; set; }
         public int? HighPairNs { get; set; }
@@ -28,6 +31,8 @@ namespace FagElGamous.Models
         public string BurialLocationEw { get; set; }
         public string BurialSubplot { get; set; }
         public int? Area { get; set; }
+        public bool? Photo { get; set; }
+        public bool? BuriedGoods { get; set; }
         public string BurialNumber { get; set; }
 
         public virtual ICollection<BiologicalSamples> BiologicalSamples { get; set; }
