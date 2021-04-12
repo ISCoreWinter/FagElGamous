@@ -1,0 +1,14 @@
+﻿@model IEnumerable<BurialRecords>
+
+
+<a class="btn btn-block btn-outline-secondary" asp-action="Index" asp-controller="DataDisplay">Home</a>
+
+@foreach (var x in Model)
+{
+
+<a class="btn btn-block @(x.BurialSubplot == (string)ViewData["SelectedType"] ? "btn-primary" : "btn-outline-secondary")"
+   asp-action="Index" asp-controller="DisplayData">
+        @x.BurialSubplot
+    </a>
+
+}

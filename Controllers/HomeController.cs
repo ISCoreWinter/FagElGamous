@@ -62,6 +62,41 @@ namespace FagElGamous.Controllers
         {
             IEnumerable<BurialRecords> records = _context.BurialRecords;
 
+            //var filters = new Filters(id);
+            //ViewBag.Filters = filters;
+            //ViewBag.Categories = _context.Categories.ToList();
+            //ViewBag.Statuses = _context.Statuses.ToList();
+            //ViewBag.DueFilters = Filters.DueFilterValues;
+
+            //IQueryable<BurialRecords> query = _context.BurialRecords
+            //    .Include(t => t.Category).Include(t => t.Status);
+
+            //if (filters.HasCategory)
+            //{
+            //    query = query.Where(t => t.CategoryId == filters.CategoryId);
+            //}
+
+            //if (filters.HasStatus)
+            //{
+            //    query = query.Where(t => t.StatusId == filters.StatusId);
+            //}
+
+            //if (filters.HasDue)
+            //{
+            //    var today = DateTime.Today;
+
+            //    if (filters.IsPast)
+            //        query = query.Where(t => t.DueDate < today);
+            //    else if (filters.IsFuture)
+            //        query = query.Where(t => t.DueDate > today);
+            //    else if (filters.IsToday)
+            //        query = query.Where(t => t.DueDate == today);
+            //}
+
+            //var tasks = query.OrderBy(t => t.DueDate).ToList();
+
+            //return View(tasks);
+
             return View(new DataListViewModel
             {
                 pagingInfo = new PagingInfo
@@ -71,9 +106,16 @@ namespace FagElGamous.Controllers
                     TotalNumItems = records.Count()
                 },
 
-                records = records.OrderBy(r => r.Area).Skip((pageNum - 1) * 20).Take(20)
+                records = records.OrderBy(r => r.Area).Skip((pageNum - 1) * 20).Take(20) 
             });
         }
+
+        //[HttpPost]
+        //public IActionResult Filter(string[] filter)
+        //{
+        //    string id = string.Join('-', filter);
+        //    return RedirectToAction("DataDisplay", new { ID = id });
+        //}
 
         //controller for the photo upload
         [HttpPost]
