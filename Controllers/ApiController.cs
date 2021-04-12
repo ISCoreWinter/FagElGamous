@@ -26,6 +26,14 @@ namespace FagElGamous.Controllers
         {
             MainEntries obj = _context.MainEntries.Where(e => e.BurialId == id).FirstOrDefault();
 
+            if (obj is null)
+            {
+                obj = new MainEntries
+                {
+                    BurialId = id
+                };
+            }
+
             return obj;
         }
 
@@ -34,6 +42,14 @@ namespace FagElGamous.Controllers
         public ActionResult<Cranial> GetCranial(int id)
         {
             Cranial obj = _context.Cranial.Where(e => e.BurialId == id).FirstOrDefault();
+
+            if (obj is null)
+            {
+                obj = new Cranial
+                {
+                    BurialId = id
+                };
+            }
 
             return obj;
         }
@@ -44,6 +60,14 @@ namespace FagElGamous.Controllers
         {
             BiologicalSamples obj = _context.BiologicalSamples.Where(e => e.BurialId == id).FirstOrDefault();
 
+            if (obj is null)
+            {
+                obj = new BiologicalSamples
+                {
+                    BurialId = id
+                };
+            }
+
             return obj;
         }
 
@@ -53,6 +77,14 @@ namespace FagElGamous.Controllers
         {
             BurialRecords obj = _context.BurialRecords.Where(e => e.BurialId == id).FirstOrDefault();
 
+            if (obj is null)
+            {
+                obj = new BurialRecords
+                {
+                    BurialId = id
+                };
+            }
+
             return obj;
         }
 
@@ -61,6 +93,15 @@ namespace FagElGamous.Controllers
         public ActionResult<BodyMeasurements> GetBody(int id)
         {
             BodyMeasurements obj = _context.BodyMeasurements.Where(e => e.BurialId == id).First();
+
+            if (obj is null)
+            {
+                obj = new BodyMeasurements
+                {
+                    BurialId = id
+                };
+            }
+
             return obj;
         }
     }
