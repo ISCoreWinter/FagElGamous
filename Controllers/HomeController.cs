@@ -99,6 +99,7 @@ namespace FagElGamous.Controllers
             return View();
         }
 
+<<<<<<< HEAD
         //return the view with a form to add data
         [HttpGet]
         [Authorize(Roles = "Researchers")]
@@ -146,6 +147,8 @@ namespace FagElGamous.Controllers
             return View();
         }
 
+=======
+>>>>>>> 233969098b70f7a117bb6e44964886537f512c22
         //controller for the photo upload
         [HttpPost]
         public async Task<IActionResult> AddDataset(PhotoUpload FileUpload)

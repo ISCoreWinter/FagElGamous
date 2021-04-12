@@ -29,8 +29,7 @@ namespace FagElGamous.Pages.Account
             if (ModelState.IsValid)
             {
                 Microsoft.AspNetCore.Identity.SignInResult result =
-                    await signInManager.PasswordSignInAsync(UserName, Password,
-                        false, false);
+                    await signInManager.PasswordSignInAsync(UserName, Password, false, false);
                 if (result.Succeeded)
                 {
                     return Redirect(ReturnUrl ?? "/");

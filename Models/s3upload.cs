@@ -14,17 +14,19 @@ namespace FagElGamous.Models
     {
         private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
         private static IAmazonS3 s3Client;
+        private static readonly string key = "AKIAQOQ32YAWNVR4CRGE";
+        private static readonly string key2 = "muP2Tn0hRbChInCoxNKY++niQHZSM0JmGOCuTzVr";
 
         public static async Task UploadFileAsync(Stream FileStream, string bucketname, string keyName)
         {
-            s3Client = new AmazonS3Client(bucketRegion);
+            s3Client = new AmazonS3Client(key, key2, bucketRegion);
             var fileTransferUtility = new TransferUtility(s3Client);
             await fileTransferUtility.UploadAsync(FileStream, bucketname, keyName);
         }
 
         public static async Task<GetObjectResponse> ReadObjectData(string bucketname, string keyName)
         {
-            s3Client = new AmazonS3Client(bucketRegion);
+            s3Client = new AmazonS3Client(key, key2, bucketRegion);
             var request = new GetObjectRequest
             {
                 BucketName = bucketname,
