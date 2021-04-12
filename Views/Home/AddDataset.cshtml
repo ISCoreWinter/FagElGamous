@@ -5,20 +5,10 @@
     ViewData["Title"] = "Add Data";
 }
 
-@model FileUpload
+@model PhotoUpload
 
-    <div class="container"><br /><br /><br /><br /></div>
+<div class="container"><br /><br /><br /><br /></div>
 
-    <h1>This is where you add data</h1>
+<h1>This is where you add data</h1>
 
-    <form enctype="multipart/form-data" method="post">
-        <dl>
-            <dt>
-                <label asp-for="@Model.FormFile"></label>
-            </dt>
-            <dd>
-                <input asp-for="@Model.FormFile" />
-            </dd>
-        </dl>
-        <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
-    </form>
+<a class="btn btn-default btn-fill" asp-controller="Home" asp-action="PhotoUpload">Upload a Photo</a>

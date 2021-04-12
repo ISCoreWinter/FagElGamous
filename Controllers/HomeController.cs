@@ -33,7 +33,7 @@ namespace FagElGamous.Controllers
 
         //return the view with a form to add data
         [HttpGet]
-        [Authorize(Roles = "Researchers")]
+        [Authorize(Roles="Researchers")]
         public IActionResult AddDataset()
         {
             return View();
@@ -45,40 +45,71 @@ namespace FagElGamous.Controllers
             return View();
         }
 
-        //return the view that allows for everyone to view the data
-        //public async Task<IActionResult> DataDisplay()
-        //{
-        //    string bucket = "fagelgamousuploads";
-        //    string key = "Photos/65-top.JPG";
-
-        //    GetObjectResponse response = await s3upload.ReadObjectData(bucket, key);
-
-        //    await response.WriteResponseStreamToFileAsync("./wwwroot/pics/display.jpg", true, cancellationToken);
-
-
-        //    return View();
-        //}
-
-        public IActionResult DataDisplay(int pageNum = 1)
+        [HttpGet]
+        public IActionResult DataDisplay(int pageNum = 1, string? category = null)
         {
             IEnumerable<BurialRecords> records = _context.BurialRecords;
+
+            int pageSize = 18;
 
             return View(new DataListViewModel
             {
                 pagingInfo = new PagingInfo
                 {
                     CurrentPage = pageNum,
-                    ItemsPerPage = 20,
+                    ItemsPerPage = pageSize,
                     TotalNumItems = records.Count()
                 },
 
-                records = records.OrderBy(r => r.Area).Skip((pageNum - 1) * 20).Take(20)
+                records = records.OrderBy(r => r.Area).Skip((pageNum - 1) * pageSize).Take(pageSize)
             });
+        }
+
+        //to view more data on that item
+        [HttpPost]
+        public async Task<IActionResult> DataDisplay(int BurialId)
+        {
+            ViewAllDataViewModel BurialDataAll = new ViewAllDataViewModel
+            {
+                BurialRecord = _context.BurialRecords.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                BioSamples = _context.BiologicalSamples.Where(x => x.BurialId == BurialId),
+                Photos = _context.Photos.Where(x => x.BurialId == BurialId),
+                BodyMeasurements = _context.BodyMeasurements.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                CarbonDating = _context.CarbonDating.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                Cranial = _context.Cranial.Where(x => x.BurialId == BurialId).FirstOrDefault(),
+                MainEntries = _context.MainEntries.Where(x => x.BurialId == BurialId).FirstOrDefault()
+            };
+
+            string bucket = "fagelgamousuploads";
+
+            foreach(var x in BurialDataAll.Photos)
+            {
+                string key = x.Filestring;
+
+                GetObjectResponse response = await s3upload.ReadObjectData(bucket, key);
+                await response.WriteResponseStreamToFileAsync($"./wwwroot/{x.Filestring}", true, cancellationToken);
+            }
+
+            return View("ViewAllData", BurialDataAll);
+        }
+
+        public IActionResult ViewAllData()
+        {
+
+            return View();
+        }
+
+        //return the view with a form to add data
+        [HttpGet]
+        [Authorize(Roles = "Researchers")]
+        public IActionResult AddDataset()
+        {
+            return View();
         }
 
         //controller for the photo upload
         [HttpPost]
-        public async Task<IActionResult> AddDataset(FileUpload FileUpload)
+        public async Task<IActionResult> AddDataset(PhotoUpload FileUpload)
         {
             using (var memoryStream = new MemoryStream())
             {

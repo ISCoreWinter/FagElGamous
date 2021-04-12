@@ -97,6 +97,10 @@ namespace FagElGamous
                     "{controller}/{action}/{pageNum}",
                     new { Controller = "Home", action = "DataDisplay" });
 
+                endpoints.MapControllerRoute("dataAll",
+                    "{controller}/{action}/{burialId}",
+                    new { Controller = "Home", action = "DataDisplay" });
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
