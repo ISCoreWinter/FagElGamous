@@ -30,33 +30,11 @@ namespace FagElGamous.Controllers
             _context = context;
         }
 
-        //return the view with a form to add data
-        [HttpGet]
-        [Authorize(Roles="Researchers")]
-        public IActionResult AddDataset()
-        {
-            return View();
-        }
-
         //return the home page
         public IActionResult Index()
         {
             return View();
         }
-
-        ////return the view that allows for everyone to view the data
-        //public async Task<IActionResult> PhotoUpload()
-        //{
-        //    string bucket = "fagelgamousuploads";
-        //    string key = "Photos/65-top.JPG";
-
-        //    GetObjectResponse response = await s3upload.ReadObjectData(bucket, key);
-
-        //    await response.WriteResponseStreamToFileAsync("./wwwroot/pics/display.jpg", true, cancellationToken);
-
-
-        //    return View();
-        //}
 
         [HttpGet]
         public IActionResult DataDisplay(int pageNum = 1, string? category = null)
@@ -109,6 +87,14 @@ namespace FagElGamous.Controllers
         public IActionResult ViewAllData()
         {
 
+            return View();
+        }
+
+        //return the view with a form to add data
+        [HttpGet]
+        [Authorize(Roles = "Researchers")]
+        public IActionResult AddDataset()
+        {
             return View();
         }
 
