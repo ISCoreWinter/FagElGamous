@@ -1,0 +1,179 @@
+﻿@model IEnumerable<FagElGamous.Models.BodyMeasurements>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VentralArc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubpubicAngle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SciaticNotch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PubicBone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreaurSulcus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalIpRamus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DorsalPitting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FemurHead)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HumerusHead)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PubicSymphysis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BoneLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalClavicle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IliacCrest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FemurDiameter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Humerus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FemurLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HumerusLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TibiaLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreservationIndex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstimateLivingStature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PathologyAnomalies)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EpiphysealUnion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Osteophytosis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VentralArc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubpubicAngle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SciaticNotch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PubicBone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreaurSulcus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalIpRamus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DorsalPitting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FemurHead)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HumerusHead)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PubicSymphysis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoneLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalClavicle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IliacCrest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FemurDiameter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Humerus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FemurLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HumerusLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TibiaLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreservationIndex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstimateLivingStature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PathologyAnomalies)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EpiphysealUnion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Osteophytosis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Burial.BurialId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Entry.EntryId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

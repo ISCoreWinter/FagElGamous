@@ -31,14 +31,14 @@ namespace FagElGamous.Controllers
             _repository = repository;
         }
 
-        //return the view with a form to add data
+/*        //return the view with a form to add data
         [HttpGet]
         [Authorize(Roles="Researchers")]
         public IActionResult AddDataset()
         {
             return View();
         }
-
+*/
         //return the home page
         public IActionResult Index()
         {
@@ -107,6 +107,45 @@ namespace FagElGamous.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult PhotoUpload()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PhotoUpload(PhotoUpload FileUpload)
+        {
+            string filepath;
+            using (var memoryStream = new MemoryStream())
+            {
+                await FileUpload.FormFile.CopyToAsync(memoryStream);
+
+                filepath = "Photos/" + FileUpload.FormFile.FileName;
+
+                if (memoryStream != null)
+                {
+                    await s3upload.UploadFileAsync(memoryStream, "fagelgamousuploads", filepath);
+                }
+                else
+                {
+                    ModelState.AddModelError("File", "Please Select a File");
+                }
+            }
+
+            Photos photo = new Photos
+            {
+                Filestring = filepath,
+                Description = FileUpload.Description,
+                BurialId = FileUpload.BurialId
+            };
+
+            _context.Photos.Add(photo);
+            _context.SaveChanges();
+
+            return View();
+        }
+
         //controller for the photo upload
         [HttpPost]
         public async Task<IActionResult> AddDataset(PhotoUpload FileUpload)
@@ -139,9 +178,10 @@ namespace FagElGamous.Controllers
             {
                 _context.MainEntries.Add(input.mainEntry);
                 _context.BurialRecords.Add(input.burialRecords);
-            }
-/*            _context.SaveChanges();
+/*              await _context.SaveChangesAsync() ;
 */
+            }
+
             return View();
         }
 
