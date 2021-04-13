@@ -13,6 +13,8 @@ using System.Web;
 using Amazon.S3.Model;
 using System.Threading;
 using FagElGamous.Models.ViewModels;
+using FagElGamous.Models.SearchModel;
+using System.Reflection;
 
 namespace FagElGamous.Controllers
 {
@@ -46,14 +48,23 @@ namespace FagElGamous.Controllers
         }
 
         [HttpGet]
-        public IActionResult DataDisplay(int pageNum = 1, string? category = null)
+        public IActionResult DataDisplay(BurialSearchModel? searchModel, int pageNum = 1)
         {
-            IEnumerable<BurialRecords> records = _context.BurialRecords;
-
             int pageSize = 18;
+            IEnumerable<BurialRecords> records = _context.BurialRecords;
 
             return View(new DataListViewModel
             {
+                records = (_context.BurialRecords.Where(r => searchModel.BurialId == null || r.BurialId == searchModel.BurialId)
+                .Where(r => searchModel.YearExcavated == null || r.MainEntries.Where(r => r.YearExcavated == searchModel.YearExcavated).Any())
+                .Where(r => searchModel.AgeEstimatedAtDeath == null || r.MainEntries.Where(r => r.AgeEstimateAtDeath == searchModel.AgeEstimatedAtDeath).Any())
+                .Where(r => searchModel.HairColor == null || r.MainEntries.Where(r => r.HairColor.ToUpper() == searchModel.HairColor.ToUpper()).Any())
+                .Where(r => searchModel.Goods == null || r.MainEntries.Where(r => r.Goods.ToUpper() == searchModel.Goods.ToUpper()).Any())
+                .Where(r => searchModel.Sex == null || r.MainEntries.Where(r => r.BodySex.ToUpper() == searchModel.Sex.ToUpper()).Any())
+                .Where(r => searchModel.BurialDirection == null || r.MainEntries.Where(r => r.BurialDirection.ToUpper() == searchModel.BurialDirection.ToUpper()).Any())
+                .Where(r => searchModel.BurialSubplot == null || r.BurialSubplot == searchModel.BurialSubplot.ToUpper())
+                .OrderBy(r => r.BurialId).Skip((pageNum - 1) * pageSize).Take(pageSize)),
+
                 pagingInfo = new PagingInfo
                 {
                     CurrentPage = pageNum,
@@ -61,8 +72,71 @@ namespace FagElGamous.Controllers
                     TotalNumItems = records.Count()
                 },
 
-                records = records.OrderBy(r => r.Area).Skip((pageNum - 1) * pageSize).Take(pageSize)
+                burialSearchModel = searchModel
+
             });
+
+            //var burialLogic = new BurialBusinessLogic(_context);
+
+            //IEnumerable<BurialRecords> records = _context.BurialRecords;
+
+            //int nullProps = 0;
+
+            //Type type = typeof(BurialSearchModel);
+
+            //PropertyInfo[] properties = type.GetProperties();
+
+            //foreach (PropertyInfo property in properties)
+            //{
+            //    if(property.GetValue(searchModel, null) == null)
+            //    {
+            //        nullProps = nullProps + 1;
+            //    }
+            //}
+
+            //bool emptyFilter = false;
+
+            //if(nullProps == properties.Count())
+            //{
+            //    emptyFilter = true;
+            //}
+
+            //if (emptyFilter == false)
+            //{
+            //    var queryModel = burialLogic.GetBurial(searchModel);
+
+            //    return View(new DataListViewModel
+            //    {
+            //        records = (queryModel.OrderBy(r => r.BurialId).Skip((pageNum - 1) * pageSize).Take(pageSize)),
+
+            //        pagingInfo = new PagingInfo
+            //        {
+            //            CurrentPage = pageNum,
+            //            ItemsPerPage = pageSize,
+            //            TotalNumItems = queryModel.Count()
+            //        },
+
+            //        burialSearchModel = searchModel
+
+            //    }) ;
+            //}
+            //else
+            //{
+            //    return View(new DataListViewModel
+            //    {
+            //        records = (_context.BurialRecords.OrderBy(r => r.BurialId).Skip((pageNum - 1) * pageSize).Take(pageSize)),
+
+            //        pagingInfo = new PagingInfo
+            //        {
+            //            CurrentPage = pageNum,
+            //            ItemsPerPage = pageSize,
+            //            TotalNumItems = records.Count()
+            //        },
+
+            //        burialSearchModel = searchModel
+
+            //    });
+            //}
         }
 
         //to view more data on that item

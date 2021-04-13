@@ -12,7 +12,7 @@
 
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mainentry">Main Entry</button><br /><br />
     <div id="mainentry" class="collapse">
-        @if (Model.MainEntries != null)
+        @if (Model.BurialRecord.MainEntries != null)
             {
                 { 
                     <div class="row">
@@ -88,7 +88,7 @@
 
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#biodata">Biological Samples</button><br /><br />
     <div id="biodata" class="collapse">
-        @if (Model.BioSamples.Any())
+        @if (Model.BurialRecord.BiologicalSamples.Any())
             {
                 foreach(var x in Model.BioSamples)
                 {
