@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace FagElGamous.Models.ViewModels
 {
+    //works with the page tag helper to display the pagination on the display data page
     public class PagingInfo
     {
         public int TotalNumItems { get; set; }

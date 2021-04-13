@@ -91,6 +91,8 @@ namespace FagElGamous
             app.UseAuthentication();
             app.UseAuthorization();
 
+
+            //endpoints for urls
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("dataPage",
@@ -98,8 +100,12 @@ namespace FagElGamous
                     new { Controller = "Home", action = "DataDisplay" });
 
                 endpoints.MapControllerRoute("dataAll",
-                    "{controller}/{action}/{burialId}",
+                    "{controller}/{action}/{burialid}",
                     new { Controller = "Home", action = "DataDisplay" });
+
+                endpoints.MapControllerRoute("filter",
+                    "{controller}/{action}/{burialid}",
+                    new { Controller = "Home", action = "DataDisplay", method = "get"});
 
                 endpoints.MapControllerRoute(
                     name: "default",

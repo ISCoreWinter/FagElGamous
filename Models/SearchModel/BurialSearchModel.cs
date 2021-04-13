@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FagElGamous.Models.SearchModel
 {
+    //model made with the attributes that the data will be filtered by
     public class BurialSearchModel
     {
         public int? BurialId { get; set; }
