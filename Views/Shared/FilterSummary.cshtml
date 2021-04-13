@@ -3,31 +3,33 @@
 *@
 @model FagElGamous.Models.SearchModel.BurialSearchModel
 
+<!--form for the filtering, has fields for all the categories that a user can filter by-->
+
 <form method="get" id="filterForm">
-    <label asp-for="BurialId">Burial ID</label>
-    <input asp-for="BurialId" />
+    <label asp-for="BurialId">Burial ID</label><br />
+    <input asp-for="BurialId" /><br /><br />
 
     <label asp-for="YearExcavated">Year Excavated</label>
-    <input asp-for="YearExcavated">
+    <input asp-for="YearExcavated"><br /><br />
 
     <label asp-for="AgeEstimatedAtDeath">Age Estimated at Death</label>
-    <input asp-for="AgeEstimatedAtDeath">
+    <input asp-for="AgeEstimatedAtDeath"><br /><br />
 
-    <label asp-for="Sex">Sex</label>
-    <input asp-for="Sex">
+    <label asp-for="Sex">Sex</label><br />
+    <input asp-for="Sex"><br /><br />
 
     <label asp-for="HairColor">Hair Color</label>
-    <input asp-for="HairColor">
+    <input asp-for="HairColor"><br /><br />
 
     <label asp-for="Goods">Were goods buried with them?</label>
-    <input asp-for="Goods">
+    <input asp-for="Goods"><br /><br />
 
     <label asp-for="BurialDirection">Burial Direction</label>
-    <input asp-for="BurialDirection">
+    <input asp-for="BurialDirection"><br /><br />
 
     <label asp-for="BurialSubplot">Burial Subplot</label>
-    <input asp-for="BurialSubplot" />
+    <input asp-for="BurialSubplot" /><br /><br />
 
-    <button type="submit" form="filterForm">Search</button>
+    <button asp-route-burialid="@Model.BurialId" type="submit" form="filterForm" class="btn btn-dark btn-fill" style="background-color:#D2B48C">Search</button>
 </form>
 

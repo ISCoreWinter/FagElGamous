@@ -51,11 +51,10 @@ namespace FagElGamous.Controllers
         public IActionResult DataDisplay(BurialSearchModel? searchModel, int pageNum = 1)
         {
             int pageSize = 18;
-            IEnumerable<BurialRecords> records = _context.BurialRecords;
 
-            return View(new DataListViewModel
-            {
-                records = (_context.BurialRecords.Where(r => searchModel.BurialId == null || r.BurialId == searchModel.BurialId)
+            //checks with the filter to see if information has been entered and if records should
+            //only be pulled that match the filters
+            IEnumerable<BurialRecords> Records = (_context.BurialRecords.Where(r => searchModel.BurialId == null || r.BurialId == searchModel.BurialId)
                 .Where(r => searchModel.YearExcavated == null || r.MainEntries.Where(r => r.YearExcavated == searchModel.YearExcavated).Any())
                 .Where(r => searchModel.AgeEstimatedAtDeath == null || r.MainEntries.Where(r => r.AgeEstimateAtDeath == searchModel.AgeEstimatedAtDeath).Any())
                 .Where(r => searchModel.HairColor == null || r.MainEntries.Where(r => r.HairColor.ToUpper() == searchModel.HairColor.ToUpper()).Any())
@@ -63,80 +62,23 @@ namespace FagElGamous.Controllers
                 .Where(r => searchModel.Sex == null || r.MainEntries.Where(r => r.BodySex.ToUpper() == searchModel.Sex.ToUpper()).Any())
                 .Where(r => searchModel.BurialDirection == null || r.MainEntries.Where(r => r.BurialDirection.ToUpper() == searchModel.BurialDirection.ToUpper()).Any())
                 .Where(r => searchModel.BurialSubplot == null || r.BurialSubplot == searchModel.BurialSubplot.ToUpper())
-                .OrderBy(r => r.BurialId).Skip((pageNum - 1) * pageSize).Take(pageSize)),
+                .OrderBy(r => r.BurialId));
 
-                pagingInfo = new PagingInfo
-                {
-                    CurrentPage = pageNum,
-                    ItemsPerPage = pageSize,
-                    TotalNumItems = records.Count()
-                },
+            DataListViewModel returnView = (new DataListViewModel
+            {
+                records = Records.Skip((pageNum - 1) * pageSize).Take(pageSize),
 
-                burialSearchModel = searchModel
-
+                burialSearchModel = searchModel,
             });
 
-            //var burialLogic = new BurialBusinessLogic(_context);
+            returnView.pagingInfo = new PagingInfo {
+                CurrentPage = pageNum,
+                ItemsPerPage = pageSize,
+                TotalNumItems = Records.Count() 
+            };
 
-            //IEnumerable<BurialRecords> records = _context.BurialRecords;
 
-            //int nullProps = 0;
-
-            //Type type = typeof(BurialSearchModel);
-
-            //PropertyInfo[] properties = type.GetProperties();
-
-            //foreach (PropertyInfo property in properties)
-            //{
-            //    if(property.GetValue(searchModel, null) == null)
-            //    {
-            //        nullProps = nullProps + 1;
-            //    }
-            //}
-
-            //bool emptyFilter = false;
-
-            //if(nullProps == properties.Count())
-            //{
-            //    emptyFilter = true;
-            //}
-
-            //if (emptyFilter == false)
-            //{
-            //    var queryModel = burialLogic.GetBurial(searchModel);
-
-            //    return View(new DataListViewModel
-            //    {
-            //        records = (queryModel.OrderBy(r => r.BurialId).Skip((pageNum - 1) * pageSize).Take(pageSize)),
-
-            //        pagingInfo = new PagingInfo
-            //        {
-            //            CurrentPage = pageNum,
-            //            ItemsPerPage = pageSize,
-            //            TotalNumItems = queryModel.Count()
-            //        },
-
-            //        burialSearchModel = searchModel
-
-            //    }) ;
-            //}
-            //else
-            //{
-            //    return View(new DataListViewModel
-            //    {
-            //        records = (_context.BurialRecords.OrderBy(r => r.BurialId).Skip((pageNum - 1) * pageSize).Take(pageSize)),
-
-            //        pagingInfo = new PagingInfo
-            //        {
-            //            CurrentPage = pageNum,
-            //            ItemsPerPage = pageSize,
-            //            TotalNumItems = records.Count()
-            //        },
-
-            //        burialSearchModel = searchModel
-
-            //    });
-            //}
+            return View(returnView);
         }
 
         //to view more data on that item
@@ -173,7 +115,6 @@ namespace FagElGamous.Controllers
             return View();
         }
 
-<<<<<<< HEAD
         //return the view with a form to add data
         [HttpGet]
         [Authorize(Roles = "Researchers")]
@@ -221,8 +162,7 @@ namespace FagElGamous.Controllers
             return View();
         }
 
-=======
->>>>>>> 233969098b70f7a117bb6e44964886537f512c22
+
         //controller for the photo upload
         [HttpPost]
         public async Task<IActionResult> AddDataset(PhotoUpload FileUpload)
