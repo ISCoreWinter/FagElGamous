@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model FagElGamous.Models.SearchModel.BurialSearchModel
+
+<form method="get" id="filterForm">
+    <label asp-for="BurialId">Burial ID</label>
+    <input asp-for="BurialId" />
+
+    <label asp-for="YearExcavated">Year Excavated</label>
+    <input asp-for="YearExcavated">
+
+    <label asp-for="AgeEstimatedAtDeath">Age Estimated at Death</label>
+    <input asp-for="AgeEstimatedAtDeath">
+
+    <label asp-for="Sex">Sex</label>
+    <input asp-for="Sex">
+
+    <label asp-for="HairColor">Hair Color</label>
+    <input asp-for="HairColor">
+
+    <label asp-for="Goods">Were goods buried with them?</label>
+    <input asp-for="Goods">
+
+    <label asp-for="BurialDirection">Burial Direction</label>
+    <input asp-for="BurialDirection">
+
+    <label asp-for="BurialSubplot">Burial Subplot</label>
+    <input asp-for="BurialSubplot" />
+
+    <button type="submit" form="filterForm">Search</button>
+</form>
+
