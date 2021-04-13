@@ -10,45 +10,56 @@
 
 <div class="container">
 
-    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mainentry">Main Entry</button><br /><br />
-    <div id="mainentry" class="collapse">
-        @if (Model.BurialRecord.MainEntries != null)
-            {
-                { 
-                    <div class="row">
-                        <div class="col-4">
-                            <p>Age Estimation at Death: @(Model.MainEntries?.AgeEstimateAtDeath is null ? "Not Recorded" : Model.MainEntries.AgeEstimateAtDeath)</p>
-                            <p>Age Method: @(Model.MainEntries?.AgeMethod == null ? "Not Recorded" : Model.MainEntries.AgeMethod)</p>
-                            <p>Artifact Found: @(Model.MainEntries?.ArtifactFound == null ? "Not Recorded" : ((bool) Model.MainEntries.ArtifactFound ? "Yes" : "No"))</p>
-                            <p>Artifact Description: @(Model.MainEntries?.ArtifactsDescription == null ? "No Artifacts" : Model.MainEntries.ArtifactsDescription)</p>
-                            <p>Body Analysis Year: @(Model.MainEntries?.BodyAnalysisYear == null ? "Not Recorded" : Model.MainEntries.BodyAnalysisYear.ToString())</p>
-                            <p>Body Sex: @(Model.MainEntries?.BodySex == null ? "Not Recorded" : Model.MainEntries.BodySex)</p>
-                            <p>Bone Taken: @(Model.MainEntries?.BoneTaken == null ? "Not Recorded" : ((bool)Model.MainEntries.BoneTaken ? "Yes" : "No"))</p>
-                        </div>
-                        <div class="col-4">
-                            <p>Burial Direction: @(Model.MainEntries?.BurialDirection == null ? "Not Recorded" : Model.MainEntries.BurialDirection)</p>
-                            <p>Burial Preservation: @(Model.MainEntries?.BurialPreservation == null ? "Not Recorded" : Model.MainEntries.BurialPreservation)</p>
-                            <p>Burial Sample Taken: @(Model.MainEntries?.BurialSampleTaken == null ? "Not Recorded" : Model.MainEntries.BurialSampleTaken)</p>
-                            <p>Burial Situation: @(Model.MainEntries?.BurialSituation == null ? "Not Recorded" : Model.MainEntries.BurialSituation)</p>
-                            <p>Burial Wrapping: @(Model.MainEntries?.BurialWrapping == null ? "Not Recorded" : Model.MainEntries.BurialWrapping)</p>
-                            <p>Date Excavated (dd/mm/yyyy): @(Model.MainEntries?.DayExcavated == null ? "Not Recorded" : $"{Model.MainEntries.DayExcavated}/{Model.MainEntries.MonthExcavated}/{Model.MainEntries.YearExcavated}")</p>
-                            <p>Burial Death: @(Model.MainEntries?.BurialDepth == null ? "Not Recorded" : Model.MainEntries.BurialDepth)</p>
-                        </div>
-                        <div class="col-4">
-                            <p>Description of Taken: @(Model.MainEntries?.DescriptionOfTaken == null ? "Not Recorded" : Model.MainEntries.DescriptionOfTaken)</p>
-                            <p>Excavation Recorder Name: @(Model.MainEntries?.ExcavationRecorderLastName == null ? "Not Recorded" : $"{Model.MainEntries.ExcavationRecorderLastName}, {Model.MainEntries.ExcavationRecorderFirstName}")</p>
-                            <p>Face Bundle: @(Model.MainEntries?.FaceBundle == null ? "Not Recorded" : Model.MainEntries.FaceBundle)</p>
-                            <p>Fieldbook: @(Model.MainEntries?.FieldBook == null ? "Not Recorded" : Model.MainEntries.FieldBook)</p>
-                            <p>Goods: @(Model.MainEntries?.Goods == null ? "Not Recorded" : Model.MainEntries.Goods)</p>
-                            <p>Hair Color: @(Model.MainEntries?.HairColor == null ? "Not Recorded" : Model.MainEntries.HairColor)</p>
-                            <p>Head Direction: @(Model.MainEntries?.HeadDirection == null ? "Not Recorded" : Model.MainEntries.HeadDirection)</p>
-                            <p>Osteology Notes: @(Model.MainEntries?.OsteologyNotes == null ? "Not Recorded" : Model.MainEntries.OsteologyNotes)</p>
-                        </div>
-                    </div>
-                }
-            }
-            else { <p>No Data Recorded</p>}
-    </div>
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mainentry">Main Entry</button><br /><br />
+<div id="mainentry" class="collapse">
+    @if (Model.MainEntries != null)
+    {
+        {
+            <div class="row">
+                <div class="col-4">
+                    <p>Age Estimation at Death: @(Model.MainEntries?.AgeEstimateAtDeath is null ? "Not Recorded" : Model.MainEntries.AgeEstimateAtDeath)</p>
+                    <p>Age Method: @(Model.MainEntries?.AgeMethod == null ? "Not Recorded" : Model.MainEntries.AgeMethod)</p>
+                    <p>Artifact Found: @(Model.MainEntries?.ArtifactFound == null ? "Not Recorded" : ((bool) Model.MainEntries.ArtifactFound ? "Yes" : "No"))</p>
+                    <p>Artifact Description: @(Model.MainEntries?.ArtifactsDescription == null ? "No Artifacts" : Model.MainEntries.ArtifactsDescription)</p>
+                    <p>Body Analysis Year: @(Model.MainEntries?.BodyAnalysisYear == null ? "Not Recorded" : Model.MainEntries.BodyAnalysisYear.ToString())</p>
+                    <p>Body Sex: @(Model.MainEntries?.BodySex == null ? "Not Recorded" : Model.MainEntries.BodySex)</p>
+                    <p>Bone Taken: @(Model.MainEntries?.BoneTaken == null ? "Not Recorded" : ((bool)Model.MainEntries.BoneTaken ? "Yes" : "No"))</p>
+                </div>
+                <div class="col-4">
+                    <p>Burial Direction: @(Model.MainEntries?.BurialDirection == null ? "Not Recorded" : Model.MainEntries.BurialDirection)</p>
+                    <p>Burial Preservation: @(Model.MainEntries?.BurialPreservation == null ? "Not Recorded" : Model.MainEntries.BurialPreservation)</p>
+                    <p>Burial Sample Taken: @(Model.MainEntries?.BurialSampleTaken == null ? "Not Recorded" : Model.MainEntries.BurialSampleTaken)</p>
+                    <p>Burial Situation: @(Model.MainEntries?.BurialSituation == null ? "Not Recorded" : Model.MainEntries.BurialSituation)</p>
+                    <p>Burial Wrapping: @(Model.MainEntries?.BurialWrapping == null ? "Not Recorded" : Model.MainEntries.BurialWrapping)</p>
+                    <p>Date Excavated (dd/mm/yyyy): @(Model.MainEntries?.DayExcavated == null ? "Not Recorded" : $"{Model.MainEntries.DayExcavated}/{Model.MainEntries.MonthExcavated}/{Model.MainEntries.YearExcavated}")</p>
+                    <p>Burial Death: @(Model.MainEntries?.BurialDepth == null ? "Not Recorded" : Model.MainEntries.BurialDepth)</p>
+                </div>
+                <div class="col-4">
+                    <p>Description of Taken: @(Model.MainEntries?.DescriptionOfTaken == null ? "Not Recorded" : Model.MainEntries.DescriptionOfTaken)</p>
+                    <p>Excavation Recorder Name: @(Model.MainEntries?.ExcavationRecorderLastName == null ? "Not Recorded" : $"{Model.MainEntries.ExcavationRecorderLastName}, {Model.MainEntries.ExcavationRecorderFirstName}")</p>
+                    <p>Face Bundle: @(Model.MainEntries?.FaceBundle == null ? "Not Recorded" : Model.MainEntries.FaceBundle)</p>
+                    <p>Fieldbook: @(Model.MainEntries?.FieldBook == null ? "Not Recorded" : Model.MainEntries.FieldBook)</p>
+                    <p>Goods: @(Model.MainEntries?.Goods == null ? "Not Recorded" : Model.MainEntries.Goods)</p>
+                    <p>Hair Color: @(Model.MainEntries?.HairColor == null ? "Not Recorded" : Model.MainEntries.HairColor)</p>
+                    <p>Head Direction: @(Model.MainEntries?.HeadDirection == null ? "Not Recorded" : Model.MainEntries.HeadDirection)</p>
+                    <p>Osteology Notes: @(Model.MainEntries?.OsteologyNotes == null ? "Not Recorded" : Model.MainEntries.OsteologyNotes)</p>
+                </div>
+            </div>
+        }
+        <div>
+            <form asp-controller="MainEntries" asp-action="Edit" method="get">
+                <input type="hidden" name="BurialId" value="@Model.MainEntries.BurialId" />
+                <button type="submit" class="btn btn-info btn-sm">Edit</button>
+            </form>
+            <form asp-controller="MainEntries" asp-action="Delete">
+                <input type="hidden" name="BurialId" value="@Model.MainEntries.BurialId" />
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+        </div>
+    }
+    else
+    { <p>No Data Recorded</p>}
+</div>
 
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bodymeasure">Body Measurements</button><br /><br />
     <div id="bodymeasure" class="collapse">
