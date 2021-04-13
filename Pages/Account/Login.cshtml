@@ -4,7 +4,7 @@
     ViewData["Title"] = "Login";
 }
 
-            <div class="bg-primary text-center text-white p-2"><h4>Log In</h4></div>
+            <div class="p-1 text-center text-white" style="background-color:#D2B48C; border-radius:5px;"><h4>Log In</h4></div>
             <div class="m-1 text-danger" asp-validation-summary="All"></div>
             <form method="post">
                 <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
@@ -16,5 +16,5 @@
                     <label>Password</label>
                     <input asp-for="Password" type="password" class="form-control" />
                 </div>
-                <button class="btn btn-primary" type="submit">Log In</button>
+                <button class="btn btn-dark btn-fill" style="background-color:#889bae;" type="submit">Log In</button>
             </form>
