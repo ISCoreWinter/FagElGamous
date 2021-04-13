@@ -1,0 +1,41 @@
+﻿
+@model InputViewModel
+
+<div class="container"><br /><br /><br /><br /></div>
+<p> Entry Recorded. Thank you.</p>
+
+<h1> Exhumation Data Entry Form for </h1>
+<form asp-action="MainEntryForm" method="post" class="justify-content-md-center">
+
+    <div>
+        <label asp-for="mainEntry.BurialSouthToHead">Burial South to Head:</label>
+        <input asp-for="mainEntry.BurialSouthToHead" />
+    </div>
+
+    <div>
+        <label asp-for="mainEntry.BurialSouthToFeet">Burial South to Feet:</label>
+        <input asp-for="mainEntry.BurialSouthToFeet" />
+    </div>
+
+    <div>
+        <label asp-for="mainEntry.BurialWestToHead">Burial West to Head:</label>
+        <input asp-for="mainEntry.BurialWestToHead" />
+    </div>
+
+    <div>
+        <label asp-for="mainEntry.BurialWestToHead">Burial West to Feet:</label>
+        <input asp-for="mainEntry.BurialWestToHead" />
+    </div>
+
+    <div>
+        <label asp-for="mainEntry.LengthM">Length in Meters:</label>
+        <input asp-for="mainEntry.LengthM" />
+    </div>
+
+    <div>
+        <label asp-for="mainEntry.BurialDepth">Depth:</label>
+        <input asp-for=mainEntry.BurialDepth />
+    </div>
+    <div asp-validation-summary="All"></div>
+    <button class="btn btn-outline-info" type="submit"> Submit</button>
+</form>

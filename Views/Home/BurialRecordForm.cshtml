@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Input a Record";
+}
+
+@model InputViewModel
+
+<div class="container"><br /><br /><br /><br /></div>
+
+<h1> Exhumation Data Entry Form</h1>
+<form asp-action="BurialRecordForm" method="post" class="justify-content-md-center">
+    @*  <div>
+            <label class="hidden" asp-for="burialRecords.BurialId"></label>
+        </div>
+    *@
+    <div>
+        <label asp-for="burialRecords.HighPairEw">EW High Pair: </label>
+        <input />
+    </div>
+    <div>
+        <label asp-for="burialRecords.LowPairEw">EW Low Pair: </label>
+        <input />
+    </div>
+    <div>
+        <label asp-for="burialRecords.HighPairNs">NS High Pair: </label>
+        <input />
+    </div>
+    <div>
+        <label asp-for="burialRecords.LowPairNs">NS Low Pair: </label>
+        <input />
+    </div>
+    <div>
+        <label asp-for="burialRecords.Area">Area: </label>
+        <select asp-for="burialRecords.Area">
+            <option value="">Select One</option>
+            <option value="1">SE</option>
+            <option value="2">NE</option>
+            <option value="3">SW</option>
+            <option value="4">NW</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="burialRecords.BurialNumber">Burial Number:</label>
+        <input asp-for="burialRecords.BurialNumber" />
+    </div>
+    <div>
+        <label asp-for="burialRecords.Photo"> Are there photos?</label>
+        <select asp-for="burialRecords.Photo">
+            <option value="">Select One</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="burialRecords.BuriedGoods"> Are there burial goods to record?</label>
+        <select asp-for="burialRecords.BuriedGoods">
+            <option value="">Select One</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label> Shaft </label>
+        <input />
+
+    </div>
+    <div>
+        <label> Shared Shaft </label>
+        <input />
+
+    </div>
+    <div>
+        <label> Cluster </label>
+        <input />
+
+    </div>
+    <div>
+        <label> Preservation Index </label>
+        <input />
+
+    </div>
+    <div>
+        <label> Hair </label>
+        <input />
+
+    </div>
+    <div>
+        <label> Age </label>
+        <input />
+
+    </div>
+    <div>
+        <label> Burial Materials </label>
+        <input />
+
+    </div>
+    <div>
+        <label> Excavation Recorder Name </label>
+        <input />
+
+    </div>
+    <div>
+        <label> Date </label>
+        <input />
+
+    </div>
+    <div>
+        <label> Time </label>
+        <input />
+
+    </div>
+    <div asp-validation-summary="All"></div>
+    <button class="btn btn-outline-info" type="submit"> Submit</button>
+</form>
