@@ -10,36 +10,68 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-controller="MainEntries" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="EntryId" class="control-label"></label>
+            <input asp-for="EntryId" class="hidden form-control" />
+            <span asp-validation-for="EntryId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BurialId" class="control-label"></label>
+            <select asp-for="BurialId" class ="hidden form-control"></select>
+        </div>
             <div class="form-group">
-                <label asp-for="EntryId" class="control-label"></label>
-                <input asp-for="EntryId" class="form-control" />
-                <span asp-validation-for="EntryId" class="text-danger"></span>
+                <label asp-for="BurialSouthToHead" class="control-label"></label>
+                <input asp-for="BurialSouthToHead" class="form-control" />
+                <span asp-validation-for="BurialSouthToHead" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BurialId" class="control-label"></label>
-                <select asp-for="BurialId" class ="form-control" asp-items="ViewBag.BurialId"></select>
+                <label asp-for="BurialSouthToFeet" class="control-label"></label>
+                <input asp-for="BurialSouthToFeet" class="form-control" />
+                <span asp-validation-for="BurialSouthToFeet" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="BurialWestToHead" class="control-label"></label>
+                <input asp-for="BurialWestToHead" class="form-control" />
+                <span asp-validation-for="BurialWestToHead" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BurialWestToFeet" class="control-label"></label>
+                <input asp-for="BurialWestToFeet" class="form-control" />
+                <span asp-validation-for="BurialWestToFeet" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LengthM" class="control-label"></label>
+                <input asp-for="LengthM" class="form-control" />
+                <span asp-validation-for="LengthM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BurialDepth" class="control-label"></label>
+                <input asp-for="BurialDepth" class="form-control" />
+                <span asp-validation-for="BurialDepth" class="text-danger"></span>
+            </div>
+
+        <div class="form-group">
+            <label asp-for="YearExcavated" class="control-label"></label>
+            <input asp-for="YearExcavated" class="form-control" />
+            <span asp-validation-for="YearExcavated" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MonthExcavated" class="control-label"></label>
+            <input asp-for="MonthExcavated" class="form-control" />
+            <span asp-validation-for="MonthExcavated" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DayExcavated" class="control-label"></label>
+            <input asp-for="DayExcavated" class="form-control" />
+            <span asp-validation-for="DayExcavated" class="text-danger"></span>
+        </div>
             <div class="form-group">
                 <label asp-for="BodyAnalysisYear" class="control-label"></label>
                 <input asp-for="BodyAnalysisYear" class="form-control" />
                 <span asp-validation-for="BodyAnalysisYear" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="YearExcavated" class="control-label"></label>
-                <input asp-for="YearExcavated" class="form-control" />
-                <span asp-validation-for="YearExcavated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MonthExcavated" class="control-label"></label>
-                <input asp-for="MonthExcavated" class="form-control" />
-                <span asp-validation-for="MonthExcavated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DayExcavated" class="control-label"></label>
-                <input asp-for="DayExcavated" class="form-control" />
-                <span asp-validation-for="DayExcavated" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ArtifactsDescription" class="control-label"></label>
@@ -110,8 +142,8 @@
                 <label asp-for="Cluster" class="control-label"></label>
                 <input asp-for="Cluster" class="form-control" />
                 <span asp-validation-for="Cluster" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+                </div>
+                 <div class="form-group">
                 <label asp-for="BodySex" class="control-label"></label>
                 <input asp-for="BodySex" class="form-control" />
                 <span asp-validation-for="BodySex" class="text-danger"></span>
@@ -161,7 +193,7 @@
                 <input asp-for="BurialPreservation" class="form-control" />
                 <span asp-validation-for="BurialPreservation" class="text-danger"></span>
             </div>
-            <div class="form-group">
+             <div class="form-group">
                 <label asp-for="BurialWrapping" class="control-label"></label>
                 <input asp-for="BurialWrapping" class="form-control" />
                 <span asp-validation-for="BurialWrapping" class="text-danger"></span>
@@ -282,11 +314,6 @@
                 <span asp-validation-for="EastToFeet" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BurialDepth" class="control-label"></label>
-                <input asp-for="BurialDepth" class="form-control" />
-                <span asp-validation-for="BurialDepth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="HeadDirection" class="control-label"></label>
                 <input asp-for="HeadDirection" class="form-control" />
                 <span asp-validation-for="HeadDirection" class="text-danger"></span>
@@ -389,7 +416,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Home" asp-action="ViewAllData">Back to List</a>
 </div>
 
 @section Scripts {

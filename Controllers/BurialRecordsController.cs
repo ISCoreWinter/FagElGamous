@@ -25,15 +25,15 @@ namespace FagElGamous.Controllers
         }
 
         // GET: BurialRecords/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? burialId)
         {
-            if (id == null)
+            if (burialId == null)
             {
                 return NotFound();
             }
 
             var burialRecords = await _context.BurialRecords
-                .FirstOrDefaultAsync(m => m.BurialId == id);
+                .FirstOrDefaultAsync(m => m.BurialId == burialId);
             if (burialRecords == null)
             {
                 return NotFound();
@@ -59,20 +59,20 @@ namespace FagElGamous.Controllers
             {
                 _context.Add(burialRecords);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View("~/Views/Home/ViewAllData.cshtml");            
             }
             return View(burialRecords);
         }
 
         // GET: BurialRecords/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? BurialId)
         {
-            if (id == null)
+            if (BurialId == null)
             {
                 return NotFound();
             }
 
-            var burialRecords = await _context.BurialRecords.FindAsync(id);
+            var burialRecords = await _context.BurialRecords.FindAsync(BurialId);
             if (burialRecords == null)
             {
                 return NotFound();
@@ -85,9 +85,9 @@ namespace FagElGamous.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BurialId,LowPairNs,HighPairNs,BurialLocationNs,LowPairEw,HighPairEw,BurialLocationEw,BurialSubplot,Area,Photo,BuriedGoods,BurialNumber")] BurialRecords burialRecords)
+        public async Task<IActionResult> Edit(int BurialId, [Bind("BurialId,LowPairNs,HighPairNs,BurialLocationNs,LowPairEw,HighPairEw,BurialLocationEw,BurialSubplot,Area,Photo,BuriedGoods,BurialNumber")] BurialRecords burialRecords)
         {
-            if (id != burialRecords.BurialId)
+            if (BurialId != burialRecords.BurialId)
             {
                 return NotFound();
             }
@@ -116,15 +116,15 @@ namespace FagElGamous.Controllers
         }
 
         // GET: BurialRecords/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? BurialId)
         {
-            if (id == null)
+            if (BurialId == null)
             {
                 return NotFound();
             }
 
             var burialRecords = await _context.BurialRecords
-                .FirstOrDefaultAsync(m => m.BurialId == id);
+                .FirstOrDefaultAsync(m => m.BurialId == BurialId);
             if (burialRecords == null)
             {
                 return NotFound();
@@ -136,9 +136,9 @@ namespace FagElGamous.Controllers
         // POST: BurialRecords/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int BurialId)
         {
-            var burialRecords = await _context.BurialRecords.FindAsync(id);
+            var burialRecords = await _context.BurialRecords.FindAsync(BurialId);
             _context.BurialRecords.Remove(burialRecords);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
