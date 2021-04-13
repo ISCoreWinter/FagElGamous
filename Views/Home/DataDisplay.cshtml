@@ -6,14 +6,13 @@
 }
 @model DataListViewModel
 
-<div class="container"><br /><br /><br /><br /></div>
+<div class="container"><br /></div>
 
 <h3>Please Enjoy Our Current Finds</h3>
 
 <div class="flex-wrap">
     <div class="col-3 pull-left content">
-        <h5>Filtering Sidebar</h5>
-        <p>Fill in here view components for filtering data</p>
+        <partial name="FilterSummary" model="Model.burialSearchModel"/>
     </div>
 </div>
 
