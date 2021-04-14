@@ -45,20 +45,27 @@
                     <p>Osteology Notes: @(Model.MainEntries?.OsteologyNotes == null ? "Not Recorded" : Model.MainEntries.OsteologyNotes)</p>
                 </div>
             </div>
-        }
-        @if (User.IsInRole("Researchers")) 
+        
+        @if (User.IsInRole("Researchers"))
         {
         <div>
             <form asp-controller="MainEntries" asp-action="Edit" method="get">
                 <input type="hidden" name="BurialId" value="@Model.MainEntries.BurialId" />
                 <button type="submit" class="btn btn-info btn-sm">Edit</button>
             </form>
+        </div>
+        }
+        <br />
+        @if (User.IsInRole("Admins"))
+        {
+            <div>
             <form asp-controller="MainEntries" asp-action="Delete">
                 <input type="hidden" name="BurialId" value="@Model.MainEntries.BurialId" />
                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
             </form>
-        </div>
-        <br />
+            </div>
+              <br />
+         }
         }
     }
     else
@@ -104,12 +111,19 @@
                     <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
                     <button type="submit" class="btn btn-info btn-sm">Edit</button>
                 </form>
+            </div>
+            }
+            <br />
+            @if (User.IsInRole("Admins"))
+            { 
+                <div>
                 <form asp-controller="BurialRecords" asp-action="Delete">
                     <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                 </form>
             </div>
-            <br />}
+            <br />
+            }
         }
     }
     else
@@ -118,29 +132,38 @@
 
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#biodata">Biological Samples</button><br /><br />
     <div id="biodata" class="collapse">
-        @if (Model.BioSamples != null)
+        @if (Model.BioSamples.Any())
         {
             foreach (var x in Model.BioSamples)
             {
                 <p>Notes: @(x.Notes == null ? "Not Recorded" : x.Notes)</p>
-                if (User.IsInRole("Researchers"))
+                @if (User.IsInRole("Researchers"))
                 { 
                 <div>
                     <form asp-controller="BiologicalSamples" asp-action="Edit" method="get">
                         <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
                         <button type="submit" class="btn btn-info btn-sm">Edit</button>
                     </form>
+                </div>
+                }
+                <br />
+                @if (User.IsInRole("Admins"))
+                { 
+                 <div>
                     <form asp-controller="BiologicalSamples" asp-action="Delete">
                         <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                     </form>
                 </div>
-                <br />
                 }
+                <br />
+
             }
         }
+        
         else
         { <p>No Data Recorded</p>}
+        
     </div>
 
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#carbon">Carbon Dating</button><br /><br />
@@ -162,6 +185,7 @@
             <p>Notes: @(Model.CarbonDating?.Notes == null ? "Not Recorded" : Model.CarbonDating.Notes)</p>
         </div>
     </div>
+    
      @if (User.IsInRole("Researchers"))
      {
     <div>
@@ -169,16 +193,24 @@
             <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
             <button type="submit" class="btn btn-info btn-sm">Edit</button>
         </form>
-        <form asp-controller="CarbonDatings" asp-action="Delete">
+    </div>
+     }
+     <br />
+     @if (User.IsInRole("Admins"))
+     {
+      <div>
+            <form asp-controller="CarbonDatings" asp-action="Delete">
             <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
         </form>
-    </div>
+     </div>
     <br />
-         }
-     }
+      } 
+  }
+     
      else
      { <p>No Data Recorded</p>}
+
 </div>
 
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#cranial">Cranial Data</button><br /><br />
@@ -227,36 +259,47 @@
 </div>
 
 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#photos">Photos</button><br /><br />
-    <div id="photos" class="collapse">
-        @if (Model.Photos.Any())
+<div id="photos" class="collapse">
+    @if (Model.Photos.Any())
+    {
+        <div class="row">
+            @foreach (var x in Model.Photos)
+            {
+                <div class="col-4">
+                    <img src="@($"/{x.Filestring}")" width="100%" /><br />
+                    <p>@x.Description</p>
+                </div>
+            }
+        </div>
+        @if (User.IsInRole("Researchers"))
         {
-            <div class="row">
-                @foreach (var x in Model.Photos)
-                {
-                    <div class="col-4">
-                        <img src="@($"/{x.Filestring}")" width="100%" /><br />
-                        <p>@x.Description</p>
-                    </div>
-                }
-            </div>
-            @if (User.IsInRole("Researchers"))
-            { 
             <div>
                 <form asp-controller="Photos" asp-action="Edit" method="get">
                     <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
                     <button type="submit" class="btn btn-info btn-sm">Edit</button>
                 </form>
+            </div>
+        }
+        <br />
+        @if (User.IsInRole("Admins"))
+        {
+            <div>
                 <form asp-controller="Photos" asp-action="Delete">
                     <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                 </form>
             </div>
-            <br />
-            }
         }
-        else
-        { <p>No Photos to Display</p>}
-    </div>
+        <br />
+
+    }
+    else
+    { <p>No Photos to Display</p>
+        <a class="btn btn-default btn-fill" asp-controller="Home" asp-action="PhotoUpload">Upload a Photo</a>
+
+    }
+
+</div>
 </div>
 
 
