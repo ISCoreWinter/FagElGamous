@@ -119,7 +119,7 @@ namespace FagElGamous.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return View("~/Views/Home/Confirmation.cshtml");
             }
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId", bodyMeasurements.BurialId);
             ViewData["EntryId"] = new SelectList(_context.MainEntries, "EntryId", "EntryId", bodyMeasurements.EntryId);

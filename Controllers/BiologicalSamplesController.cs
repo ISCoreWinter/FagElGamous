@@ -116,10 +116,10 @@ namespace FagElGamous.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return View("~/Views/Home/Confirmation.cshtml");
             }
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId", biologicalSamples.BurialId);
-            return View("Confirmation");
+            return View(biologicalSamples);
         }
 
         // GET: BiologicalSamples/Delete/5
