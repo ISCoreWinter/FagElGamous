@@ -100,7 +100,7 @@ namespace FagElGamous
                     new { Controller = "Home", action = "DataDisplay" });
 
                 endpoints.MapControllerRoute("dataAll",
-                    "{controller}/{action}/{burialid}",
+                    "{controller}/{action}/{BurialId}",
                     new { Controller = "Home", action = "DataDisplay" });
 
                 endpoints.MapControllerRoute("filter",

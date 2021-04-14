@@ -117,7 +117,7 @@ namespace FagElGamous.Controllers
                         throw;
                     }
                 }
-                return View("~/Views/Home/DataDisplay.cshtml");
+                return View("~/Views/Home/Confirmation.cshtml");
             }
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId", mainEntries.BurialId);
             return View(mainEntries);
@@ -150,7 +150,7 @@ namespace FagElGamous.Controllers
             var mainEntries = await _context.MainEntries.FindAsync(id);
             _context.MainEntries.Remove(mainEntries);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View("~/Views/Home/Confirmation.cshtml");
         }
 
         private bool MainEntriesExists(int id)
