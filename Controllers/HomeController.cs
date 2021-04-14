@@ -54,31 +54,93 @@ namespace FagElGamous.Controllers
 
             //checks with the filter to see if information has been entered and if records should
             //only be pulled that match the filters
-            IEnumerable<BurialRecords> Records = (_context.BurialRecords.Where(r => searchModel.BurialId == null || r.BurialId == searchModel.BurialId)
-                .Where(r => searchModel.YearExcavated == null || r.MainEntries.Where(r => r.YearExcavated == searchModel.YearExcavated).Any())
-                .Where(r => searchModel.AgeEstimatedAtDeath == null || r.MainEntries.Where(r => r.AgeEstimateAtDeath == searchModel.AgeEstimatedAtDeath).Any())
-                .Where(r => searchModel.HairColor == null || r.MainEntries.Where(r => r.HairColor.ToUpper() == searchModel.HairColor.ToUpper()).Any())
-                .Where(r => searchModel.Goods == null || r.MainEntries.Where(r => r.Goods.ToUpper() == searchModel.Goods.ToUpper()).Any())
-                .Where(r => searchModel.Sex == null || r.MainEntries.Where(r => r.BodySex.ToUpper() == searchModel.Sex.ToUpper()).Any())
-                .Where(r => searchModel.BurialDirection == null || r.MainEntries.Where(r => r.BurialDirection.ToUpper() == searchModel.BurialDirection.ToUpper()).Any())
-                .Where(r => searchModel.BurialSubplot == null || r.BurialSubplot == searchModel.BurialSubplot.ToUpper())
-                .OrderBy(r => r.BurialId));
+            //IEnumerable<BurialRecords> Records = (_context.BurialRecords.Where(r => searchModel.BurialId == null || r.BurialId == searchModel.BurialId)
+            //    .Where(r => searchModel.YearExcavated == null || r.MainEntries.Where(r => r.YearExcavated == searchModel.YearExcavated).Any())
+            //    .Where(r => searchModel.AgeEstimatedAtDeath == null || r.MainEntries.Where(r => r.AgeEstimateAtDeath == searchModel.AgeEstimatedAtDeath).Any())
+            //    .Where(r => searchModel.HairColor == null || r.MainEntries.Where(r => r.HairColor.ToUpper() == searchModel.HairColor.ToUpper()).Any())
+            //    .Where(r => searchModel.Goods == null || r.MainEntries.Where(r => r.Goods.ToUpper() == searchModel.Goods.ToUpper()).Any())
+            //    .Where(r => searchModel.Sex == null || r.MainEntries.Where(r => r.BodySex.ToUpper() == searchModel.Sex.ToUpper()).Any())
+            //    .Where(r => searchModel.BurialDirection == null || r.MainEntries.Where(r => r.BurialDirection.ToUpper() == searchModel.BurialDirection.ToUpper()).Any())
+            //    .Where(r => searchModel.BurialSubplot == null || r.BurialSubplot == searchModel.BurialSubplot.ToUpper())
+            //    .OrderBy(r => r.BurialId));
 
-            DataListViewModel returnView = (new DataListViewModel
+            //DataListViewModel returnView = (new DataListViewModel
+            //{
+            //    records = Records.Skip((pageNum - 1) * pageSize).Take(pageSize),
+
+            //    burialSearchModel = searchModel,
+            //});
+
+            //returnView.pagingInfo = new PagingInfo {
+            //    CurrentPage = pageNum,
+            //    ItemsPerPage = pageSize,
+            //    TotalNumItems = Records.Count() 
+            //};
+
+
+            //return View(returnView);
+
+            var burialLogic = new BurialBusinessLogic(_context);
+
+            IEnumerable<BurialRecords> records = _context.BurialRecords;
+
+            int nullProps = 0;
+
+            Type type = typeof(BurialSearchModel);
+
+            PropertyInfo[] properties = type.GetProperties();
+
+            foreach (PropertyInfo property in properties)
             {
-                records = Records.Skip((pageNum - 1) * pageSize).Take(pageSize),
+                if (property.GetValue(searchModel, null) == null)
+                {
+                    nullProps = nullProps + 1;
+                }
+            }
 
-                burialSearchModel = searchModel,
-            });
+            bool emptyFilter = false;
 
-            returnView.pagingInfo = new PagingInfo {
-                CurrentPage = pageNum,
-                ItemsPerPage = pageSize,
-                TotalNumItems = Records.Count() 
-            };
+            if (nullProps == properties.Count())
+            {
+                emptyFilter = true;
+            }
 
+            if (emptyFilter == false)
+            {
+                var queryModel = burialLogic.GetBurial(searchModel);
 
-            return View(returnView);
+                return View(new DataListViewModel
+                {
+                    records = (queryModel.OrderBy(r => r.BurialId).Skip((pageNum - 1) * pageSize).Take(pageSize)),
+
+                    pagingInfo = new PagingInfo
+                    {
+                        CurrentPage = pageNum,
+                        ItemsPerPage = pageSize,
+                        TotalNumItems = queryModel.Count()
+                    },
+
+                    burialSearchModel = searchModel
+
+                });
+            }
+            else
+            {
+                return View(new DataListViewModel
+                {
+                    records = (_context.BurialRecords.OrderBy(r => r.BurialId).Skip((pageNum - 1) * pageSize).Take(pageSize)),
+
+                    pagingInfo = new PagingInfo
+                    {
+                        CurrentPage = pageNum,
+                        ItemsPerPage = pageSize,
+                        TotalNumItems = records.Count()
+                    },
+
+                    burialSearchModel = searchModel
+
+                });
+            }
         }
 
         //to view more data on that item
