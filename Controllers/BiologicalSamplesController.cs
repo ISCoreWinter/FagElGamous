@@ -149,7 +149,7 @@ namespace FagElGamous.Controllers
             var biologicalSamples = await _context.BiologicalSamples.FindAsync(BurialId);
             _context.BiologicalSamples.Remove(biologicalSamples);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View("~/Views/Home/Confirmation.cshtml");
         }
 
         private bool BiologicalSamplesExists(int BurialId)

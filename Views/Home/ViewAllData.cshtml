@@ -220,24 +220,7 @@
                 <p>Date on Skull (dd/mm/yyy): @(Model.Cranial?.SkullYear == null ? "Not Recorded" : $"{ Model.Cranial.SkullDate.ToString()}/{Model.Cranial.SkullMonth.ToString()}/{Model.Cranial.SkullYear.ToString()}")</p>
             </div>
         </div>
-        @if (User.IsInRole("Researchers"))
-        {
-        <div>
-            <form asp-controller="Cranials" asp-action="Edit" method="get">
-                <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
-@*                <input type="hidden" name="Cranial" value="@Model.Cranial.EntryId" />
-*@
-                <button type="submit" class="btn btn-info btn-sm">Edit</button>
-            </form>
-            <form asp-controller="Cranials" asp-action="Delete">
-                <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
-@*                <input type="hidden" name="Cranial" value="@Model.Cranial.EntryId" />
-*@
-                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-            </form>
-        </div>
-        <br />
-        }
+       
     }
     else
     { <p>No Data Recorded</p>}

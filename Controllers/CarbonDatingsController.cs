@@ -154,7 +154,7 @@ namespace FagElGamous.Controllers
             var carbonDating = await _context.CarbonDating.FindAsync(BurialId);
             _context.CarbonDating.Remove(carbonDating);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View("~/Views/Home/Confirmation.cshtml");
         }
 
         private bool CarbonDatingExists(int BurialId)
