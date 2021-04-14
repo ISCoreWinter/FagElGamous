@@ -21,15 +21,6 @@ namespace FagElGamous.Infrastructure
         }
         public PagingInfo PageModel { get; set; }
 
-        //public int? BurialId { get; set; }
-        //public int? YearExcavated { get; set; }
-        //public string AgeEstimatedAtDeath { get; set; }
-        //public string HairColor { get; set; }
-        //public string Sex { get; set; }
-        //public string BurialSubplot { get; set; }
-        //public string Goods { get; set; }
-        //public string BurialDirection { get; set; }
-
         //attributes to allow for button styling and such
         public bool PageClassesEnabled { get; set; } = false;
         public string PageAction { get; set; }
@@ -58,7 +49,8 @@ namespace FagElGamous.Infrastructure
                 TagBuilder tagA = new TagBuilder("a");
 
                 KeyValuePairs["pageNum"] = i;
-                tagA.Attributes["href"] = urlHelper.Action(PageAction, KeyValuePairs);
+                tagA.Attributes["href"] = 
+                    urlHelper.Action(PageAction, KeyValuePairs);
                 tagA.InnerHtml.Append(i.ToString());
 
                 //if the classes are enabled in the cshtml file, styling options are available

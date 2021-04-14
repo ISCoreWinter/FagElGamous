@@ -95,17 +95,25 @@ namespace FagElGamous
             //endpoints for urls
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("filter",
+                    "{pageNum}/{BurialId}/{YearExcavated}/{AgeEstimatedAtDeath}/{Sex}/{HairColor}/{Goods}/{BurialDirection}/{BurialSubplot}",
+                    new { Controller = "Home", action = "DataDisplay", method = "get" });
+
+                endpoints.MapControllerRoute("noPage",
+                    "{BurialId}/{YearExcavated}/{AgeEstimatedAtDeath}/{Sex}/{HairColor}/{Goods}/{BurialDirection}/{BurialSubplot}",
+                    new { Controller = "Home", action = "DataDisplay", method = "get" });
+
+                endpoints.MapControllerRoute("dataPage",
+                    "{pageNum}",
+                    new { Controller = "Home", action = "DataDisplay" });
+
                 endpoints.MapControllerRoute("dataPage",
                     "{controller}/{action}/{pageNum}",
                     new { Controller = "Home", action = "DataDisplay" });
 
                 endpoints.MapControllerRoute("dataAll",
-                    "{controller}/{action}/{burialid}",
+                    "{burialid}",
                     new { Controller = "Home", action = "DataDisplay" });
-
-                endpoints.MapControllerRoute("filter",
-                    "{controller}/{action}/{burialid}",
-                    new { Controller = "Home", action = "DataDisplay", method = "get"});
 
                 endpoints.MapControllerRoute(
                     name: "default",

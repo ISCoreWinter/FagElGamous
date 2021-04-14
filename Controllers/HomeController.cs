@@ -48,8 +48,21 @@ namespace FagElGamous.Controllers
         }
 
         [HttpGet]
-        public IActionResult DataDisplay(BurialSearchModel? searchModel, int pageNum = 1)
+        public IActionResult DataDisplay(int pageNum = 1, int BurialId, int YearExcavated, string AgeEstimatedAtDeath, string Sex, 
+            string HairColor, string Goods, string BurialDirection, string BurialSubplot)
         {
+            BurialSearchModel searchModel = new BurialSearchModel
+            {
+                YearExcavated = YearExcavated,
+                AgeEstimatedAtDeath = AgeEstimatedAtDeath,
+                Sex = Sex,
+                HairColor = HairColor,
+                Goods = Goods,
+                BurialSubplot = BurialSubplot,
+                BurialDirection = BurialDirection
+
+            };
+
             int pageSize = 18;
 
             //checks with the filter to see if information has been entered and if records should
@@ -77,6 +90,10 @@ namespace FagElGamous.Controllers
                 TotalNumItems = Records.Count() 
             };
 
+            if (searchModel != null)
+            {
+                returnView.burialSearchModel = searchModel;
+            }
 
             return View(returnView);
         }
