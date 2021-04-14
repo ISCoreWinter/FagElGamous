@@ -1,0 +1,89 @@
+﻿@model IEnumerable<FagElGamous.Models.BiologicalSamples>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RackNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BagNimber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClusterNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Month)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Day)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreviouslySampled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Initials)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burial)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RackNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BagNimber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClusterNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreviouslySampled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Initials)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Burial.BurialId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BioSampleId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BioSampleId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BioSampleId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

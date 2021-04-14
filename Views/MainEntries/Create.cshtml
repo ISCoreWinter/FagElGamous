@@ -12,7 +12,7 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="EntryId" class="control-label"></label>
                 <input asp-for="EntryId" class="form-control" />
                 <span asp-validation-for="EntryId" class="text-danger"></span>
@@ -21,7 +21,7 @@
                 <label asp-for="BurialId" class="control-label"></label>
                 <select asp-for="BurialId" class ="form-control" asp-items="ViewBag.BurialId"></select>
             </div>
-            <div class="form-group">
+            *@<div class="form-group">
                 <label asp-for="BodyAnalysisYear" class="control-label"></label>
                 <input asp-for="BodyAnalysisYear" class="form-control" />
                 <span asp-validation-for="BodyAnalysisYear" class="text-danger"></span>
@@ -218,37 +218,65 @@
             </div>
             <div class="form-group">
                 <label asp-for="HairTaken" class="control-label"></label>
-                <input asp-for="HairTaken" class="form-control" />
+                <select asp-for="HairTaken" class="form-control">
+                    <option value="">Hair Taken?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
                 <span asp-validation-for="HairTaken" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SoftTissueTaken" class="control-label"></label>
-                <input asp-for="SoftTissueTaken" class="form-control" />
+                <select asp-for="SoftTissueTaken" class="form-control">
+                    <option value="">Soft Tissue Taken?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>                
                 <span asp-validation-for="SoftTissueTaken" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BoneTaken" class="control-label"></label>
-                <input asp-for="BoneTaken" class="form-control" />
+                <select asp-for="BoneTaken" class="form-control">
+                    <option value="">Bone Taken?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
                 <span asp-validation-for="BoneTaken" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ToothTaken" class="control-label"></label>
-                <input asp-for="ToothTaken" class="form-control" />
+                <select asp-for="ToothTaken" class="form-control">
+                    <option value="">Tooth Taken?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
                 <span asp-validation-for="ToothTaken" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TextileTaken" class="control-label"></label>
-                <input asp-for="TextileTaken" class="form-control" />
+                <select asp-for="TextileTaken" class="form-control">
+                    <option value="">Textile Taken?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
                 <span asp-validation-for="TextileTaken" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ArtifactFound" class="control-label"></label>
-                <input asp-for="ArtifactFound" class="form-control" />
+                <select asp-for="ArtifactFound" class="form-control">
+                    <option value="">Artifact Found?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
                 <span asp-validation-for="ArtifactFound" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BurialSampleTaken" class="control-label"></label>
-                <input asp-for="BurialSampleTaken" class="form-control" />
+                <select asp-for="BurialSampleTaken" class="form-control">
+                    <option value="">Burial Sample Taken?</option>
+                    <option value="TRUE">Yes</option>
+                    <option value="FALSE">No</option>
+                </select>
                 <span asp-validation-for="BurialSampleTaken" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -392,6 +420,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

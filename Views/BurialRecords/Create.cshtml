@@ -1,22 +1,22 @@
 ﻿@model FagElGamous.Models.BurialRecords
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add a Record";
 }
 
-<h1>Create</h1>
+<h1>Add a New Burial Record</h1>
 
-<h4>BurialRecords</h4>
+<h4>Burial Records</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+@*            <div class="form-group">
                 <label asp-for="BurialId" class="control-label"></label>
-                <input asp-for="BurialId" class="form-control" />
+                <input asp-for="BurialId"  class="form-control" />
                 <span asp-validation-for="BurialId" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="LowPairNs" class="control-label"></label>
                 <input asp-for="LowPairNs" class="form-control" />
@@ -54,17 +54,31 @@
             </div>
             <div class="form-group">
                 <label asp-for="Area" class="control-label"></label>
-                <input asp-for="Area" class="form-control" />
+                <select asp-for="Area" class="form-control">
+                    <option value="">Select One</option>
+                    <option value="1">SE</option>
+                    <option value="2">NE</option>
+                    <option value="3">SW</option>
+                    <option value="4">NW</option>
+                </select>
                 <span asp-validation-for="Area" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Photo" class="control-label"></label>
-                <input asp-for="Photo" class="form-control" />
+                <select asp-for="Photo">
+                    <option value="no">Select One</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
                 <span asp-validation-for="Photo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BuriedGoods" class="control-label"></label>
-                <input asp-for="BuriedGoods" class="form-control" />
+                <select asp-for="BuriedGoods">
+                    <option value="no">Select One</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
                 <span asp-validation-for="BuriedGoods" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -80,7 +94,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Home" asp-action="ViewAllData">Back to List</a>
 </div>
 
 @section Scripts {

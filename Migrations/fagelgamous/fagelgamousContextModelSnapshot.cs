@@ -78,8 +78,10 @@ namespace FagElGamous.Migrations.fagelgamous
             modelBuilder.Entity("FagElGamous.Models.BodyMeasurements", b =>
                 {
                     b.Property<int>("EntryId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("entry_id")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BurialId")
                         .HasColumnName("burial_id")
@@ -237,8 +239,8 @@ namespace FagElGamous.Migrations.fagelgamous
                         .HasMaxLength(5)
                         .IsUnicode(false);
 
-                    b.Property<bool?>("BuriedGoods")
-                        .HasColumnType("bit");
+                    b.Property<string>("BuriedGoods")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("HighPairEw")
                         .HasColumnName("high_pair_EW")
@@ -258,8 +260,8 @@ namespace FagElGamous.Migrations.fagelgamous
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
-                    b.Property<bool?>("Photo")
-                        .HasColumnType("bit");
+                    b.Property<string>("Photo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BurialId");
 
