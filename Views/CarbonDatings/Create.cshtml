@@ -1,0 +1,121 @@
+﻿@model FagElGamous.Models.CarbonDating
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CarbonDating</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CarbonDatingId" class="control-label"></label>
+                <input asp-for="CarbonDatingId" class="form-control" />
+                <span asp-validation-for="CarbonDatingId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BurialId" class="control-label"></label>
+                <select asp-for="BurialId" class ="form-control" asp-items="ViewBag.BurialId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BioSampleId" class="control-label"></label>
+                <select asp-for="BioSampleId" class ="form-control" asp-items="ViewBag.BioSampleId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RackNumber" class="control-label"></label>
+                <input asp-for="RackNumber" class="form-control" />
+                <span asp-validation-for="RackNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TubeNumber" class="control-label"></label>
+                <input asp-for="TubeNumber" class="form-control" />
+                <span asp-validation-for="TubeNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SizeMl" class="control-label"></label>
+                <input asp-for="SizeMl" class="form-control" />
+                <span asp-validation-for="SizeMl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Foci" class="control-label"></label>
+                <input asp-for="Foci" class="form-control" />
+                <span asp-validation-for="Foci" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="C14Sample2017" class="control-label"></label>
+                <input asp-for="C14Sample2017" class="form-control" />
+                <span asp-validation-for="C14Sample2017" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocationDescription" class="control-label"></label>
+                <input asp-for="LocationDescription" class="form-control" />
+                <span asp-validation-for="LocationDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResearchQuestions" class="control-label"></label>
+                <input asp-for="ResearchQuestions" class="form-control" />
+                <span asp-validation-for="ResearchQuestions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Conventional14cAgeBp" class="control-label"></label>
+                <input asp-for="Conventional14cAgeBp" class="form-control" />
+                <span asp-validation-for="Conventional14cAgeBp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="_14cCalendarDate" class="control-label"></label>
+                <input asp-for="_14cCalendarDate" class="form-control" />
+                <span asp-validation-for="_14cCalendarDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Calibrated95CalendarDateMax" class="control-label"></label>
+                <input asp-for="Calibrated95CalendarDateMax" class="form-control" />
+                <span asp-validation-for="Calibrated95CalendarDateMax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Calibrated95CalendarDateMin" class="control-label"></label>
+                <input asp-for="Calibrated95CalendarDateMin" class="form-control" />
+                <span asp-validation-for="Calibrated95CalendarDateMin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Calibrated95CalendarDateSpan" class="control-label"></label>
+                <input asp-for="Calibrated95CalendarDateSpan" class="form-control" />
+                <span asp-validation-for="Calibrated95CalendarDateSpan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Calibrated95CalendarDateAvg" class="control-label"></label>
+                <input asp-for="Calibrated95CalendarDateAvg" class="form-control" />
+                <span asp-validation-for="Calibrated95CalendarDateAvg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

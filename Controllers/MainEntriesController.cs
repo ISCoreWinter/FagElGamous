@@ -18,14 +18,14 @@ namespace FagElGamous.Controllers
             _context = context;
         }
 
-        // GET: MainEntries
+        // GET: MainEntries1
         public async Task<IActionResult> Index()
         {
             var fagelgamousContext = _context.MainEntries.Include(m => m.Burial);
             return View(await fagelgamousContext.ToListAsync());
         }
 
-        // GET: MainEntries/Details/5
+        // GET: MainEntries1/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,14 +44,14 @@ namespace FagElGamous.Controllers
             return View(mainEntries);
         }
 
-        // GET: MainEntries/Create
+        // GET: MainEntries1/Create
         public IActionResult Create()
         {
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId");
             return View();
         }
 
-        // POST: MainEntries/Create
+        // POST: MainEntries1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -60,6 +60,8 @@ namespace FagElGamous.Controllers
         {
             if (ModelState.IsValid)
             {
+                mainEntries.BurialId = (_context.BurialRecords.Max(p => p.BurialId));
+                mainEntries.EntryId = (_context.MainEntries.Max(p => p.EntryId) + 1);
                 _context.Add(mainEntries);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -68,7 +70,7 @@ namespace FagElGamous.Controllers
             return View(mainEntries);
         }
 
-        // GET: MainEntries/Edit/5
+        // GET: MainEntries1/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,7 +87,7 @@ namespace FagElGamous.Controllers
             return View(mainEntries);
         }
 
-        // POST: MainEntries/Edit/5
+        // POST: MainEntries1/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -121,7 +123,7 @@ namespace FagElGamous.Controllers
             return View(mainEntries);
         }
 
-        // GET: MainEntries/Delete/5
+        // GET: MainEntries1/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,7 +142,7 @@ namespace FagElGamous.Controllers
             return View(mainEntries);
         }
 
-        // POST: MainEntries/Delete/5
+        // POST: MainEntries1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

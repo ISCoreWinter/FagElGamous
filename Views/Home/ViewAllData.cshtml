@@ -56,142 +56,209 @@
                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
             </form>
         </div>
+        <br />
     }
     else
     { <p>No Data Recorded</p>}
 </div>
 
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bodymeasure">Body Measurements</button><br /><br />
-    <div id="bodymeasure" class="collapse">
-        @if (Model.BodyMeasurements != null)
-            {
-                @foreach(var x in Model.BurialRecord.BodyMeasurements) { 
-                    <div class="row">
-                        <div class="col-4">
-                            <p>Bone Length: @(x.BoneLength is null ? "Not Recorded" : x.BoneLength)</p>
-                            <p>Dorsal Pitting: @(x.DorsalPitting == null ? "Not Recorded" : x.DorsalPitting.ToString())</p>
-                            <p>Epiphyseal Union: @(x.EpiphysealUnion == null ? "Not Recorded" : x.EpiphysealUnion)</p>
-                            <p>Estimate Living Stature: @(x.EstimateLivingStature == null ? "Not Recorded" : x.EstimateLivingStature.ToString())</p>
-                            <p>Iliac Crest: @(x.IliacCrest == null ? "Not Recorded" : x.IliacCrest.ToString())</p>
-                            <p>MEdical Clavicle: @(x.MedicalClavicle == null ? "Not Recorded" : x.MedicalClavicle.ToString())</p>
-                        </div>
-                        <div class="col-4">
-                            <p>Femur Diameter: @(x.FemurDiameter == null ? "Not Recorded" : x.FemurDiameter)</p>
-                            <p>Femur Head: @(x.FemurHead == null ? "Not Recorded" : x.FemurHead.ToString())</p>
-                            <p>Femur Length: @(x.FemurLength == null ? "Not Recorded" : x.FemurLength.ToString())</p>
-                            <p>Humerus: @(x.Humerus == null ? "Not Recorded" : x.Humerus)</p>
-                            <p>Humerus Head: @(x.HumerusHead == null ? "Not Recorded" : x.HumerusHead.ToString())</p>
-                            <p>Humerus Length: @(x.HumerusLength== null ? "Not Recorded" : x.HumerusLength.ToString())</p>
-                        </div>
-                        <div class="col-4">
-                            <p>Medical Ip Ramus: @(x.MedicalIpRamus == null ? "Not Recorded" : x.MedicalIpRamus.ToString())</p>
-                            <p>Osteophytosis: @(x.Osteophytosis== null ? "Not Recorded" : x.Osteophytosis)</p>
-                            <p>Pathology Anomalies: @(x.PathologyAnomalies== null ? "Not Recorded" : x.PathologyAnomalies)</p>
-                            <p>Preaur Sulcus: @(x.PreaurSulcus == null ? "Not Recorded" : x.PreaurSulcus.ToString())</p>
-                            <p>Pubic Bone: @(x.PubicBone == null ? "Not Recorded" : x.PubicBone.ToString())</p>
-                            <p>Pubic Symphysis: @(x.PubicSymphysis == null ? "Not Recorded" : x.PubicSymphysis)</p>
-                        </div>
-                    </div>
-                }
-            }
-            else { <p>No Data Recorded</p> }
-    </div>
+<div id="bodymeasure" class="collapse">
+    @if (Model.BodyMeasurements != null)
+    {
+        @foreach (var x in Model.BurialRecord.BodyMeasurements)
+        {
+            <div class="row">
+                <div class="col-4">
+                    <p>Bone Length: @(x.BoneLength is null ? "Not Recorded" : x.BoneLength)</p>
+                    <p>Dorsal Pitting: @(x.DorsalPitting == null ? "Not Recorded" : x.DorsalPitting.ToString())</p>
+                    <p>Epiphyseal Union: @(x.EpiphysealUnion == null ? "Not Recorded" : x.EpiphysealUnion)</p>
+                    <p>Estimate Living Stature: @(x.EstimateLivingStature == null ? "Not Recorded" : x.EstimateLivingStature.ToString())</p>
+                    <p>Iliac Crest: @(x.IliacCrest == null ? "Not Recorded" : x.IliacCrest.ToString())</p>
+                    <p>MEdical Clavicle: @(x.MedicalClavicle == null ? "Not Recorded" : x.MedicalClavicle.ToString())</p>
+                </div>
+                <div class="col-4">
+                    <p>Femur Diameter: @(x.FemurDiameter == null ? "Not Recorded" : x.FemurDiameter)</p>
+                    <p>Femur Head: @(x.FemurHead == null ? "Not Recorded" : x.FemurHead.ToString())</p>
+                    <p>Femur Length: @(x.FemurLength == null ? "Not Recorded" : x.FemurLength.ToString())</p>
+                    <p>Humerus: @(x.Humerus == null ? "Not Recorded" : x.Humerus)</p>
+                    <p>Humerus Head: @(x.HumerusHead == null ? "Not Recorded" : x.HumerusHead.ToString())</p>
+                    <p>Humerus Length: @(x.HumerusLength== null ? "Not Recorded" : x.HumerusLength.ToString())</p>
+                </div>
+                <div class="col-4">
+                    <p>Medical Ip Ramus: @(x.MedicalIpRamus == null ? "Not Recorded" : x.MedicalIpRamus.ToString())</p>
+                    <p>Osteophytosis: @(x.Osteophytosis== null ? "Not Recorded" : x.Osteophytosis)</p>
+                    <p>Pathology Anomalies: @(x.PathologyAnomalies== null ? "Not Recorded" : x.PathologyAnomalies)</p>
+                    <p>Preaur Sulcus: @(x.PreaurSulcus == null ? "Not Recorded" : x.PreaurSulcus.ToString())</p>
+                    <p>Pubic Bone: @(x.PubicBone == null ? "Not Recorded" : x.PubicBone.ToString())</p>
+                    <p>Pubic Symphysis: @(x.PubicSymphysis == null ? "Not Recorded" : x.PubicSymphysis)</p>
+                </div>
+            </div>
+            <div>
+                <form asp-controller="BurialRecords" asp-action="Edit" method="get">
+                    <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
+                    <button type="submit" class="btn btn-info btn-sm">Edit</button>
+                </form>
+                <form asp-controller="BurialRecords" asp-action="Delete">
+                    <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </div>
+            <br />
+        }
+    }
+    else
+    { <p>No Data Recorded</p>}
+</div>
 
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#biodata">Biological Samples</button><br /><br />
     <div id="biodata" class="collapse">
-        @if (Model.BurialRecord.BiologicalSamples.Any())
+        @if (Model.BioSamples != null)
+        {
+            foreach (var x in Model.BioSamples)
             {
-                foreach(var x in Model.BioSamples)
-                {
-                    <p>Notes: @(x.Notes == null ? "Not Recorded" : x.Notes)</p>
-                }
+                <p>Notes: @(x.Notes == null ? "Not Recorded" : x.Notes)</p>
+                <div>
+                    <form asp-controller="BiologicalSamples" asp-action="Edit" method="get">
+                        <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
+                        <button type="submit" class="btn btn-info btn-sm">Edit</button>
+                    </form>
+                    <form asp-controller="BiologicalSamples" asp-action="Delete">
+                        <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+                <br />
             }
-            else { <p>No Data Recorded</p>}
+        }
+        else
+        { <p>No Data Recorded</p>}
     </div>
 
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#carbon">Carbon Dating</button><br /><br />
-    <div id="carbon" class="collapse">
-        @if (Model.BurialRecord?.CarbonDating != null)
-            {
-                <div class="row">
-                    <div class="col-4">
-                        <p>Description: @(Model.CarbonDating?.Description is null ? "Not Recorded" : Model.CarbonDating.Description)</p>
-                        <p>Foci: @(Model.CarbonDating?.Foci == null ? "Not Recorded" : Model.CarbonDating.Foci.ToString())</p>
-                        <p>Sample: @(Model.CarbonDating?.C14Sample2017 == null ? "Not Recorded" : Model.CarbonDating.C14Sample2017.ToString())</p>
-                    </div>
-                    <div class="col-4">
-                        <p>Location Description: @(Model.CarbonDating?.Description == null ? "Not Recorded" : Model.CarbonDating.Description)</p>
-                        <p>Research Question: @(Model.CarbonDating?.ResearchQuestions == null ? "Not Recorded" : Model.CarbonDating.ResearchQuestions)</p>
-                        <p>Conventional Age: @(Model.CarbonDating?.Conventional14cAgeBp == null ? "Not Recorded" : Model.CarbonDating.Conventional14cAgeBp.ToString())</p>
-                    </div>
-                    <div class="col-4">
-                        <p>Notes: @(Model.CarbonDating?.Notes == null ? "Not Recorded" : Model.CarbonDating.Notes)</p>
-                    </div>
-                </div>
-            }
-            else { <p>No Data Recorded</p>}
+<div id="carbon" class="collapse">
+@if (Model.BurialRecord?.CarbonDating != null)
+{
+    <div class="row">
+        <div class="col-4">
+            <p>Description: @(Model.CarbonDating?.Description is null ? "Not Recorded" : Model.CarbonDating.Description)</p>
+            <p>Foci: @(Model.CarbonDating?.Foci == null ? "Not Recorded" : Model.CarbonDating.Foci.ToString())</p>
+            <p>Sample: @(Model.CarbonDating?.C14Sample2017 == null ? "Not Recorded" : Model.CarbonDating.C14Sample2017.ToString())</p>
+        </div>
+        <div class="col-4">
+            <p>Location Description: @(Model.CarbonDating?.Description == null ? "Not Recorded" : Model.CarbonDating.Description)</p>
+            <p>Research Question: @(Model.CarbonDating?.ResearchQuestions == null ? "Not Recorded" : Model.CarbonDating.ResearchQuestions)</p>
+            <p>Conventional Age: @(Model.CarbonDating?.Conventional14cAgeBp == null ? "Not Recorded" : Model.CarbonDating.Conventional14cAgeBp.ToString())</p>
+        </div>
+        <div class="col-4">
+            <p>Notes: @(Model.CarbonDating?.Notes == null ? "Not Recorded" : Model.CarbonDating.Notes)</p>
+        </div>
     </div>
+    <div>
+        <form asp-controller="CarbonDatings" asp-action="Edit" method="get">
+            <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
+            <button type="submit" class="btn btn-info btn-sm">Edit</button>
+        </form>
+        <form asp-controller="CarbonDatings" asp-action="Delete">
+            <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+    </div>
+    <br />
+}
+else
+{ <p>No Data Recorded</p>}
+</div>
 
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#cranial">Cranial Data</button><br /><br />
-        <div id="cranial" class="collapse">
-            @if (Model.BurialRecord?.Cranial != null)
-            {
-                <div class="row">
-                    <div class="col-4">
-                        <p>Basilar Suture: @(Model.Cranial?.BasilarSuture is null ? "Not Recorded" : Model.Cranial.BasilarSuture)</p>
-                        <p>Basion Height: @(Model.Cranial?.BasionBregmaHeight is null ? "Not Recorded" : Model.Cranial.BasionBregmaHeight.ToString())</p>
-                        <p>Basion Nasion: @(Model.Cranial?.BasionNasion is null ? "Not Recorded" : Model.Cranial.BasionNasion.ToString())</p>
-                        <p>Bizygomatic Diameter: @(Model.Cranial?.BizygomaticDiameter == null ? "Not Recorded" : Model.Cranial.BizygomaticDiameter.ToString())</p>
-                        <p>Button Osteoma: @(Model.Cranial?.ButtonOsteoma == null ? "Not Recorded" : Model.Cranial.ButtonOsteoma)</p>
-                        <p>Cranial Suture: @(Model.Cranial?.CranialSuture == null ? "Not Recorded" : Model.Cranial.CranialSuture)</p>
-                        <p>Cribra Orbitala: @(Model.Cranial?.CribraOrbitala == null ? "Not Recorded" : Model.Cranial.CribraOrbitala)</p>
-                        <p>Gonian: @(Model.Cranial?.Gonian == null ? "Not Recorded" : Model.Cranial.Gonian.ToString())</p>
-                        <p>Postcrania Trauma: @(Model.Cranial?.PostcraniaTrauma == null ? "Not Recorded" : Model.Cranial.PostcraniaTrauma)</p>
-                        <p>Skull Trauma: @(Model.Cranial?.SkullTrauma == null ? "Not Recorded" : Model.Cranial.SkullTrauma)</p>
-                    </div>
-                    <div class="col-4">
-                        <p>Interorbital Breadth: @(Model.Cranial?.InterorbitalBreadth == null ? "Not Recorded" : Model.Cranial.InterorbitalBreadth.ToString())</p>
-                        <p>Linear Hypoplasia Enamel: @(Model.Cranial?.LinearHypoplasiaEnamel == null ? "Not Recorded" : Model.Cranial.LinearHypoplasiaEnamel)</p>
-                        <p>Maximum Cranial Breadth: @(Model.Cranial?.MaximumCranialBreadth == null ? "Not Recorded" : Model.Cranial.MaximumCranialBreadth.ToString())</p>
-                        <p>Maximum Cranial Length: @(Model.Cranial?.MaximumCranialLength == null ? "Not Recorded" : Model.Cranial.MaximumCranialLength.ToString())</p>
-                        <p>Maximum Nasal Breadth: @(Model.Cranial?.MaximumNasalBreadth == null ? "Not Recorded" : Model.Cranial.MaximumNasalBreadth.ToString())</p>
-                        <p>Metopic Suture: @(Model.Cranial?.MetopicSuture == null ? "Not Recorded" : Model.Cranial.MetopicSuture)</p>
-                        <p>Nasion Prosthion: @(Model.Cranial?.NasionProsthion == null ? "Not Recorded" : Model.Cranial.NasionProsthion.ToString())</p>
-                        <p>Nuchal Crest: @(Model.Cranial?.NuchalCrest == null ? "Not Recorded" : Model.Cranial.NuchalCrest.ToString())</p>
-                        <p>Orbit Edge: @(Model.Cranial?.OrbitEdge == null ? "Not Recorded" : Model.Cranial.OrbitEdge.ToString())</p>
-                        <p>Pariental Bossing: @(Model.Cranial?.ParietalBossing == null ? "Not Recorded" : Model.Cranial.ParietalBossing.ToString())</p>
-                    </div>
-                    <div class="col-4">
-                        <p>Porotic Hyperostosis: @(Model.Cranial?.PoroticHyperostosis == null ? "Not Recorded" : Model.Cranial.PoroticHyperostosis)</p>
-                        <p>Porotic Hyperostosis Locations: @(Model.Cranial?.PoroticHyperostosisLocations == null ? "Not Recorded" : Model.Cranial.PoroticHyperostosisLocations)</p>
-                        <p>Superorbital Ridges: @(Model.Cranial?.SupraorbitalRidges == null ? "Not Recorded" : Model.Cranial.SupraorbitalRidges.ToString())</p>
-                        <p>Tooth Attrition: @(Model.Cranial?.ToothAttrition == null ? "Not Recorded" : Model.Cranial.ToothAttrition)</p>
-                        <p>Tooth Eruption: @(Model.Cranial?.ToothEruption == null ? "Not Recorded" : Model.Cranial.ToothEruption)</p>
-                        <p>Zygomatic Crest: @(Model.Cranial?.ZygomaticCrest == null ? "Not Recorded" : Model.Cranial.ZygomaticCrest.ToString())</p>
-                        <p>Date on Skull (dd/mm/yyy): @(Model.Cranial?.SkullYear == null ? "Not Recorded" : $"{ Model.Cranial.SkullDate.ToString()}/{Model.Cranial.SkullMonth.ToString()}/{Model.Cranial.SkullYear.ToString()}")</p>
-                    </div>
-                </div>
-            }
-            else
-            { <p>No Data Recorded</p>}
+<div id="cranial" class="collapse">
+    @if (Model.BurialRecord?.Cranial != null)
+    {
+        <div class="row">
+            <div class="col-4">
+                <p>Basilar Suture: @(Model.Cranial?.BasilarSuture is null ? "Not Recorded" : Model.Cranial.BasilarSuture)</p>
+                <p>Basion Height: @(Model.Cranial?.BasionBregmaHeight is null ? "Not Recorded" : Model.Cranial.BasionBregmaHeight.ToString())</p>
+                <p>Basion Nasion: @(Model.Cranial?.BasionNasion is null ? "Not Recorded" : Model.Cranial.BasionNasion.ToString())</p>
+                <p>Bizygomatic Diameter: @(Model.Cranial?.BizygomaticDiameter == null ? "Not Recorded" : Model.Cranial.BizygomaticDiameter.ToString())</p>
+                <p>Button Osteoma: @(Model.Cranial?.ButtonOsteoma == null ? "Not Recorded" : Model.Cranial.ButtonOsteoma)</p>
+                <p>Cranial Suture: @(Model.Cranial?.CranialSuture == null ? "Not Recorded" : Model.Cranial.CranialSuture)</p>
+                <p>Cribra Orbitala: @(Model.Cranial?.CribraOrbitala == null ? "Not Recorded" : Model.Cranial.CribraOrbitala)</p>
+                <p>Gonian: @(Model.Cranial?.Gonian == null ? "Not Recorded" : Model.Cranial.Gonian.ToString())</p>
+                <p>Postcrania Trauma: @(Model.Cranial?.PostcraniaTrauma == null ? "Not Recorded" : Model.Cranial.PostcraniaTrauma)</p>
+                <p>Skull Trauma: @(Model.Cranial?.SkullTrauma == null ? "Not Recorded" : Model.Cranial.SkullTrauma)</p>
+            </div>
+            <div class="col-4">
+                <p>Interorbital Breadth: @(Model.Cranial?.InterorbitalBreadth == null ? "Not Recorded" : Model.Cranial.InterorbitalBreadth.ToString())</p>
+                <p>Linear Hypoplasia Enamel: @(Model.Cranial?.LinearHypoplasiaEnamel == null ? "Not Recorded" : Model.Cranial.LinearHypoplasiaEnamel)</p>
+                <p>Maximum Cranial Breadth: @(Model.Cranial?.MaximumCranialBreadth == null ? "Not Recorded" : Model.Cranial.MaximumCranialBreadth.ToString())</p>
+                <p>Maximum Cranial Length: @(Model.Cranial?.MaximumCranialLength == null ? "Not Recorded" : Model.Cranial.MaximumCranialLength.ToString())</p>
+                <p>Maximum Nasal Breadth: @(Model.Cranial?.MaximumNasalBreadth == null ? "Not Recorded" : Model.Cranial.MaximumNasalBreadth.ToString())</p>
+                <p>Metopic Suture: @(Model.Cranial?.MetopicSuture == null ? "Not Recorded" : Model.Cranial.MetopicSuture)</p>
+                <p>Nasion Prosthion: @(Model.Cranial?.NasionProsthion == null ? "Not Recorded" : Model.Cranial.NasionProsthion.ToString())</p>
+                <p>Nuchal Crest: @(Model.Cranial?.NuchalCrest == null ? "Not Recorded" : Model.Cranial.NuchalCrest.ToString())</p>
+                <p>Orbit Edge: @(Model.Cranial?.OrbitEdge == null ? "Not Recorded" : Model.Cranial.OrbitEdge.ToString())</p>
+                <p>Pariental Bossing: @(Model.Cranial?.ParietalBossing == null ? "Not Recorded" : Model.Cranial.ParietalBossing.ToString())</p>
+            </div>
+            <div class="col-4">
+                <p>Porotic Hyperostosis: @(Model.Cranial?.PoroticHyperostosis == null ? "Not Recorded" : Model.Cranial.PoroticHyperostosis)</p>
+                <p>Porotic Hyperostosis Locations: @(Model.Cranial?.PoroticHyperostosisLocations == null ? "Not Recorded" : Model.Cranial.PoroticHyperostosisLocations)</p>
+                <p>Superorbital Ridges: @(Model.Cranial?.SupraorbitalRidges == null ? "Not Recorded" : Model.Cranial.SupraorbitalRidges.ToString())</p>
+                <p>Tooth Attrition: @(Model.Cranial?.ToothAttrition == null ? "Not Recorded" : Model.Cranial.ToothAttrition)</p>
+                <p>Tooth Eruption: @(Model.Cranial?.ToothEruption == null ? "Not Recorded" : Model.Cranial.ToothEruption)</p>
+                <p>Zygomatic Crest: @(Model.Cranial?.ZygomaticCrest == null ? "Not Recorded" : Model.Cranial.ZygomaticCrest.ToString())</p>
+                <p>Date on Skull (dd/mm/yyy): @(Model.Cranial?.SkullYear == null ? "Not Recorded" : $"{ Model.Cranial.SkullDate.ToString()}/{Model.Cranial.SkullMonth.ToString()}/{Model.Cranial.SkullYear.ToString()}")</p>
+            </div>
         </div>
 
-    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#photos">Photos</button><br /><br />
-        <div id="photos" class="collapse">
-             @if (Model.Photos.Any())
-            {
-                    <div class="row">
-                        @foreach(var x in Model.Photos)
-                    {
-                            <div class="col-4">
-                                <img src="@($"/{x.Filestring}")" width="100%"/><br />
-                                <p>@x.Description</p>
-                            </div>
-                    }
-                    </div>
-            }
-            else { <p>No Photos to Display</p>}
+        <div>
+            <form asp-controller="Cranials" asp-action="Edit" method="get">
+                <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
+@*                <input type="hidden" name="Cranial" value="@Model.Cranial.EntryId" />
+*@
+                <button type="submit" class="btn btn-info btn-sm">Edit</button>
+            </form>
+            <form asp-controller="Cranials" asp-action="Delete">
+                <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
+@*                <input type="hidden" name="Cranial" value="@Model.Cranial.EntryId" />
+*@
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
         </div>
+        <br />
+    }
+    else
+    { <p>No Data Recorded</p>}
+</div>
+
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#photos">Photos</button><br /><br />
+    <div id="photos" class="collapse">
+        @if (Model.Photos.Any())
+        {
+            <div class="row">
+                @foreach (var x in Model.Photos)
+                {
+                    <div class="col-4">
+                        <img src="@($"/{x.Filestring}")" width="100%" /><br />
+                        <p>@x.Description</p>
+                    </div>
+                }
+            </div>
+
+            <div>
+                <form asp-controller="Photos" asp-action="Edit" method="get">
+                    <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
+                    <button type="submit" class="btn btn-info btn-sm">Edit</button>
+                </form>
+                <form asp-controller="Photos" asp-action="Delete">
+                    <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </div>
+            <br />
+        }
+        else
+        { <p>No Photos to Display</p>}
+    </div>
 </div>
 
 
