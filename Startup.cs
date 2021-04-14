@@ -12,7 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+/*This program was created for a BYU excavation project by Rachel Vance, Kennedy Daniel, Ezra Frost, and Julie Handley. 
+ * It is connected to a SQLServer DB. You will see each of the models and associated CRUD functionality, user accounts, and data display.*/
 namespace FagElGamous
 {
     public class Startup

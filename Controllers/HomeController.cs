@@ -187,11 +187,14 @@ namespace FagElGamous.Controllers
             return View();
         }
         [HttpGet]
+        [Authorize(Roles = "Researchers")]
         public IActionResult FieldNotesUpload()
         {
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "Researchers")]
+
         public async Task<IActionResult> FieldNotesUpload(PhotoUpload FileUpload)
         {
             string filepath;
@@ -281,12 +284,6 @@ namespace FagElGamous.Controllers
                 }
             }
 
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult FieldNotesUpload()
-        {
             return View();
         }
 
