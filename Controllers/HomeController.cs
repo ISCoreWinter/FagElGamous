@@ -122,6 +122,43 @@ namespace FagElGamous.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult FieldNotesUpload()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> FieldNotesUpload(PhotoUpload FileUpload)
+        {
+            string filepath;
+            using (var memoryStream = new MemoryStream())
+            {
+                await FileUpload.FormFile.CopyToAsync(memoryStream);
+
+                filepath = "Photos/" + FileUpload.FormFile.FileName;
+
+                if (memoryStream != null)
+                {
+                    await s3upload.UploadFileAsync(memoryStream, "fagelgamousuploads", filepath);
+                }
+                else
+                {
+                    ModelState.AddModelError("File", "Please Select a File");
+                }
+            }
+
+            Photos photo = new Photos
+            {
+                Filestring = filepath,
+                Description = FileUpload.Description,
+                BurialId = FileUpload.BurialId
+            };
+
+            _context.Photos.Add(photo);
+            _context.SaveChanges();
+
+            return View();
+        }
 
         [HttpGet]
         public IActionResult PhotoUpload()
@@ -237,6 +274,7 @@ namespace FagElGamous.Controllers
             }
             return View("EditRecord", record);
         }*/
+    
         public IActionResult Privacy()
         {
             return View();
