@@ -46,6 +46,8 @@
                 </div>
             </div>
         }
+        @if (User.IsInRole("Researchers")) 
+        {
         <div>
             <form asp-controller="MainEntries" asp-action="Edit" method="get">
                 <input type="hidden" name="BurialId" value="@Model.MainEntries.BurialId" />
@@ -57,6 +59,7 @@
             </form>
         </div>
         <br />
+        }
     }
     else
     { <p>No Data Recorded</p>}
@@ -75,7 +78,7 @@
                     <p>Epiphyseal Union: @(x.EpiphysealUnion == null ? "Not Recorded" : x.EpiphysealUnion)</p>
                     <p>Estimate Living Stature: @(x.EstimateLivingStature == null ? "Not Recorded" : x.EstimateLivingStature.ToString())</p>
                     <p>Iliac Crest: @(x.IliacCrest == null ? "Not Recorded" : x.IliacCrest.ToString())</p>
-                    <p>MEdical Clavicle: @(x.MedicalClavicle == null ? "Not Recorded" : x.MedicalClavicle.ToString())</p>
+                    <p>Medical Clavicle: @(x.MedicalClavicle == null ? "Not Recorded" : x.MedicalClavicle.ToString())</p>
                 </div>
                 <div class="col-4">
                     <p>Femur Diameter: @(x.FemurDiameter == null ? "Not Recorded" : x.FemurDiameter)</p>
@@ -94,6 +97,8 @@
                     <p>Pubic Symphysis: @(x.PubicSymphysis == null ? "Not Recorded" : x.PubicSymphysis)</p>
                 </div>
             </div>
+            @if (User.IsInRole("Researchers"))
+            {
             <div>
                 <form asp-controller="BurialRecords" asp-action="Edit" method="get">
                     <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
@@ -104,7 +109,7 @@
                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                 </form>
             </div>
-            <br />
+            <br />}
         }
     }
     else
@@ -118,6 +123,8 @@
             foreach (var x in Model.BioSamples)
             {
                 <p>Notes: @(x.Notes == null ? "Not Recorded" : x.Notes)</p>
+                if (User.IsInRole("Researchers"))
+                { 
                 <div>
                     <form asp-controller="BiologicalSamples" asp-action="Edit" method="get">
                         <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
@@ -129,6 +136,7 @@
                     </form>
                 </div>
                 <br />
+                }
             }
         }
         else
@@ -154,6 +162,8 @@
             <p>Notes: @(Model.CarbonDating?.Notes == null ? "Not Recorded" : Model.CarbonDating.Notes)</p>
         </div>
     </div>
+     @if (User.IsInRole("Researchers"))
+     {
     <div>
         <form asp-controller="CarbonDatings" asp-action="Edit" method="get">
             <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
@@ -165,9 +175,10 @@
         </form>
     </div>
     <br />
-}
-else
-{ <p>No Data Recorded</p>}
+         }
+     }
+     else
+     { <p>No Data Recorded</p>}
 </div>
 
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#cranial">Cranial Data</button><br /><br />
@@ -209,7 +220,8 @@ else
                 <p>Date on Skull (dd/mm/yyy): @(Model.Cranial?.SkullYear == null ? "Not Recorded" : $"{ Model.Cranial.SkullDate.ToString()}/{Model.Cranial.SkullMonth.ToString()}/{Model.Cranial.SkullYear.ToString()}")</p>
             </div>
         </div>
-
+        @if (User.IsInRole("Researchers"))
+        {
         <div>
             <form asp-controller="Cranials" asp-action="Edit" method="get">
                 <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
@@ -225,6 +237,7 @@ else
             </form>
         </div>
         <br />
+        }
     }
     else
     { <p>No Data Recorded</p>}
@@ -243,7 +256,8 @@ else
                     </div>
                 }
             </div>
-
+            @if (User.IsInRole("Researchers"))
+            { 
             <div>
                 <form asp-controller="Photos" asp-action="Edit" method="get">
                     <input type="hidden" name="BurialId" value="@Model.BurialRecord.BurialId" />
@@ -255,6 +269,7 @@ else
                 </form>
             </div>
             <br />
+            }
         }
         else
         { <p>No Photos to Display</p>}
