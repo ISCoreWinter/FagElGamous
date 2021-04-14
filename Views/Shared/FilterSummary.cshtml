@@ -6,30 +6,22 @@
 <!--form for the filtering, has fields for all the categories that a user can filter by-->
 
 <form method="get" id="filterForm">
-    <label asp-for="BurialId">Burial ID</label><br />
-    <input asp-for="BurialId" /><br /><br />
 
-    <label asp-for="YearExcavated">Year Excavated</label>
-    <input asp-for="YearExcavated"><br /><br />
+    <label asp-for="BurialId">Burial Id</label><br />
+    <input asp-for="BurialId"><br /><br />
 
-    <label asp-for="AgeEstimatedAtDeath">Age Estimated at Death</label>
-    <input asp-for="AgeEstimatedAtDeath"><br /><br />
+    <label asp-for="BurialNumber">Burial Number</label>
+    <input asp-for="BurialNumber"><br /><br />
 
-    <label asp-for="Sex">Sex</label><br />
-    <input asp-for="Sex"><br /><br />
+    <label asp-for="BurialSubplot">Burial Subplot</label><br />
+    <input asp-for="BurialSubplot"><br /><br />
 
-    <label asp-for="HairColor">Hair Color</label>
-    <input asp-for="HairColor"><br /><br />
+    <label asp-for="BurialLocationEw">Burial Location E/W</label>
+    <input asp-for="BurialLocationEw"><br /><br />
 
-    <label asp-for="Goods">Were goods buried with them?</label>
-    <input asp-for="Goods"><br /><br />
+    <label asp-for="BurialLocationNs">Burial Location N/S</label>
+    <input asp-for="BurialLocationNs"><br /><br />
 
-    <label asp-for="BurialDirection">Burial Direction</label>
-    <input asp-for="BurialDirection"><br /><br />
-
-    <label asp-for="BurialSubplot">Burial Subplot</label>
-    <input asp-for="BurialSubplot" /><br /><br />
-
-    <button asp-route-burialid="@Model.BurialId" type="submit" form="filterForm" class="btn btn-dark btn-fill" style="background-color:#D2B48C">Search</button>
+    <button type="submit" form="filterForm" class="btn btn-dark btn-fill" style="background-color:#D2B48C">Search</button>
 </form>
 

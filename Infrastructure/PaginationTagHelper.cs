@@ -36,6 +36,7 @@ namespace FagElGamous.Infrastructure
         public string PageClass { get; set; }
         public string PageClassNormal { get; set; }
         public string PageClassSelected { get; set; }
+        public string PageParameters { get; set; }
 
         //the dictionary make parameter passing easier
         [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
@@ -59,6 +60,7 @@ namespace FagElGamous.Infrastructure
 
                 KeyValuePairs["pageNum"] = i;
                 tagA.Attributes["href"] = urlHelper.Action(PageAction, KeyValuePairs);
+                tagA.Attributes["href"] = tagA.Attributes["href"] + PageParameters;
                 tagA.InnerHtml.Append(i.ToString());
 
                 //if the classes are enabled in the cshtml file, styling options are available
