@@ -64,7 +64,7 @@ namespace FagElGamous.Controllers
             {
                 _context.Add(cranial);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View("~/Views/Home/Confirmation.cshtml");
             }
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId", cranial.BurialId);
             ViewData["EntryId"] = new SelectList(_context.MainEntries, "EntryId", "EntryId", cranial.EntryId);

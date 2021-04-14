@@ -295,8 +295,7 @@ namespace FagElGamous.Controllers
             {
                 _context.MainEntries.Add(input.mainEntry);
                 _context.BurialRecords.Add(input.burialRecords);
-/*              await _context.SaveChangesAsync() ;
-*/
+
             }
 
             return View();

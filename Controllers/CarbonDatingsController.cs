@@ -64,7 +64,7 @@ namespace FagElGamous.Controllers
             {
                 _context.Add(carbonDating);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View("~/Views/Home/Confirmation.cshtml");
             }
             ViewData["BioSampleId"] = new SelectList(_context.BiologicalSamples, "BioSampleId", "BioSampleId", carbonDating.BioSampleId);
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId", carbonDating.BurialId);
