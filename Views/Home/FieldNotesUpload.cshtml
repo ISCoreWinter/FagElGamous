@@ -6,22 +6,32 @@
 }
 
 @model PhotoUpload
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <form enctype="multipart/form-data" method="post">
+        <dl>
+            <dt>
+                <label asp-for="@Model.FormFile"></label>
+            </dt>
+            <dd>
+                <input asp-for="@Model.FormFile" />
+            </dd>
+        </dl>
 
-<form enctype="multipart/form-data" method="post">
-    <dl>
-        <dt>
-            <label asp-for="@Model.FormFile"></label>
-        </dt>
-        <dd>
-            <input asp-for="@Model.FormFile" />
-        </dd>
-    </dl>
+        <label asp-for="@Model.BurialId">Plot Number Associated With Photo</label>
+        <input asp-for="@Model.BurialId" /><br />
 
-    <label asp-for="@Model.BurialId">Plot Number Associated With Photo</label>
-    <input asp-for="@Model.BurialId" /><br />
+        <label asp-for="@Model.Description">Scan Description</label>
+        <input asp-for="@Model.Description" /><br />
+        <br />
 
-    <label asp-for="@Model.Description">Scan Description</label>
-    <input asp-for="@Model.Description" /><br />
-
-    <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
-</form>
+        <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
+        <br />
+        <br />
+        <br />
+        <br />
+    </form>

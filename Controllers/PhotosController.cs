@@ -115,7 +115,7 @@ namespace FagElGamous.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return View("~/Views/Home/Confirmation.cshtml");
             }
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId", photos.BurialId);
             return View(photos);
