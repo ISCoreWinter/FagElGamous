@@ -119,11 +119,11 @@ namespace FagElGamous.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return View("~/Views/Home/Confirmation.cshtml");
             }
             ViewData["BioSampleId"] = new SelectList(_context.BiologicalSamples, "BioSampleId", "BioSampleId", carbonDating.BioSampleId);
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId", carbonDating.BurialId);
-            return View("Confirmation");
+            return View(carbonDating);
         }
 
         // GET: CarbonDatings/Delete/5

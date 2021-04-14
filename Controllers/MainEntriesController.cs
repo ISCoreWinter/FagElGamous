@@ -71,14 +71,16 @@ namespace FagElGamous.Controllers
         }
 
         // GET: MainEntries1/Edit/5
-        public async Task<IActionResult> Edit(int? burialId)
+
+        public async Task<IActionResult> Edit(int? BurialId)
         {
-            if (burialId == null)
+            if (BurialId == null)
             {
                 return NotFound();
             }
 
-            var mainEntries = await _context.MainEntries.FindAsync(burialId);
+
+            var mainEntries = await _context.MainEntries.FindAsync(BurialId);
             if (mainEntries == null)
             {
                 return NotFound();
@@ -92,9 +94,10 @@ namespace FagElGamous.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int burialId, [Bind("EntryId,BurialId,BodyAnalysisYear,YearExcavated,MonthExcavated,DayExcavated,ArtifactsDescription,DescriptionOfTaken,OsteologyNotes,BurialSituation,GamousId,FieldBook,FieldBookPgnumber,DataEntryExpertInitials,DataEntryCheckerInitials,ByuSample,RackNumber,ShelfNumber,Tomb,Cluster,BodySex,GeSex,SexMethod,GeFunctionTotal,AgeRangeAtDeath,AgeEstimateAtDeath,AgeMethod,AgeCode,AgeCodeSingle,BurialPreservation,BurialWrapping,FaceBundle,HairColorCode,HairColor,LengthM,LengthCm,SkullAtMagazine,PostcraniaAtMagazine,ToBeConfirmed,OsteologyUnknownComment,Goods,HairTaken,SoftTissueTaken,BoneTaken,ToothTaken,TextileTaken,ArtifactFound,BurialSampleTaken,BurialWestToHead,BurialWestToFeet,BurialSouthToHead,BurialSouthToFeet,EastToHead,EastToFeet,BurialDepth,HeadDirection,BurialDirection,Notes1,Notes2,Notes3,Notes4,Notes5,Notes6,Notes7,Notes8,Notes9,TimeEntered,InCluster,ClusterNumber,ShaftNumber,SharedShaft,ExcavationRecorderFirstName,ExcavationRecorderMiddleName,ExcavationRecorderLastName")] MainEntries mainEntries)
+
+        public async Task<IActionResult> Edit(int BurialId, [Bind("EntryId,BurialId,BodyAnalysisYear,YearExcavated,MonthExcavated,DayExcavated,ArtifactsDescription,DescriptionOfTaken,OsteologyNotes,BurialSituation,GamousId,FieldBook,FieldBookPgnumber,DataEntryExpertInitials,DataEntryCheckerInitials,ByuSample,RackNumber,ShelfNumber,Tomb,Cluster,BodySex,GeSex,SexMethod,GeFunctionTotal,AgeRangeAtDeath,AgeEstimateAtDeath,AgeMethod,AgeCode,AgeCodeSingle,BurialPreservation,BurialWrapping,FaceBundle,HairColorCode,HairColor,LengthM,LengthCm,SkullAtMagazine,PostcraniaAtMagazine,ToBeConfirmed,OsteologyUnknownComment,Goods,HairTaken,SoftTissueTaken,BoneTaken,ToothTaken,TextileTaken,ArtifactFound,BurialSampleTaken,BurialWestToHead,BurialWestToFeet,BurialSouthToHead,BurialSouthToFeet,EastToHead,EastToFeet,BurialDepth,HeadDirection,BurialDirection,Notes1,Notes2,Notes3,Notes4,Notes5,Notes6,Notes7,Notes8,Notes9,TimeEntered,InCluster,ClusterNumber,ShaftNumber,SharedShaft,ExcavationRecorderFirstName,ExcavationRecorderMiddleName,ExcavationRecorderLastName")] MainEntries mainEntries)
         {
-            if (burialId != mainEntries.EntryId)
+            if (BurialId != mainEntries.EntryId)
             {
                 return NotFound();
             }
@@ -117,7 +120,7 @@ namespace FagElGamous.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return View("~/Views/Home/Confirmation.cshtml");
             }
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId", mainEntries.BurialId);
             return View(mainEntries);

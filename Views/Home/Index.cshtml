@@ -1,20 +1,22 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<!--home page-->
 <div id="extras">
-    <div class="space"></div>
+    <br /><br />
     <div class="row">
         <div class="col-md-7 col-md-offset-0 col-sm-10 col-sm-offset-1">
             <div class="text-center">
                 <div class="space"></div>
+                <!--pic of bones at fag el gamous-->
                 <img src="/img/bodies.jpg" alt="Rounded Image" class="img-rounded img-responsive img-dog">
             </div>
         </div>
+        <!--information about fag el gamous-->
         <div class="col-md-5 col-sm-12">
             <h1 class="text-center">
                 About Fag <br />el-Gamous
-                <small class="subtitle">Learn a bit more</small>
+                <small class="subtitle">Things to Know</small>
             </h1>
             <hr>
             <p>
@@ -39,28 +41,30 @@
 </div><br /><br />
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 <div class="main">
+    <!--information about BYU Excavations-->
     <div class="container tim-container" style="max-width:800px; padding-top:42px">
         <h1 class="text-center">Learn more about <br> BYU Excavations<small class="subtitle">This is a bit about what we do!</small></h1>
         <p>
-            Now that you know a little about Fag el-Gamous, it'll be easier to explain what we do here at BYU Excavations.
-            Our goal is to provide the information about the mummies found at Fag el-Gamous to the public. We strive to
-            have the most up to date data available to our users. As part of our goal to have the most up to date information
-            available, we include the ability for researchers to input data as they are on the site working on the excavations.
-            The dual functionality is for benefit of both the public and the researchers.
-        </p>
+            Now that you know a little about Fag el-Gamous, it'll be easier to explain what we do here at BYU Excavations. 
+            Our goal is to provide the information about the mummies found at Fag el-Gamous to the public. We strive to have 
+            the most up to date data available to our users. As part of our goal to have the most up to date information 
+            available, we include the ability for researchers to input data as they are on the site working on the excavations. 
+            The dual functionality is for the benefit of both the public and the researchers.
+        </p><br />
         <p>
-            Here at BYU Excavations, we keep our users at the forefront of our minds. It's our desire that our records are
-            easily searchable and for this we have also included the ability to filter through records seemlessly. You can
-            quickly look up key words and have dozens of matching records be pulled up. We hope this makes your researching
+            Here at BYU Excavations, we keep our users at the forefront of our minds. It's our desire that our records are 
+            easily searchable and for this we have also included the ability to filter through records seamlessly. You can 
+            quickly look up keywords and have dozens of matching records be pulled up. We hope this makes your research 
             effortless and fun.
-        </p>
+        </p><br />
         <div class="text-center">
             <h4>
                 Get started by searching records today!
             </h4>
-            <form class="example" action="action_page.php">
+            <!--search button-->
+            <form class="example" method="get" asp-action="DataDisplay">
                 <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <button type="submit" ><i class="fa fa-search"></i></button>
             </form>
         </div>
         
@@ -69,6 +73,6 @@
        
         <!--     end extras -->
     </div>
-    <div class="space"></div>
+    <br /><br /><br /><br />
     <!-- end container -->
 </div>

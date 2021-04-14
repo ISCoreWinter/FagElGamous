@@ -21,12 +21,22 @@ namespace FagElGamous.Infrastructure
         }
         public PagingInfo PageModel { get; set; }
 
+        //public int? BurialId { get; set; }
+        //public int? YearExcavated { get; set; }
+        //public string AgeEstimatedAtDeath { get; set; }
+        //public string HairColor { get; set; }
+        //public string Sex { get; set; }
+        //public string BurialSubplot { get; set; }
+        //public string Goods { get; set; }
+        //public string BurialDirection { get; set; }
+
         //attributes to allow for button styling and such
         public bool PageClassesEnabled { get; set; } = false;
         public string PageAction { get; set; }
         public string PageClass { get; set; }
         public string PageClassNormal { get; set; }
         public string PageClassSelected { get; set; }
+        public string PageParameters { get; set; }
 
         //the dictionary make parameter passing easier
         [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
@@ -50,6 +60,7 @@ namespace FagElGamous.Infrastructure
 
                 KeyValuePairs["pageNum"] = i;
                 tagA.Attributes["href"] = urlHelper.Action(PageAction, KeyValuePairs);
+                tagA.Attributes["href"] = tagA.Attributes["href"] + PageParameters;
                 tagA.InnerHtml.Append(i.ToString());
 
                 //if the classes are enabled in the cshtml file, styling options are available

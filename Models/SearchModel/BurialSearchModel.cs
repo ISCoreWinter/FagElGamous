@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace FagElGamous.Models.SearchModel
 {
+    //model made with the attributes that the data will be filtered by
     public class BurialSearchModel
     {
         public int? BurialId { get; set; }
-        public int? YearExcavated { get; set; }
-        public string AgeEstimatedAtDeath { get; set; }
-        public string HairColor { get; set; }
-        public string Sex { get; set; }
+        public int? HighPairNs { get; set; }
+        public int? HighPairEw { get; set; }
+        public string BurialNumber { get; set; }
+        public string LowPairNs { get; set; }
+        public string BurialLocationNs { get; set; }
+        public string BurialLocationEw { get; set; }
         public string BurialSubplot { get; set; }
-        public string Goods { get; set; }
-        public string BurialDirection { get; set; }
+        public int? LowPairEw { get; set; }
+        public int? Area { get; set; }
     }
 }

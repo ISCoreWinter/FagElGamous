@@ -6,16 +6,20 @@
 }
 @model DataListViewModel
 
-<div class="container"><br /></div>
+<!--displays the data from the database-->
 
-<h3>Please Enjoy Our Current Finds</h3>
+<div class="container"><br /><br /><br /><br /><br /><br /></div>
 
+<h2 style="font-weight: bold;">Please Enjoy Our Current Finds</h2><br />
+
+<!--shows the form for filtering-->
 <div class="flex-wrap">
     <div class="col-3 pull-left content">
         <partial name="FilterSummary" model="Model.burialSearchModel"/>
     </div>
 </div>
 
+<!--partial view that displays the data in an organized manner-->
 <div class="row">
 
     @foreach (var x in Model.records)
@@ -27,6 +31,6 @@
     <div page-model="@Model.pagingInfo"
          page-action="DataDisplay" page-classes-enabled="true"
          page-class="btn btn-default" page-class-normal="btn-outline-primary"
-         page-class-selected="btn-warning btn-fill"
-         class="btn-group m-1 p-4 pagination">
+         page-class-selected="btn-fill btn-default"
+         class="btn-group m-1 p-4 pagination" page-parameters="@Model.UrlInfo">
     </div>
