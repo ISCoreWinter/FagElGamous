@@ -60,7 +60,7 @@ namespace FagElGamous.Controllers
                 burialRecords.BurialId = (_context.BurialRecords.Max(p => p.BurialId) + 1);
                 _context.Add(burialRecords);
                 await _context.SaveChangesAsync();
-                return View("~/Views/Home/ViewAllData.cshtml");            
+                return View("~/Views/Home/Confirmation.cshtml");
             }
             return View(burialRecords);
         }
@@ -142,12 +142,12 @@ namespace FagElGamous.Controllers
             var burialRecords = await _context.BurialRecords.FindAsync(BurialId);
             _context.BurialRecords.Remove(burialRecords);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View("~/Views/Home/Confirmation.cshtml");
         }
 
-        private bool BurialRecordsExists(int id)
+        private bool BurialRecordsExists(int BurialId)
         {
-            return _context.BurialRecords.Any(e => e.BurialId == id);
+            return _context.BurialRecords.Any(e => e.BurialId == BurialId);
         }
     }
 }

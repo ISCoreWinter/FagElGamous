@@ -154,7 +154,7 @@ namespace FagElGamous.Controllers
             var cranial = await _context.Cranial.FindAsync(EntryId);
             _context.Cranial.Remove(cranial);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View("~/Views/Home/Confirmation.cshtml");
         }
 
         private bool CranialExists(int EntryId)

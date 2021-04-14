@@ -148,7 +148,7 @@ namespace FagElGamous.Controllers
             var photos = await _context.Photos.FindAsync(BurialId);
             _context.Photos.Remove(photos);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View("~/Views/Home/Confirmation.cshtml");
         }
 
         private bool PhotosExists(int BurialId)

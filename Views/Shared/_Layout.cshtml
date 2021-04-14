@@ -41,7 +41,10 @@
                         <a class="btn btn-dark btn-fill" style="background-color:#D2B48C" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         <a class="btn btn-default btn-fill" style="background-color:#D2B48C" asp-controller="Home" asp-action="DataDisplay">View Available Data</a>
                         <a class="btn btn-default btn-fill" style="background-color:#D2B48C" asp-area="" asp-page="/Account/Login">Login</a>
+                        @if (User.IsInRole("Researchers") || User.IsInRole("Admins"))
+                        { 
                         <a class="btn btn-default btn-fill" style="background-color:#D2B48C" asp-area="" asp-page="/Account/Logout">Logout</a>
+                        }
 
                         @if (User.IsInRole("Researchers"))
                         {

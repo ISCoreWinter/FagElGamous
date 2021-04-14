@@ -283,6 +283,14 @@ namespace FagElGamous.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public IActionResult FieldNotesUpload()
+        {
+            return View();
+        }
+
+       
         [HttpGet]
         public IActionResult InputForm()
         {

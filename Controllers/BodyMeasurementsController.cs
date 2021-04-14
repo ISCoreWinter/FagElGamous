@@ -72,14 +72,14 @@ namespace FagElGamous.Controllers
         }
 
         // GET: BodyMeasurements/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? BurialId)
         {
-            if (id == null)
+            if (BurialId == null)
             {
                 return NotFound();
             }
 
-            var bodyMeasurements = await _context.BodyMeasurements.FindAsync(id);
+            var bodyMeasurements = await _context.BodyMeasurements.FindAsync(BurialId);
             if (bodyMeasurements == null)
             {
                 return NotFound();
@@ -94,9 +94,9 @@ namespace FagElGamous.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EntryId,BurialId,VentralArc,SubpubicAngle,SciaticNotch,PubicBone,PreaurSulcus,MedicalIpRamus,DorsalPitting,FemurHead,HumerusHead,PubicSymphysis,BoneLength,MedicalClavicle,IliacCrest,FemurDiameter,Humerus,FemurLength,HumerusLength,TibiaLength,PreservationIndex,EstimateLivingStature,PathologyAnomalies,EpiphysealUnion,Osteophytosis")] BodyMeasurements bodyMeasurements)
+        public async Task<IActionResult> Edit(int BurialId, [Bind("EntryId,BurialId,VentralArc,SubpubicAngle,SciaticNotch,PubicBone,PreaurSulcus,MedicalIpRamus,DorsalPitting,FemurHead,HumerusHead,PubicSymphysis,BoneLength,MedicalClavicle,IliacCrest,FemurDiameter,Humerus,FemurLength,HumerusLength,TibiaLength,PreservationIndex,EstimateLivingStature,PathologyAnomalies,EpiphysealUnion,Osteophytosis")] BodyMeasurements bodyMeasurements)
         {
-            if (id != bodyMeasurements.EntryId)
+            if (BurialId != bodyMeasurements.EntryId)
             {
                 return NotFound();
             }
@@ -127,9 +127,9 @@ namespace FagElGamous.Controllers
         }
 
         // GET: BodyMeasurements/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? burialId)
         {
-            if (id == null)
+            if (burialId == null)
             {
                 return NotFound();
             }
@@ -137,7 +137,7 @@ namespace FagElGamous.Controllers
             var bodyMeasurements = await _context.BodyMeasurements
                 .Include(b => b.Burial)
                 .Include(b => b.Entry)
-                .FirstOrDefaultAsync(m => m.EntryId == id);
+                .FirstOrDefaultAsync(m => m.EntryId == burialId);
             if (bodyMeasurements == null)
             {
                 return NotFound();
@@ -149,17 +149,17 @@ namespace FagElGamous.Controllers
         // POST: BodyMeasurements/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int burialId)
         {
-            var bodyMeasurements = await _context.BodyMeasurements.FindAsync(id);
+            var bodyMeasurements = await _context.BodyMeasurements.FindAsync(burialId);
             _context.BodyMeasurements.Remove(bodyMeasurements);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View("~/Views/Home/Confirmation.cshtml");
         }
 
-        private bool BodyMeasurementsExists(int id)
+        private bool BodyMeasurementsExists(int burialId)
         {
-            return _context.BodyMeasurements.Any(e => e.EntryId == id);
+            return _context.BodyMeasurements.Any(e => e.EntryId == burialId);
         }
     }
 }

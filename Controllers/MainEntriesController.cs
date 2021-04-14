@@ -26,16 +26,16 @@ namespace FagElGamous.Controllers
         }
 
         // GET: MainEntries1/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? burialId)
         {
-            if (id == null)
+            if (burialId == null)
             {
                 return NotFound();
             }
 
             var mainEntries = await _context.MainEntries
                 .Include(m => m.Burial)
-                .FirstOrDefaultAsync(m => m.EntryId == id);
+                .FirstOrDefaultAsync(m => m.EntryId == burialId);
             if (mainEntries == null)
             {
                 return NotFound();
@@ -71,12 +71,14 @@ namespace FagElGamous.Controllers
         }
 
         // GET: MainEntries1/Edit/5
+
         public async Task<IActionResult> Edit(int? BurialId)
         {
             if (BurialId == null)
             {
                 return NotFound();
             }
+
 
             var mainEntries = await _context.MainEntries.FindAsync(BurialId);
             if (mainEntries == null)
@@ -92,6 +94,7 @@ namespace FagElGamous.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Edit(int BurialId, [Bind("EntryId,BurialId,BodyAnalysisYear,YearExcavated,MonthExcavated,DayExcavated,ArtifactsDescription,DescriptionOfTaken,OsteologyNotes,BurialSituation,GamousId,FieldBook,FieldBookPgnumber,DataEntryExpertInitials,DataEntryCheckerInitials,ByuSample,RackNumber,ShelfNumber,Tomb,Cluster,BodySex,GeSex,SexMethod,GeFunctionTotal,AgeRangeAtDeath,AgeEstimateAtDeath,AgeMethod,AgeCode,AgeCodeSingle,BurialPreservation,BurialWrapping,FaceBundle,HairColorCode,HairColor,LengthM,LengthCm,SkullAtMagazine,PostcraniaAtMagazine,ToBeConfirmed,OsteologyUnknownComment,Goods,HairTaken,SoftTissueTaken,BoneTaken,ToothTaken,TextileTaken,ArtifactFound,BurialSampleTaken,BurialWestToHead,BurialWestToFeet,BurialSouthToHead,BurialSouthToFeet,EastToHead,EastToFeet,BurialDepth,HeadDirection,BurialDirection,Notes1,Notes2,Notes3,Notes4,Notes5,Notes6,Notes7,Notes8,Notes9,TimeEntered,InCluster,ClusterNumber,ShaftNumber,SharedShaft,ExcavationRecorderFirstName,ExcavationRecorderMiddleName,ExcavationRecorderLastName")] MainEntries mainEntries)
         {
             if (BurialId != mainEntries.EntryId)
@@ -124,16 +127,16 @@ namespace FagElGamous.Controllers
         }
 
         // GET: MainEntries1/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? burialId)
         {
-            if (id == null)
+            if (burialId == null)
             {
                 return NotFound();
             }
 
             var mainEntries = await _context.MainEntries
                 .Include(m => m.Burial)
-                .FirstOrDefaultAsync(m => m.EntryId == id);
+                .FirstOrDefaultAsync(m => m.EntryId == burialId);
             if (mainEntries == null)
             {
                 return NotFound();
@@ -145,17 +148,17 @@ namespace FagElGamous.Controllers
         // POST: MainEntries1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int burialId)
         {
-            var mainEntries = await _context.MainEntries.FindAsync(id);
+            var mainEntries = await _context.MainEntries.FindAsync(burialId);
             _context.MainEntries.Remove(mainEntries);
             await _context.SaveChangesAsync();
             return View("~/Views/Home/Confirmation.cshtml");
         }
 
-        private bool MainEntriesExists(int id)
+        private bool MainEntriesExists(int burialId)
         {
-            return _context.MainEntries.Any(e => e.EntryId == id);
+            return _context.MainEntries.Any(e => e.EntryId == burialId);
         }
     }
 }
