@@ -12,5 +12,6 @@ namespace FagElGamous.Models.ViewModels
         public IEnumerable<BurialRecords> records { get; set; }
         public PagingInfo pagingInfo { get; set; }
         public BurialSearchModel burialSearchModel { get; set; }
+        public string UrlInfo { get; set; }
     }
 }

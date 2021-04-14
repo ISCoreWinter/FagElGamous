@@ -120,7 +120,9 @@ namespace FagElGamous.Controllers
                         TotalNumItems = queryModel.Count()
                     },
 
-                    burialSearchModel = searchModel
+                    burialSearchModel = searchModel,
+
+                    UrlInfo = Request.QueryString.Value
 
                 });
             }
