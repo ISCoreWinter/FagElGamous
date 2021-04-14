@@ -7,8 +7,19 @@
 
 @model PhotoUpload
 
-<div class="container"><br /><br /><br /><br /></div>
+<div class="container">
+    <br /><br /><br /><br />
 
-<h1>This is where you add data</h1>
+    <h1 class="text-center">Add Records Here</h1>
+    <a class="btn btn-default btn-fill" asp-controller="BurialRecords" asp-action="Create">Submit an Exhumation Form</a>
+    <br />
+    <br />
+    <a class="btn btn-default btn-fill" asp-controller="MainEntries" asp-action="Create"> Add a Burial Record</a>
+    <br />
+    <br />
+    <a class="btn btn-default btn-fill" asp-controller="Home" asp-action="PhotoUpload">Upload a Photo</a>
+    <br />
+    <br />
+    <a class="btn btn-default btn-fill" asp-controller="Home" asp-action="FieldNotesUpload">Upload a Scanned Field Book</a>
 
-<a class="btn btn-default btn-fill" asp-controller="Home" asp-action="PhotoUpload">Upload a Photo</a>
+</div>

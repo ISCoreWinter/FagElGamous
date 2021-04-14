@@ -57,6 +57,7 @@ namespace FagElGamous.Controllers
         {
             if (ModelState.IsValid)
             {
+                burialRecords.BurialId = (_context.BurialRecords.Max(p => p.BurialId) + 1);
                 _context.Add(burialRecords);
                 await _context.SaveChangesAsync();
                 return View("~/Views/Home/ViewAllData.cshtml");            

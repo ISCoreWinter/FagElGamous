@@ -18,17 +18,17 @@ namespace FagElGamous.Controllers
             _context = context;
         }
 
-        // GET: Cranials
+        // GET: Cranials1
         public async Task<IActionResult> Index()
         {
             var fagelgamousContext = _context.Cranial.Include(c => c.Burial).Include(c => c.Entry);
             return View(await fagelgamousContext.ToListAsync());
         }
 
-        // GET: Cranials/Details/5
-        public async Task<IActionResult> Details(int? BurialId)
+        // GET: Cranials1/Details/5
+        public async Task<IActionResult> Details(int? EntryId)
         {
-            if (BurialId == null)
+            if (EntryId == null)
             {
                 return NotFound();
             }
@@ -36,7 +36,7 @@ namespace FagElGamous.Controllers
             var cranial = await _context.Cranial
                 .Include(c => c.Burial)
                 .Include(c => c.Entry)
-                .FirstOrDefaultAsync(m => m.EntryId == BurialId);
+                .FirstOrDefaultAsync(m => m.EntryId == EntryId);
             if (cranial == null)
             {
                 return NotFound();
@@ -45,7 +45,7 @@ namespace FagElGamous.Controllers
             return View(cranial);
         }
 
-        // GET: Cranials/Create
+        // GET: Cranials1/Create
         public IActionResult Create()
         {
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId");
@@ -53,7 +53,7 @@ namespace FagElGamous.Controllers
             return View();
         }
 
-        // POST: Cranials/Create
+        // POST: Cranials1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -71,7 +71,7 @@ namespace FagElGamous.Controllers
             return View(cranial);
         }
 
-        // GET: Cranials/Edit/5
+        // GET: Cranials1/Edit/5
         public async Task<IActionResult> Edit(int? BurialId)
         {
             if (BurialId == null)
@@ -89,14 +89,14 @@ namespace FagElGamous.Controllers
             return View(cranial);
         }
 
-        // POST: Cranials/Edit/5
+        // POST: Cranials1/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int BurialId, [Bind("EntryId,BurialId,SampleNumber,MaximumCranialLength,MaximumCranialBreadth,BasionBregmaHeight,BasionNasion,BasionProsthionLength,BizygomaticDiameter,NasionProsthion,MaximumNasalBreadth,InterorbitalBreadth,SupraorbitalRidges,OrbitEdge,ParietalBossing,Gonian,NuchalCrest,ZygomaticCrest,CranialSuture,BasilarSuture,ForemanMagnum,ToothAttrition,ToothEruption,SkullTrauma,PostcraniaTrauma,CribraOrbitala,PoroticHyperostosis,PoroticHyperostosisLocations,MetopicSuture,ButtonOsteoma,TemporalMandibularJointOsteoarthritisTmjoa,LinearHypoplasiaEnamel,SkullYear,SkullMonth,SkullDate,Robust")] Cranial cranial)
+        public async Task<IActionResult> Edit(int EntryId, [Bind("EntryId,BurialId,SampleNumber,MaximumCranialLength,MaximumCranialBreadth,BasionBregmaHeight,BasionNasion,BasionProsthionLength,BizygomaticDiameter,NasionProsthion,MaximumNasalBreadth,InterorbitalBreadth,SupraorbitalRidges,OrbitEdge,ParietalBossing,Gonian,NuchalCrest,ZygomaticCrest,CranialSuture,BasilarSuture,ForemanMagnum,ToothAttrition,ToothEruption,SkullTrauma,PostcraniaTrauma,CribraOrbitala,PoroticHyperostosis,PoroticHyperostosisLocations,MetopicSuture,ButtonOsteoma,TemporalMandibularJointOsteoarthritisTmjoa,LinearHypoplasiaEnamel,SkullYear,SkullMonth,SkullDate,Robust")] Cranial cranial)
         {
-            if (BurialId != cranial.EntryId)
+            if (EntryId != cranial.EntryId)
             {
                 return NotFound();
             }
@@ -126,10 +126,10 @@ namespace FagElGamous.Controllers
             return View(cranial);
         }
 
-        // GET: Cranials/Delete/5
-        public async Task<IActionResult> Delete(int? BurialId)
+        // GET: Cranials1/Delete/5
+        public async Task<IActionResult> Delete(int? EntryId)
         {
-            if (BurialId == null)
+            if (EntryId == null)
             {
                 return NotFound();
             }
@@ -137,7 +137,7 @@ namespace FagElGamous.Controllers
             var cranial = await _context.Cranial
                 .Include(c => c.Burial)
                 .Include(c => c.Entry)
-                .FirstOrDefaultAsync(m => m.EntryId == BurialId);
+                .FirstOrDefaultAsync(m => m.EntryId == EntryId);
             if (cranial == null)
             {
                 return NotFound();
@@ -146,20 +146,20 @@ namespace FagElGamous.Controllers
             return View(cranial);
         }
 
-        // POST: Cranials/Delete/5
+        // POST: Cranials1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int BurialId)
+        public async Task<IActionResult> DeleteConfirmed(int EntryId)
         {
-            var cranial = await _context.Cranial.FindAsync(BurialId);
+            var cranial = await _context.Cranial.FindAsync(EntryId);
             _context.Cranial.Remove(cranial);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CranialExists(int BurialId)
+        private bool CranialExists(int EntryId)
         {
-            return _context.Cranial.Any(e => e.EntryId == BurialId);
+            return _context.Cranial.Any(e => e.EntryId == EntryId);
         }
     }
 }

@@ -31,8 +31,8 @@ namespace FagElGamous.Models
         public string BurialLocationEw { get; set; }
         public string BurialSubplot { get; set; }
         public int? Area { get; set; }
-        public bool? Photo { get; set; }
-        public bool? BuriedGoods { get; set; }
+        public string? Photo { get; set; }
+        public string? BuriedGoods { get; set; }
         public string BurialNumber { get; set; }
 
         public virtual ICollection<BiologicalSamples> BiologicalSamples { get; set; }

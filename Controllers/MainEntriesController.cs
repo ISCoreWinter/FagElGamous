@@ -18,14 +18,14 @@ namespace FagElGamous.Controllers
             _context = context;
         }
 
-        // GET: MainEntries
+        // GET: MainEntries1
         public async Task<IActionResult> Index()
         {
             var fagelgamousContext = _context.MainEntries.Include(m => m.Burial);
             return View(await fagelgamousContext.ToListAsync());
         }
 
-        // GET: MainEntries/Details/5
+        // GET: MainEntries1/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,14 +44,14 @@ namespace FagElGamous.Controllers
             return View(mainEntries);
         }
 
-        // GET: MainEntries/Create
+        // GET: MainEntries1/Create
         public IActionResult Create()
         {
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId");
             return View();
         }
 
-        // POST: MainEntries/Create
+        // POST: MainEntries1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -60,6 +60,8 @@ namespace FagElGamous.Controllers
         {
             if (ModelState.IsValid)
             {
+                mainEntries.BurialId = (_context.BurialRecords.Max(p => p.BurialId));
+                mainEntries.EntryId = (_context.MainEntries.Max(p => p.EntryId) + 1);
                 _context.Add(mainEntries);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -68,15 +70,15 @@ namespace FagElGamous.Controllers
             return View(mainEntries);
         }
 
-        // GET: MainEntries/Edit/5
-        public async Task<IActionResult> Edit(int? BurialId)
+        // GET: MainEntries1/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (BurialId == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var mainEntries = await _context.MainEntries.FindAsync(BurialId);
+            var mainEntries = await _context.MainEntries.FindAsync(id);
             if (mainEntries == null)
             {
                 return NotFound();
@@ -85,14 +87,14 @@ namespace FagElGamous.Controllers
             return View(mainEntries);
         }
 
-        // POST: MainEntries/Edit/5
+        // POST: MainEntries1/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int BurialId, [Bind("EntryId,BurialId,BodyAnalysisYear,YearExcavated,MonthExcavated,DayExcavated,ArtifactsDescription,DescriptionOfTaken,OsteologyNotes,BurialSituation,GamousId,FieldBook,FieldBookPgnumber,DataEntryExpertInitials,DataEntryCheckerInitials,ByuSample,RackNumber,ShelfNumber,Tomb,Cluster,BodySex,GeSex,SexMethod,GeFunctionTotal,AgeRangeAtDeath,AgeEstimateAtDeath,AgeMethod,AgeCode,AgeCodeSingle,BurialPreservation,BurialWrapping,FaceBundle,HairColorCode,HairColor,LengthM,LengthCm,SkullAtMagazine,PostcraniaAtMagazine,ToBeConfirmed,OsteologyUnknownComment,Goods,HairTaken,SoftTissueTaken,BoneTaken,ToothTaken,TextileTaken,ArtifactFound,BurialSampleTaken,BurialWestToHead,BurialWestToFeet,BurialSouthToHead,BurialSouthToFeet,EastToHead,EastToFeet,BurialDepth,HeadDirection,BurialDirection,Notes1,Notes2,Notes3,Notes4,Notes5,Notes6,Notes7,Notes8,Notes9,TimeEntered,InCluster,ClusterNumber,ShaftNumber,SharedShaft,ExcavationRecorderFirstName,ExcavationRecorderMiddleName,ExcavationRecorderLastName")] MainEntries mainEntries)
+        public async Task<IActionResult> Edit(int id, [Bind("EntryId,BurialId,BodyAnalysisYear,YearExcavated,MonthExcavated,DayExcavated,ArtifactsDescription,DescriptionOfTaken,OsteologyNotes,BurialSituation,GamousId,FieldBook,FieldBookPgnumber,DataEntryExpertInitials,DataEntryCheckerInitials,ByuSample,RackNumber,ShelfNumber,Tomb,Cluster,BodySex,GeSex,SexMethod,GeFunctionTotal,AgeRangeAtDeath,AgeEstimateAtDeath,AgeMethod,AgeCode,AgeCodeSingle,BurialPreservation,BurialWrapping,FaceBundle,HairColorCode,HairColor,LengthM,LengthCm,SkullAtMagazine,PostcraniaAtMagazine,ToBeConfirmed,OsteologyUnknownComment,Goods,HairTaken,SoftTissueTaken,BoneTaken,ToothTaken,TextileTaken,ArtifactFound,BurialSampleTaken,BurialWestToHead,BurialWestToFeet,BurialSouthToHead,BurialSouthToFeet,EastToHead,EastToFeet,BurialDepth,HeadDirection,BurialDirection,Notes1,Notes2,Notes3,Notes4,Notes5,Notes6,Notes7,Notes8,Notes9,TimeEntered,InCluster,ClusterNumber,ShaftNumber,SharedShaft,ExcavationRecorderFirstName,ExcavationRecorderMiddleName,ExcavationRecorderLastName")] MainEntries mainEntries)
         {
-            if (BurialId != mainEntries.EntryId)
+            if (id != mainEntries.EntryId)
             {
                 return NotFound();
             }
@@ -118,10 +120,10 @@ namespace FagElGamous.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BurialId"] = new SelectList(_context.BurialRecords, "BurialId", "BurialId", mainEntries.BurialId);
-            return View("Confirmation");
+            return View(mainEntries);
         }
 
-        // GET: MainEntries/Delete/5
+        // GET: MainEntries1/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,7 +142,7 @@ namespace FagElGamous.Controllers
             return View(mainEntries);
         }
 
-        // POST: MainEntries/Delete/5
+        // POST: MainEntries1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
